@@ -28,16 +28,20 @@ class Domain
   end
     
   def find(service_name)
-    return @services if service_name == :all
+    return @services                if service_name == :all
     
-    @services[service_name]
+    service = @services[service_name]
+    return service unless service.nil? 
+    
+    ContainerLogger.warn "Unexisting service called: #{@name}::#{service_name}"
+    nil
   end
   
   private
     def new_service(service)
       @services[service.name]         = service
       @services[service.name].runtime = @runtime 
-      DRb.start_service "druby://127.0.0.1:#{service.port}", ServiceProvider.new(@container)
+      DRb.start_service "druby://127.0.0.1:#{service.port}", ServiceProvider.new(@container, @services[service.name])
       
       return @services[service.name]
     end

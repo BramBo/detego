@@ -8,7 +8,9 @@ class String
     def console_blue;         colorize(self, "\e[1m\e[34m");  end
     def console_dark_blue;    colorize(self, "\e[34m");       end
     def console_purple;       colorize(self, "\e[1m\e[35m");  end
-    
+
+    def console_def;          colorize(self, "\e[1m");  end    
+    def console_bold;          colorize(self, "\e[1m");  end
     def console_blink;        colorize(self, "\e[5m");  end
     
     def colorize(text, color_code)  "#{color_code}#{text}\e[0m" end

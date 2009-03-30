@@ -6,7 +6,6 @@ class ServiceMetaData
   end
   
   def gather
-    # @todo Define expose_methods {...} for ServiceManager on runtime
     @service.runtime.runScriptlet(%{       
       $service_manager = ServiceManager.new      
     })  
