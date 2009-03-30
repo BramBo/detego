@@ -1,0 +1,676 @@
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(0 for 1)
+[1m[32mroot::test_script booted succesfully![0m
+ undefined local variable or method `str' for #<ServiceManager:0x1f417>
+[1m[32mroot::test_script booted succesfully![0m
+ wrong # of arguments(0 for 1)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ druby://127.0.0.1:5665 - #<Errno::ECONNREFUSED: Connection refused - Connection refused>
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `invoke' for #<ServiceProvider:0xad368c>
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `invoke' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x49d226>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x83cee3>
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ can't dup Symbol
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ can't convert Symbol into String
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `invoke' for #<ServiceProvider:0x1d57c7>
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `approach_root_test_service' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `approach_root_test_service' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `find' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `find' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `find' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ druby://127.0.0.1:15611 - #<Errno::ECONNREFUSED: Connection refused - Connection refused>
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x43b64f>
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `get_status' for #<ServiceManager:0x43b64f>
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ End of file reached
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `find' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `[]' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[33mNo domain set in service provider call (domain=)![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[33mNo domain set in service provider call (domain=)![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[33mNo service set in service provider call (|)![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[33mNo domain set in service provider call (domain)![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[33mNo domain set in service provider call (domain)![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `blink' for "FAIL":String
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong argument type String (expected Module)
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `ancesorts' for ServiceHelper:Module
+ undefined method `superclass' for ServiceHelper:Module
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+ `methods' is not allowable as an instance variable name
+ `methods' is not allowable as an instance variable name
+ `methods' is not allowable as an instance variable name
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+ undefined method `exposed_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for nil:NilClass
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `exposed_methods' for #<ServiceManager:0x83bbb6>
+ undefined method `exposed_methods' for #<ServiceManager:0x83bbb6>
+ undefined method `exp_methods' for #<ServiceManager:0x83bbb6>
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ superclass mismatch for class ServiceManager
+ superclass mismatch for class ServiceManager
+ uninitialized constant Manager
+ undefined method `exposed_methods' for ServiceManager:Class
+ undefined method `exposed_methods' for ServiceManager:Class
+ uninitialized constant ServiceManager
+ uninitialized constant ServiceManager
+ wrong argument type Class (expected Module)
+ undefined method `exposed_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined local variable or method `exp_methods=' for ServiceManager:Class
+ undefined local variable or method `exp_methods=' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `exp_methods' for #<ServiceManager:0x83bbb6>
+[1m[32mroot::test_script booted succesfully![0m
+ uninitialized class variable @@exp_methods in ServiceManager
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `set_methods' for ServiceManager:Class
+ undefined method `set_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(1 for 0)
+ wrong # of arguments(1 for 0)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ uninitialized class variable @@methods in ServiceManager
+ uninitialized class variable @@methods in ServiceManager
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+ wrong number of arguments(0 for 2)
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+ undefined method `all_methods' for ServiceManager:Class
+ undefined method `all_methods' for ServiceManager:Class
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+[1m[32mroot::test_script booted succesfully![0m
+ undefined method `all_methods' for #<ServiceManager:0x4694ef>
+ undefined method `method_defined?' for main:Object
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ undefined method `include?' for :say_hello:Symbol
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ connection closed
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+ wrong # of arguments(3 for 1)
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::test_script booted succesfully![0m
+[1m[32mapproach::test_script booted succesfully![0m

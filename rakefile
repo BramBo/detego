@@ -1,0 +1,31 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'lib/system_helper'
+
+task :todo do
+  todos = 0
+  files = 0
+  %w{app config test lib}.each do |dir|
+    Dir.entries(dir).each do |entry|
+      next unless entry =~ /\.rb$/i
+      files += 1
+      f     = File.new("#{dir}/#{entry}")
+      m     = f.read().scan(/[\s\#]*(.+?$)\n.+?\@todo[\s\:]+(.+?$)(?m:.)[\s\#]*(.+?$)/i)
+      if m.size>0
+          puts "#{m.size} Todo's in #{dir}/#{entry}".console_green
+          m.size.times do |i|
+            puts " - #{m[i][1]}".console_dark_green
+            puts "   \e[1mline before: \e[0m#{m[i][0]}" if m[i][0].size > 2
+            puts "   \e[1mline after: \e[0m#{m[i][2]}"
+          end
+          todos += m.size
+      end
+      f.close()
+    end
+  end
+  puts "#{todos} todo's over #{files} files".console_dark_yellow
+end
+
+
+task :default => :todo
