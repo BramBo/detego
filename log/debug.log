@@ -674,3 +674,10 @@
 [1m[32mapproach::test_script booted succesfully![0m
 [1m[32mroot::test_script booted succesfully![0m
 [1m[32mapproach::test_script booted succesfully![0m
+[1m[32mroot::service_a booted succesfully![0m
+[1m[32maltern::service_b booted succesfully![0m
+[1m[32mroot::service_a booted succesfully![0m
+[1m[32maltern::service_b booted succesfully![0m
+ undefined method `invoke' for nil:NilClass
+[1m[32mroot::service_a booted succesfully![0m
+[1m[32maltern::service_b booted succesfully![0m

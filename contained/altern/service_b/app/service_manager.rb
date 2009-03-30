@@ -6,6 +6,6 @@ class ServiceManager
   end
   
   def approach_root_test_service
-     $provider.on(:root, :test_script).set_status("#{$service[:full_name]} infiltrated :root::test_script!")
+     $provider.on(:root, :service_a).set_status("#{$service[:full_name]} infiltrated :root::test_script!")
   end
 end

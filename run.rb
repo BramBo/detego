@@ -22,8 +22,8 @@ container     = Container.new
 #
 # Server Start...
 #
-container.add_domain(:root).add_service(:test_script).start()
-container.add_domain(:approach).add_service(:test_script).start()
+container.add_domain(:root).add_service(:service_a).start()
+container.add_domain(:altern).add_service(:service_b).start()
 
 ###################################
 ##     Should be invoked by      ##
@@ -31,8 +31,8 @@ container.add_domain(:approach).add_service(:test_script).start()
 ##     Through Server facade     ##
 ###################################
 root        = container.find(:root)
-test_script = root.find(:test_script)
+service_a = root.find(:service_a)
 
-puts "Method invocation: ".console_dark_yellow + String.new(test_script.invoke(:get_status))
-container.find(:approach).find(:test_script).invoke(:approach_root_test_service)
-puts "Method invocation: ".console_dark_yellow + String.new(test_script.invoke(:get_status))
+puts "Method invocation: ".console_dark_yellow + String.new(service_a.invoke(:get_status))
+container.find(:altern).find(:service_b).invoke(:approach_root_test_service)
+puts "Method invocation: ".console_dark_yellow + String.new(service_a.invoke(:get_status))
