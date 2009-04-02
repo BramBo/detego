@@ -9,9 +9,9 @@ class UserController < ApplicationController
     @status[:after] = $provider.on(:root, :service_a).get_status
     
     # meta data
-    @meta[:exposed_methods]
-    @meta[:exposed_variables][:both]
-    @meta[:exposed_variables][:write]
-    @meta[:exposed_variables][:read]
+    # @meta[:exposed_methods]
+    # @meta[:exposed_variables][:both]
+    # @meta[:exposed_variables][:write]
+    # @meta[:exposed_variables][:read]
   end
 end

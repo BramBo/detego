@@ -35,5 +35,6 @@
   container.find(:altern).find(:service_b).invoke(:approach_root_test_service)
 
 loop do
+  # @todo: better exit signal
   exit if gets
 end

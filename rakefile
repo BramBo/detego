@@ -6,7 +6,7 @@ require 'lib/system_helper'
 task :todo do
   todos = 0
   files = 0
-  %w{app config test lib}.each do |dir|
+  %w{. app config test lib}.each do |dir|
     Dir.entries(dir).each do |entry|
       next unless entry =~ /\.rb$/i
       files += 1
