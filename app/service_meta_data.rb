@@ -15,7 +15,6 @@ class ServiceMetaData
     })
     @exposed_methods.each_with_index{|m, i| @exposed_methods[i] = m.to_s}
     
-    # @todo:change to [\w]+\= methods (r/w ?)
     @exposed_variables = @service.runtime.runScriptlet(%{
       vs = {:read => [], :write => [], :both => [] }
       
