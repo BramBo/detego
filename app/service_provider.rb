@@ -84,7 +84,7 @@ class ServiceProvider
     begin 
       data = @container.find(@domain).find(@service).meta_data
       
-      return {:exposed_methods => data.exposed_methods, :exposed_variables => data.exposed_variables}
+      return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables}
     rescue => ex
       ContainerLogger.error "#{ex} for service: #{@providee.name}"
     ensure

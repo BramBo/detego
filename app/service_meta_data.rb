@@ -1,5 +1,5 @@
 class ServiceMetaData
-  attr_reader :exposed_methods, :exposed_variables
+  attr_reader :service_methods, :exposed_variables
   
   def initialize(service)
     @service = service
@@ -10,10 +10,18 @@ class ServiceMetaData
       $service_manager = ServiceManager.new      
     })  
     
-    @exposed_methods =@service.runtime.runScriptlet(%{
-      $service_manager.all_methods
-    })
-    @exposed_methods.each_with_index{|m, i| @exposed_methods[i] = m.to_s}
+    @service_methods = {:all => [], :exposed => []}
+    @service.runtime.runScriptlet(%{
+      m = {:all => [], :exposed => []}
+      $service_manager.all_methods.each {|e| m[:exposed] << e.to_s}
+      m[:all]      = ($service_manager.public_methods-Object.public_instance_methods) - m[:exposed] - ["start", "all_methods", "stop"]
+      m
+    }).each {|k, v|
+      v.each do |e|
+        @service_methods[:all]     << e.to_s if k.to_s == "all"
+        @service_methods[:exposed] << e.to_s if k.to_s == "exposed"
+      end
+    }
     
     @exposed_variables = @service.runtime.runScriptlet(%{
       vs = {:read => [], :write => [], :both => [] }
@@ -32,5 +40,6 @@ class ServiceMetaData
       end
       vs
     })
+   
   end
 end

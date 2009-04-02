@@ -5,6 +5,8 @@ class Service
   attr_accessor :name, :runtime
     
   def initialize(name, domain)
+    raise Exception.new("#{name} is not a valid service name") unless valid_directory_name(name.to_s)
+        
     @name       = name
     @booted     = false
     @domain     = domain
@@ -73,7 +75,7 @@ class Service
     arg   = Marshal.dump(args)
     blck  = Marshal.dump(block)
 
-    if @meta_data.exposed_methods.include?(method_name.to_s)
+    if @meta_data.service_methods[:exposed].include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green
       if !args.nil? && !args.first.nil?
         if block
