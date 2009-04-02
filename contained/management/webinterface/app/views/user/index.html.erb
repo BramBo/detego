@@ -1,0 +1,19 @@
+<h1>Status</h1>
+<div style="border:1px solid #000;width400px">
+<b>status before</b> <%= @status[:before] %><br />
+<b>status before</b> <%= @status[:after] %>
+</div>
+<br />
+<h1>Meta-data</h1>
+<div style="border:1px solid #000;width400px">
+ <h3>Methods</h3>
+ <p>
+	<%= @meta[:exposed_methods].join(", ") %>
+ </p>
+ <h3>Variables</h3>
+ <p>
+	<b>Read/Write</b>: <%= @meta[:exposed_variables][:both].join(", ") %><br />
+ 	<b>Write only</b>: <%= @meta[:exposed_variables][:write].join(", ") %><br />
+ 	<b>Read only</b>: <%= @meta[:exposed_variables][:read].join(", ") %>
+  </p>
+</div>

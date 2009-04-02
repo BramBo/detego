@@ -12,27 +12,28 @@
 ##################################
 ##        Should be server      ##
 ##################################
-require "config/config.rb"
-require "container"
-require "service_provider"
-require 'drb'
 
-container     = Container.new
+  require "config/config.rb"
+  require "container"
+  require "service_provider"
+  require 'drb'
 
-#
-# Server Start...
-#
-container.add_domain(:root).add_service(:service_a).start()
-container.add_domain(:altern).add_service(:service_b).start()
+  container     = Container.new
 
-###################################
-##     Should be invoked by      ##
-##  client / installed services  ##
-##     Through Server facade     ##
-###################################
-root        = container.find(:root)
-service_a = root.find(:service_a)
+  #
+  # Server Start...
+  #
+  container.add_domain(:root).add_service(:service_a).start()
+  container.add_domain(:altern).add_service(:service_b).start()
+  container.add_domain(:management).add_service(:webinterface).start()
 
-puts "Method invocation: ".console_dark_yellow + String.new(service_a.invoke(:get_status))
-container.find(:altern).find(:service_b).invoke(:approach_root_test_service)
-puts "Method invocation: ".console_dark_yellow + String.new(service_a.invoke(:get_status))
+  ###################################
+  ##     Should be invoked by      ##
+  ##  client / installed services  ##
+  ##     Through Server facade     ##
+  ###################################
+  container.find(:altern).find(:service_b).invoke(:approach_root_test_service)
+
+loop do
+  exit if gets
+end

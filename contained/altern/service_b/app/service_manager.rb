@@ -11,4 +11,8 @@ class ServiceManager
      ## Error call can't let the provider crash the container here !
      $provider.on(:root, :serviceasd_a).set_status("#{$service[:full_name]} infiltrated :root::service_a!") 
   end
+  
+  def start
+    
+  end
 end

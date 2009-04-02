@@ -18,7 +18,7 @@ class Domain
     FileUtils.mkdir_p("#{SERVICES_PATH}/#{name}", :mode => 0755)
     
     # @todo: Expand with org.jruby.RubyInstanceConfig
-    @runtime  = JJRuby.newInstance()
+    @runtime        = JJRuby.newInstance()
   end
     
   def add_service(name)
@@ -28,12 +28,12 @@ class Domain
   end
     
   def find(service_name)
-    return @services                if service_name == :all
+    return @services  if service_name == :all
     
     service = @services[service_name]
-    return service unless service.nil? 
+    return service    unless service.nil? 
     
-    ContainerLogger.warn "Unexisting service called: #{@name}::#{service_name}"
+    ContainerLogger.warn "Unexisting service called: #{@name}::#{service_name}", 1
     nil
   end
   
@@ -41,7 +41,7 @@ class Domain
     def new_service(service)
       @services[service.name]         = service
       @services[service.name].runtime = @runtime 
-      DRb.start_service "druby://127.0.0.1:#{service.port}", ServiceProvider.new(@container, @services[service.name])
+      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, @services[service.name])
       
       return @services[service.name]
     end
