@@ -2,7 +2,24 @@ require "domain"
 
 class Container
   def initialize
-    @domains        = Hash.new
+    @domains    = Hash.new
+    @path       = SERVICES_PATH
+        
+    # find exisiting domains and services
+    Dir.new(@path).each do |domain|
+      domain_dir = "#{@path}/#{domain}/"
+      next if domain =~ /^\.{1,2}/ || !File.directory?(domain_dir) 
+      
+      Dir.new("#{@path}/#{domain}").each do |service|
+        service_dir = "#{@path}/#{domain}/#{service}"
+        next if service =~ /^\.{1,2}/ || !File.directory?(service_dir) 
+        begin  
+          add_domain(domain.to_sym).add_service(service.to_sym).start()
+        rescue => e
+          ContainerLogger.error e, 1
+        end
+      end
+    end
   end
   
   def find(domain_name)

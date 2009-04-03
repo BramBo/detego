@@ -20,6 +20,7 @@ class Service
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
+    ContainerLogger.debug "Service added #{domain}::#{name}"    
   end
 
   # Start/boot the service 
@@ -72,6 +73,7 @@ class Service
   #  
   # @todo: include blocks for invocation
   def invoke(method_name, *args, &block)
+    raise Exception.new("Service #{@name} not started!") unless @started 
     arg   = Marshal.dump(args)
     blck  = Marshal.dump(block)
 

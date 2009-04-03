@@ -16,6 +16,8 @@ class Domain
     
     # Create the domain directory if not present
     FileUtils.mkdir_p("#{SERVICES_PATH}/#{@name}", :mode => 0755)
+    
+    ContainerLogger.debug "Domain added #{name}"
   end
     
   def add_service(name)
@@ -44,5 +46,4 @@ class Domain
       
       return @services[service.name]
     end
-  
 end

@@ -1,5 +1,6 @@
 class ServiceManager
   exposed_methods :interval=
+  
   def start
     @interval ||= 60
     begin 

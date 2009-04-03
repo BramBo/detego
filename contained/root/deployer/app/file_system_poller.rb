@@ -8,35 +8,35 @@ class FileSystemPoller
   
   def poll
     begin
-      old_structure = current_structure
+      @old_structure = @current_structure
       get_current_structure
     
       # check for missing entities in the old directory tree
-      (old_structure.keys - current_structure.keys).each do |d|
+      (@old_structure.keys - @current_structure.keys).each do |d|
         # domain got deleted !
         $provider.remove_domain(d.to_sym)
         ContainerLogger.warn "Domain #{d} got deleted!"        
       end
     
       # Check for new entities in the current directory tree
-      (current_structure.keys - old_structure.keys).each do |d|
+      (@current_structure.keys - @old_structure.keys).each do |d|
         # found new domain
-        current_structure[d].each do |s|
+        @current_structure[d].each do |s|
           $provider.add_service(d.to_sym, s.to_sym) 
           ContainerLogger.debug "New service discovered! #{d}::#{s}"          
         end
       end
 
       # finally check for deleted services within the current domains
-      current_structure.each do |k, d|
+      @current_structure.each do |k, d|
 
-        unless old_structure[k].nil?
-          (current_structure[k] - old_structure[k]).each do |s|
+        unless @old_structure[k].nil?
+          (@current_structure[k] - @old_structure[k]).each do |s|
             $provider.remove_service(d.to_sym, s.to_sym)             
             ContainerLogger.warn "Service directory removed! #{k}::#{s}"
           end
       
-          (old_structure[k] - current_structure[k]).each do |s|
+          (@old_structure[k] - @current_structure[k]).each do |s|
             $provider.remove_service(d.to_sym, s.to_sym)             
             ContainerLogger.debug "New service discovered! #{k}::#{s}"
           end
