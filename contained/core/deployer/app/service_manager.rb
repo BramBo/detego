@@ -1,6 +1,6 @@
 class ServiceManager
   def start
-    @interval ||= 5
+    @interval ||= 90
     begin 
       @poller = FileSystemPoller.new(LOAD_PATH.gsub(/(^.+?[\/\/]+.+?)[\/\/]+.+?$/i, "\\1"))
       loop do
