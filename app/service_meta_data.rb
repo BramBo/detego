@@ -22,7 +22,8 @@ class ServiceMetaData
         @service_methods[:exposed] << e.to_s if k.to_s == "exposed"
       end
     }
-    
+
+    @exposed_variables = {:both => [], :read => [], :write => []}    
     @exposed_variables = @service.runtime.runScriptlet(%{
       vs = {:read => [], :write => [], :both => [] }
       
@@ -40,6 +41,5 @@ class ServiceMetaData
       end
       vs
     })
-   
   end
 end

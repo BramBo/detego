@@ -1,5 +1,5 @@
 class ServiceManager
-  attr_reader :hello
+  attr_accessor :hello
   exposed_methods :say_hello, :set_status, :get_status
   
   def initialize

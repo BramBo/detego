@@ -15,16 +15,12 @@ class Domain
     @container  = container
     
     # Create the domain directory if not present
-    FileUtils.mkdir_p("#{SERVICES_PATH}/#{name}", :mode => 0755)
-    
-    # @todo: Expand with org.jruby.RubyInstanceConfig
-    @runtime        = JJRuby.newInstance()
+    FileUtils.mkdir_p("#{SERVICES_PATH}/#{@name}", :mode => 0755)
   end
     
   def add_service(name)
     raise Exception.new("#{name} is already taken on domain #{@name}") unless @services[name].nil? 
     serv = new_service(Service.new(name, self))
-    
   end
     
   def find(service_name)
@@ -40,7 +36,10 @@ class Domain
   private
     def new_service(service)
       @services[service.name]         = service
-      @services[service.name].runtime = @runtime 
+      
+      # @todo: Expand with org.jruby.RubyInstanceConfig
+      @services[service.name].runtime = JJRuby.newInstance()
+      
       DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, @services[service.name])
       
       return @services[service.name]

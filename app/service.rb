@@ -10,8 +10,8 @@ class Service
     @name       = name
     @booted     = false
     @domain     = domain
-    @full_name  = "#{domain.name}::#{name}"
-    @path       = "#{SERVICES_PATH}/#{domain.name}/#{name}"
+    @full_name  = "#{domain.name}::#{@name}"
+    @path       = "#{SERVICES_PATH}/#{domain.name}/#{@name}"
     @port_in    = $port_start+=1
     @port_out   = $port_start+=1    
         
@@ -109,6 +109,7 @@ class Service
   def shutdown()
     raise Exception.new("Not implemented") 
   end
+
   
   # Inject code into the service: Remove ?!
   #

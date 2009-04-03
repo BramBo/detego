@@ -16,6 +16,12 @@ class Container
   end
   
   def add_domain(name)
-    @domains[name] = Domain.new(name, self)
+    @domains[name] = @domains[name] || Domain.new(name, self)
+  end
+  
+  def remove(name)
+    @domains.delete(name)
+    ContainerLogger.warn "Deleted domain #{name} (#{name.class})"
+    true
   end
 end

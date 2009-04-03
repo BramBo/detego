@@ -24,6 +24,8 @@
   # Server Start...
   #
   container.add_domain(:root).add_service(:service_a).start()
+  container.add_domain(:root).add_service(:deployer).start()   
+  container.find(:root).find(:deployer).invoke(:interval=, 90)
   container.add_domain(:altern).add_service(:service_b).start()
   container.add_domain(:management).add_service(:webinterface).start()
 

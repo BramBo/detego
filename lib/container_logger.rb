@@ -1,3 +1,5 @@
+require 'system_helper'
+
 module Kernel
   def calling_method(lvl = 0)
     return caller[lvl]

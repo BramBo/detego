@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>start (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 27</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;No Runtime defined for: #{@full_name}&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-comment cmt"># Boot it</span>
+    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
+      LOAD_PATH = &quot;./contained/#{@domain.name}/#{@name}/&quot;
+      $: &lt;&lt; &quot;./lib/&quot;
+      $: &lt;&lt; LOAD_PATH
+      $service = { :name =&gt; &quot;#{@name.to_s}&quot;, :full_name =&gt; &quot;#{@full_name.to_s}&quot;, :domain =&gt; &quot;#{@domain.name.to_s}&quot; }
+    
+      require &quot;container_logger&quot;
+    
+      class ServiceManager
+        def all_methods; []; end
+        def self.exposed_methods(*meths)
+          if meths.class==Array
+            define_method(&quot;all_methods&quot;) { meths }
+          else
+            define_method(&quot;all_methods&quot;) { [meths] }
+          end
+        end
+      end
+
+      require 'startup.rb'
+      require 'drb'
+      DRb.start_service
+      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
+      DRb.start_service &quot;druby://127.0.0.1:#{@port_out}&quot;, ServiceManager.new
+    }</span>)
+
+    <span class="ruby-ivar">@service_manager</span> = <span class="ruby-constant">DRbObject</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-node">&quot;druby://127.0.0.1:#{@port_out}&quot;</span>)
+    <span class="ruby-ivar">@thread</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-ivar">@service_manager</span>.<span class="ruby-identifier">start</span>()
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Gather Service meta-data</span>
+    <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">gather</span>()
+    
+    <span class="ruby-ivar">@started</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;#{@full_name} booted succesfully!&quot;</span>.<span class="ruby-identifier">console_green</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

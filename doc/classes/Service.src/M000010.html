@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>invoke (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 74</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">method_name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">arg</span>   = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">blck</span>  = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">block</span>)
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">service_methods</span>[<span class="ruby-identifier">:exposed</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Invoking #{method_name} #{@full_name} ServiceManager&quot;</span>.<span class="ruby-identifier">console_green</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
+            arg = Marshal.load('#{arg}')
+            $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
+          }</span>)          
+        <span class="ruby-keyword kw">else</span> 
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
+            arg = Marshal.load('#{arg}')
+            $service_manager.#{method_name}(arg)
+          }</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{$service_manager.#{method_name}()}</span>)      
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{method_name} not available on #{@domain.name}::#{@name}&quot;</span>)
+    <span class="ruby-keyword kw">end</span>    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

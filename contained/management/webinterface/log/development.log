@@ -3251,3 +3251,108 @@ SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
   Parameters: {"controller"=>"user", "action"=>"index"}
 Rendering user/index
 Completed in 0.03203 (31 reqs/sec) | Rendering: 0.00149 (4%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:49:37) [GET]
+  Session ID: 0d05e1978a9577e4d85225ad48bcfb1c
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000419)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000322)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.06360 (15 reqs/sec) | Rendering: 0.00911 (14%) | DB: 0.00074 (1%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:50:08) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+Rendering user/index
+Completed in 0.04032 (24 reqs/sec) | Rendering: 0.00691 (17%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:50:29) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000357)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000356)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.05260 (19 reqs/sec) | Rendering: 0.00944 (17%) | DB: 0.00071 (1%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:52:02) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+Rendering user/index
+Completed in 0.03790 (26 reqs/sec) | Rendering: 0.00275 (7%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:52:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+Rendering user/index
+Completed in 0.04236 (23 reqs/sec) | Rendering: 0.00138 (3%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:54:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000393)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000528)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.05307 (18 reqs/sec) | Rendering: 0.00931 (17%) | DB: 0.00092 (1%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:54:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+Rendering user/index
+Completed in 0.03644 (27 reqs/sec) | Rendering: 0.00448 (12%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-02 21:54:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+Rendering user/index
+Completed in 0.04156 (24 reqs/sec) | Rendering: 0.00136 (3%) | DB: 0.00000 (0%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-03 09:10:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.001811)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000382)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.06135 (16 reqs/sec) | Rendering: 0.01566 (25%) | DB: 0.00219 (3%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-03 09:31:21) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000371)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000390)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.05895 (16 reqs/sec) | Rendering: 0.01520 (25%) | DB: 0.00076 (1%) | 200 OK [http://localhost/user]
+
+
+Processing UserController#index (for 127.0.0.1 at 2009-04-03 12:48:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"user", "action"=>"index"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /opt/local/share/java/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000413)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000413)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering user/index
+Completed in 0.09341 (10 reqs/sec) | Rendering: 0.01718 (18%) | DB: 0.00083 (0%) | 200 OK [http://localhost/user]
