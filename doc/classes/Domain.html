@@ -93,9 +93,9 @@ instance
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000006">add_service</a>&nbsp;&nbsp;
-      <a href="#M000007">find</a>&nbsp;&nbsp;
-      <a href="#M000005">new</a>&nbsp;&nbsp;
+      <a href="#M000007">add_service</a>&nbsp;&nbsp;
+      <a href="#M000008">find</a>&nbsp;&nbsp;
+      <a href="#M000006">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -130,35 +130,27 @@ instance
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
-
-        <div class="method-heading">
-          <a href="Domain.src/M000005.html" target="Code" class="method-signature"
-            onclick="popupCode('Domain.src/M000005.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(name, container)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
       <div id="method-M000006" class="method-detail">
         <a name="M000006"></a>
 
         <div class="method-heading">
           <a href="Domain.src/M000006.html" target="Code" class="method-signature"
             onclick="popupCode('Domain.src/M000006.html');return false;">
-          <span class="method-name">add_service</span><span class="method-args">(name)</span>
+          <span class="method-name">new</span><span class="method-args">(name, container)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Initialize a <a href="Domain.html#M000006">new</a> domain
+</p>
+<pre>
+ make directories if needed
+</pre>
         </div>
       </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
 
       <div id="method-M000007" class="method-detail">
         <a name="M000007"></a>
@@ -166,11 +158,38 @@ instance
         <div class="method-heading">
           <a href="Domain.src/M000007.html" target="Code" class="method-signature"
             onclick="popupCode('Domain.src/M000007.html');return false;">
+          <span class="method-name">add_service</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Public method to add a <a href="Service.html">Service</a>
+</p>
+<pre>
+  new_services(Service.new) gets called
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Domain.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Domain.src/M000008.html');return false;">
           <span class="method-name">find</span><span class="method-args">(service_name)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+:service_name || :all as paramater
+</p>
+<pre>
+  :all gives the entire collection of services on this domain
+  :service_name will return a service or nil if none can be found
+</pre>
         </div>
       </div>
 

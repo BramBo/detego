@@ -5,54 +5,29 @@
 
 <html>
 <head>
-  <title>start (Service)</title>
+  <title>new (Service)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File app/service.rb, line 27</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;No Runtime defined for: #{@full_name}&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">nil?</span>
-
-    <span class="ruby-comment cmt"># Boot it</span>
-    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
-      LOAD_PATH = &quot;./contained/#{@domain.name}/#{@name}/&quot;
-      $: &lt;&lt; &quot;./lib/&quot;
-      $: &lt;&lt; LOAD_PATH
-      $service = { :name =&gt; &quot;#{@name.to_s}&quot;, :full_name =&gt; &quot;#{@full_name.to_s}&quot;, :domain =&gt; &quot;#{@domain.name.to_s}&quot; }
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 7</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">domain</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{name} is not a valid service name&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_directory_name</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>)
+        
+    <span class="ruby-ivar">@name</span>       = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@booted</span>     = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@domain</span>     = <span class="ruby-identifier">domain</span>
+    <span class="ruby-ivar">@full_name</span>  = <span class="ruby-node">&quot;#{domain.name}::#{@name}&quot;</span>
+    <span class="ruby-ivar">@path</span>       = <span class="ruby-node">&quot;#{SERVICES_PATH}/#{domain.name}/#{@name}&quot;</span>
+    <span class="ruby-ivar">@port_in</span>    = <span class="ruby-identifier">$port_start</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+    <span class="ruby-ivar">@port_out</span>   = <span class="ruby-identifier">$port_start</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>    
+        
+    <span class="ruby-comment cmt"># Create the domain directory if not present</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-ivar">@path</span>, <span class="ruby-identifier">:mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0755</span>)
     
-      require &quot;container_logger&quot;
-    
-      class ServiceManager
-        def all_methods; []; end
-        def self.exposed_methods(*meths)
-          if meths.class==Array
-            define_method(&quot;all_methods&quot;) { meths }
-          else
-            define_method(&quot;all_methods&quot;) { [meths] }
-          end
-        end
-      end
-
-      require 'startup.rb'
-      require 'drb'
-      DRb.start_service
-      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
-      DRb.start_service &quot;druby://127.0.0.1:#{@port_out}&quot;, ServiceManager.new
-    }</span>)
-
-    <span class="ruby-ivar">@service_manager</span> = <span class="ruby-constant">DRbObject</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-node">&quot;druby://127.0.0.1:#{@port_out}&quot;</span>)
-    <span class="ruby-ivar">@thread</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span>
-      <span class="ruby-ivar">@service_manager</span>.<span class="ruby-identifier">start</span>()
-    <span class="ruby-keyword kw">end</span>
-    
-    <span class="ruby-comment cmt"># Gather Service meta-data</span>
-    <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">gather</span>()
-    
-    <span class="ruby-ivar">@started</span> = <span class="ruby-keyword kw">true</span>
-    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;#{@full_name} booted succesfully!&quot;</span>.<span class="ruby-identifier">console_green</span>
-
-    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+    <span class="ruby-comment cmt"># And finally set the meta-data for the service</span>
+    <span class="ruby-ivar">@meta_data</span>  = <span class="ruby-constant">ServiceMetaData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Service added #{domain}::#{name}&quot;</span>    
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

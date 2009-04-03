@@ -7,6 +7,8 @@ require "service"
 class Domain
   attr_accessor :name
   
+  # Initialize a new domain
+  #  make directories if needed
   def initialize(name, container)
     raise Exception.new("#{name} is not a valid domain name") unless valid_directory_name(name.to_s)
     
@@ -19,12 +21,17 @@ class Domain
     
     ContainerLogger.debug "Domain added #{name}"
   end
-    
+
+  # Public method to add a Service
+  #   new_services(Service.new) gets called
   def add_service(name)
     raise Exception.new("#{name} is already taken on domain #{@name}") unless @services[name].nil? 
     serv = new_service(Service.new(name, self))
   end
     
+  # :service_name || :all as paramater
+  #   :all gives the entire collection of services on this domain
+  #   :service_name will return a service or nil if none can be found
   def find(service_name)
     return @services  if service_name == :all
     
@@ -36,6 +43,9 @@ class Domain
   end
   
   private
+    # A new service is created, set the needed properties
+    #  Instantiate a new runtime
+    #  Start a new DRB server so this service can access it's ServiceProvider
     def new_service(service)
       @services[service.name]         = service
       

@@ -33,7 +33,7 @@ class FileSystemPoller
         unless @old_structure[k].nil?
           (@current_structure[k] - @old_structure[k]).each do |s|
             $provider.remove_service(d.to_sym, s.to_sym)             
-            ContainerLogger.warn "Service directory removed! #{k}::#{s}"
+            ContainerLogger.warn "Service removed! #{k}::#{s}"
           end
       
           (@old_structure[k] - @current_structure[k]).each do |s|

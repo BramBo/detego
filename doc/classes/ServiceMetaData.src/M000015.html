@@ -5,48 +5,14 @@
 
 <html>
 <head>
-  <title>gather (ServiceMetaData)</title>
+  <title>new (ServiceMetaData)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File app/service_meta_data.rb, line 8</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gather</span>
-    <span class="ruby-ivar">@service</span>.<span class="ruby-identifier">runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{       
-      $service_manager = ServiceManager.new      
-    }</span>)  
-    
-    <span class="ruby-ivar">@service_methods</span> = {<span class="ruby-identifier">:all</span> =<span class="ruby-operator">&gt;</span> [], <span class="ruby-identifier">:exposed</span> =<span class="ruby-operator">&gt;</span> []}
-    <span class="ruby-ivar">@service</span>.<span class="ruby-identifier">runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{
-      m = {:all =&gt; [], :exposed =&gt; []}
-      $service_manager.all_methods.each {|e| m[:exposed] &lt;&lt; e.to_s}
-      m[:all]      = ($service_manager.public_methods-Object.public_instance_methods) - m[:exposed] - [&quot;start&quot;, &quot;all_methods&quot;, &quot;stop&quot;]
-      m
-    }</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">v</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
-        <span class="ruby-ivar">@service_methods</span>[<span class="ruby-identifier">:all</span>]     <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;all&quot;</span>
-        <span class="ruby-ivar">@service_methods</span>[<span class="ruby-identifier">:exposed</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;exposed&quot;</span>
-      <span class="ruby-keyword kw">end</span>
-    }
-
-    <span class="ruby-ivar">@exposed_variables</span> = {<span class="ruby-identifier">:both</span> =<span class="ruby-operator">&gt;</span> [], <span class="ruby-identifier">:read</span> =<span class="ruby-operator">&gt;</span> [], <span class="ruby-identifier">:write</span> =<span class="ruby-operator">&gt;</span> []}    
-    <span class="ruby-ivar">@exposed_variables</span> = <span class="ruby-ivar">@service</span>.<span class="ruby-identifier">runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{
-      vs = {:read =&gt; [], :write =&gt; [], :both =&gt; [] }
-      
-      $service_manager.instance_variables.each do |m|
-        r_meth = m.gsub(/\@/, &quot;&quot;).to_sym
-        w_meth = (m.gsub(/\@/, &quot;&quot;)+&quot;=&quot;).to_sym
-
-        if $service_manager.respond_to?(r_meth) &amp;&amp; $service_manager.respond_to?(w_meth)
-          vs[:both]  &lt;&lt; r_meth
-        elsif $service_manager.respond_to?(w_meth)
-          vs[:write] &lt;&lt; r_meth
-        elsif $service_manager.respond_to?(r_meth)
-          vs[:read]  &lt;&lt; r_meth
-        end
-      end
-      vs
-    }</span>)
+  <pre><span class="ruby-comment cmt"># File app/service_meta_data.rb, line 4</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">service</span>)
+    <span class="ruby-ivar">@service</span> = <span class="ruby-identifier">service</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

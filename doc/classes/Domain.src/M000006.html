@@ -5,16 +5,23 @@
 
 <html>
 <head>
-  <title>add_service (Domain)</title>
+  <title>new (Domain)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File app/domain.rb, line 24</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_service</span>(<span class="ruby-identifier">name</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{name} is already taken on domain #{@name}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@services</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">nil?</span> 
-    <span class="ruby-identifier">serv</span> = <span class="ruby-identifier">new_service</span>(<span class="ruby-constant">Service</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-keyword kw">self</span>))
+  <pre><span class="ruby-comment cmt"># File app/domain.rb, line 12</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">container</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{name} is not a valid domain name&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_directory_name</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>)
     
+    <span class="ruby-ivar">@name</span>       = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@services</span>   = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@container</span>  = <span class="ruby-identifier">container</span>
+    
+    <span class="ruby-comment cmt"># Create the domain directory if not present</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-node">&quot;#{SERVICES_PATH}/#{@name}&quot;</span>, <span class="ruby-identifier">:mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0755</span>)
+    
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Domain added #{name}&quot;</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

@@ -12,7 +12,24 @@
 <body class="standalone-code">
   <pre><span class="ruby-comment cmt"># File app/container.rb, line 4</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-    <span class="ruby-ivar">@domains</span>        = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@domains</span>    = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@path</span>       = <span class="ruby-constant">SERVICES_PATH</span>
+        
+    <span class="ruby-comment cmt"># find exisiting domains and services</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@path</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">domain</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">domain_dir</span> = <span class="ruby-node">&quot;#{@path}/#{domain}/&quot;</span>
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">domain</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\.{1,2}/</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">domain_dir</span>) 
+      
+      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{@path}/#{domain}&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">service</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">service_dir</span> = <span class="ruby-node">&quot;#{@path}/#{domain}/#{service}&quot;</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">service</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\.{1,2}/</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">service_dir</span>) 
+        <span class="ruby-keyword kw">begin</span>  
+          <span class="ruby-identifier">add_domain</span>(<span class="ruby-identifier">domain</span>.<span class="ruby-identifier">to_sym</span>).<span class="ruby-identifier">add_service</span>(<span class="ruby-identifier">service</span>.<span class="ruby-identifier">to_sym</span>).<span class="ruby-identifier">start</span>()
+        <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>, <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

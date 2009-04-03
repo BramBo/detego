@@ -24,9 +24,7 @@
   ##  client / installed services  ##
   ##     Through Server facade     ##
   ###################################
-  container.find(:root).find(:deployer).invoke(:interval=, 90)  
-  container.find(:altern).find(:service_b).invoke(:approach_root_test_service)
-  
+  container.find(:root).find(:deployer).invoke(:interval=, 90)
 
 loop do
   # @todo: better exit signal

@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File app/container.rb, line 18</span>
+  <pre><span class="ruby-comment cmt"># File app/container.rb, line 35</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_domain</span>(<span class="ruby-identifier">name</span>)
-    <span class="ruby-ivar">@domains</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-constant">Domain</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-keyword kw">self</span>)
+    <span class="ruby-ivar">@domains</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-ivar">@domains</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Domain</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-keyword kw">self</span>)
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>
