@@ -42,6 +42,10 @@ class Domain
     nil
   end
   
+  def remove(s)
+    @services.delete(s)
+  end
+  
   private
     # A new service is created, set the needed properties
     #  Instantiate a new runtime

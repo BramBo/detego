@@ -20,7 +20,7 @@ class Service
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
-    ContainerLogger.debug "Service added #{domain}::#{name}"    
+    ContainerLogger.debug "Service added #{domain.name}::#{name}"    
   end
 
   # Start/boot the service 
@@ -30,7 +30,7 @@ class Service
 
     # Boot it
     @runtime.runScriptlet(%{
-      LOAD_PATH = "./contained/#{@domain.name}/#{@name}/"
+      LOAD_PATH = "./contained/#{@domain.name}/#{@name}"
       $: << "./lib/"
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
@@ -107,9 +107,32 @@ class Service
   end
   
   # shutdown the service
-  #
+  # @todo: Make shutdown subroutine
   def shutdown()
-    raise Exception.new("Not implemented") 
+    ContainerLogger.debug "#{@domain.name}::#{@name} shutdown"
+    true
+  end
+
+  # install
+  # @todo: Make install subroutine
+  def install()
+    r = @runtime.runScriptlet(%{
+
+    })
+
+    ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
+    true
+  end
+
+  # Uninstall
+  # @todo: Make uninstall subroutine
+  def uninstall()
+    r = @runtime.runScriptlet(%{
+
+    })
+
+    ContainerLogger.debug "#{@domain.name}::#{@name} uninstalled succesfully"
+    true
   end
 
   

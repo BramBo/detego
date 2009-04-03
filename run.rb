@@ -12,20 +12,12 @@
 ##################################
 ##        Should be server      ##
 ##################################
-
   require "config/config.rb"
   require "container"
   require "service_provider"
   require 'drb'
 
   container     = Container.new
-  ###################################
-  ##     Should be invoked by      ##
-  ##  client / installed services  ##
-  ##     Through Server facade     ##
-  ###################################
-  container.find(:root).find(:deployer).invoke(:interval=, 90)
-
 loop do
   # @todo: better exit signal
   exit if gets

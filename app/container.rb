@@ -13,11 +13,14 @@ class Container
       Dir.new("#{@path}/#{domain}").each do |service|
         service_dir = "#{@path}/#{domain}/#{service}"
         next if service =~ /^\.{1,2}/ || !File.directory?(service_dir) 
-        begin  
-          add_domain(domain.to_sym).add_service(service.to_sym).start()
-        rescue => e
-          ContainerLogger.error e, 1
-        end
+         add_domain(domain.to_sym).add_service(service.to_sym)
+      end
+    end
+    
+    # now start all the services
+    find(:all).each do |k,d| 
+      d.find(:all).each do |n, s|
+        s.start()
       end
     end
   end

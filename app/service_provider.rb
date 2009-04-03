@@ -116,7 +116,8 @@ class ServiceProvider
   #  Added for the deployservice
   def add_service(domain_name, service_name)
     begin 
-      @container.add_domain(domain_name).add_service(service_name)
+      s = @container.add_domain(domain_name).add_service(service_name).install()
+      s.start
     rescue => ex
       ContainerLogger.error "Error adding service #{domain_name}::#{service_name}!", 1                  
       raise Exception.new("Error adding service #{domain_name}::#{service_name}!")
@@ -129,7 +130,9 @@ class ServiceProvider
   #  Added for the deployservice
   def remove_service(domain_name, service_name)
     begin 
-      @container.find(domain_name).remove(service_name)
+      serv = @container.find(domain_name).find(service_name)
+      serv.shutdown()
+      serv.remove(service_name)
     rescue => ex
       ContainerLogger.error "Error removing service #{domain_name}::#{service_name}!", 1
       raise Exception.new("Error removing service #{domain_name}::#{service_name}!")
@@ -142,7 +145,14 @@ class ServiceProvider
   #  Added for the deployservice
   def remove_domain(domain_name)
     begin 
-      @container.remove(domain_name)
+      domain = @container.find(domain_name)
+      
+      domain.find(:all).each do |n, s|
+        s.shutdown()
+        s.remove(service_name)
+      end
+      
+      domain.remove(domain_name)
     rescue => ex
       ContainerLogger.error ex, 1                        
       ContainerLogger.error "Error removing domain #{domain_name}!", 1                        
