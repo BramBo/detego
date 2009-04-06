@@ -2,7 +2,7 @@
 	» <%= link_to("All domains", domains_url()) %> » <%= link_to("#{@domain.name.to_s.capitalize} details", domain_url(@domain)) %> » <%= @service.name.to_s.capitalize%> details
 <% end %>
 
-<h1>Service: <%= @service.name %></h1>
+<h1>Service: <%=@domain.name%>::<%= @service.name %></h1>
 <br />
 <h2>Available methods</h2>
  <h3>Exposed</h3>
