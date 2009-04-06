@@ -6,37 +6,17 @@
 <br />
 <h2>Available methods</h2>
  <h3>Exposed</h3>
- <ul>
- <% @service.methods[:exposed].each do |method| %>
-	<li><%= method %></li> 
- <%end%>
-</ul>
+ <%= list(@service.methods[:exposed], "methods")%>
 
  <h3>Found</h3>	
-<ul>
- <% @service.methods[:all].each do |method| %>
-	<li><%= method %></li>
- <%end%>
-</ul>
+ <%= list(@service.methods[:all], "methods")%>
 
 <h2>Available variables</h2>
  <h3>Read & write</h3>	
-<ul>
- <% @service.variables[:both].each do |var| %>
-	<li><%= var %></li>
- <%end%>
-</ul>
+ <%= list(@service.variables[:both], "variables")%>
 
  <h3>Write only</h3>	
-<ul>
- <% @service.variables[:write].each do |var| %>
-	<li><%= var %></li>
- <%end%>
-</ul>
+ <%= list(@service.variables[:write], "variables")%>
 
  <h3>Read only</h3>	
-<ul>
- <% @service.variables[:read].each do |var| %>
-	<li><%= var %></li>
- <%end%>
-</ul>
+ <%= list(@service.variables[:read], "variables")%>

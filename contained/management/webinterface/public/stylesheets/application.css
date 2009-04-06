@@ -105,7 +105,10 @@ li {
 	margin 			: 0px auto 50px auto;
 	text-align 		: left;
 }
-
+	.no_list_elements {
+		font-style 	: italic;
+		font-size 	: 11px;
+	}
 
 
 #footer {
