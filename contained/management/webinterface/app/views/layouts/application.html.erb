@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><%= h(yield(:title) || "Detego Management interface") %></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag "jquery" %>
+	<%= yield(:head) %>
+</head>
+<body>
+ <div id="container">
+	<div id="header">
+	</div>
+	<div id="contents">
+		<%- flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, :id => "flash_#{name}" %>
+		<%- end -%>
+
+		<%= yield %>
+	</div>
+ </div>
+<div id='footer'>Server version: <%= $provider.server_version %></div>
+</body>
+</html>

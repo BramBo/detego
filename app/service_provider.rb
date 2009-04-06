@@ -42,8 +42,12 @@ class ServiceProvider
   #
   # Get all the domains on the container callable like:  $provider.get_domains()
   def get_domains()
-    begin 
-      return @container.find(:all)
+    begin
+      domains = [] 
+      @container.find(:all).each do |k,v|
+        domains << k
+      end
+      return domains
     rescue => ex
       ContainerLogger.error "#{ex} for service: #{@providee.name}"
     ensure
@@ -59,7 +63,9 @@ class ServiceProvider
       end
       
       begin 
-        return @container.find(@domain).find(:all)
+        names = []
+        @container.find(@domain).find(:all).each {|k,v| names << k }
+        return names
       rescue => ex
         ContainerLogger.error "#{ex} for service: #{@providee.name}"
       ensure
@@ -162,6 +168,11 @@ class ServiceProvider
     true
   end    
       
+      
+  def server_version()
+    return DETEGO_VERSION
+  end
+
   private 
     # Checks if the domain *and* the service are set
     # Most methods need these 2
