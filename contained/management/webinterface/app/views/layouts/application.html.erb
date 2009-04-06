@@ -3,22 +3,33 @@
 <head>
 	<title><%= h(yield(:title) || "Detego Management interface") %></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<%= stylesheet_link_tag 'application' %>
+	<%= stylesheet_link_tag 'reset', 'application' %>
 	<%= javascript_include_tag "jquery" %>
 	<%= yield(:head) %>
 </head>
 <body>
  <div id="container">
 	<div id="header">
+		<h1>DETEGO</h1>
+		<h2>Management web-interface</h2>
+	</div>	
+	<div id="crum">
+		<%= yield(:crum) %>		
 	</div>
-	<div id="contents">
+	<div id="content">
 		<%- flash.each do |name, msg| -%>
 			<%= content_tag :div, msg, :id => "flash_#{name}" %>
 		<%- end -%>
-
+				
 		<%= yield %>
 	</div>
  </div>
-<div id='footer'>Server version: <%= $provider.server_version %></div>
+<div id='footer'>
+	<p>
+	 <b>Server version:</b> <%= $provider.server_version %><br />
+	 <br />
+	 Copyright &copy; 2009 Bram Wijnands
+	</p>
+</div>
 </body>
 </html>

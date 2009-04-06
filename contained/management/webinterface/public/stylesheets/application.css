@@ -1,14 +1,120 @@
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
 body {
-	
+  background-color 	: #FFF;
+  font-family		: Verdana, Helvetica, Arial;
+  font-size 		: 12px;   
+  color 			: #1b244f; 
+  text-align 		: center;
 }
 
+h1, h2, h3, h4, h5 { font-weight: bold; font-style: normal; }
+h1 { font-size: 150%; padding-bottom:5px; padding-top:10px; }
+h2 { font-size: 110%; padding-bottom:5px; padding-top:5px; }
+h3 { font-size: 110%; padding-bottom:5px; padding-top:2px;  }
+h4 { font-size: 100%; }
+h5 { font-size: 100%; font-style: italic }
+h6 { font-size: 100%; font-weight: normal; }
+
+p { margin: 15px 0; margin-top:0; }
+
+fieldset { clear 	: both;}
+
+a img 	 { border 	: none;}
+a 		 { color 	: #005588; text-decoration: none; }
+a:hover  { color 	: #0099AA; text-decoration: underline; }
+
+ul {
+  margin 		 	: 5px 0px 10px 15px;
+  list-style-type 	: circle;
+}
+
+li {
+  margin 			: 2px 0px 2px 0px;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+  padding 			: 5px 8px;
+  margin 			: 10px 0;
+}
+
+#flash_alert {
+  background-color 	: #ffca59;
+  border 			: 1px solid #ff7900;
+}
+
+#flash_notice, .flash_notice {
+  background-color 	: #CFC;
+  border 			: solid 1px #6C6;
+}
+
+#flash_error, .flash_error {
+  background-color 	: #FCC;
+  border 			: solid 1px #C66;
+}
+
+#container {
+	padding 		: 0;
+	margin 			: 0;
+}
+
+
+#header {
+  background 		: rgb(145,174,182) none repeat scroll 0 0;
+  border-bottom 	: 6px solid rgb(73, 105, 125);
+  width 			: 100%;
+  margin 			: 0px;
+  padding 			: 0 0 0 0;
+  text-align 		: left;
+  color 			: #fff;
+  height 			: 60px;
+  letter-spacing	: 5px;
+}
+	#header h1, #header h2, #header img {
+		font-size 	: 175%;
+		margin 		: 0 0 0 20px;
+	}
+	#header h2 {
+	  font-size 	: 140%;		
+	  color 		: rgb(73, 105, 125);
+	}
 
 #crum {
-	font-size 	: 12px;
+  margin 			: 5px auto;
+  background 		: rgb(185,214,222) none repeat scroll 0 0;
+  border 			: 2px solid rgb(145,174,182);
+  width 			: 600px;
+  color 			: #454545;
+  text-align 		: left;
+  padding 			: 5px;
+  font-style		: italic;
+}
+	#crum a {
+  		font-style			: normal;
+		font-weight 		: bold;
+		color 				: #454545;
+		text-decoration 	: none;		
+	}
 	
+	#crum a:hover {
+		color 				: rgb(73, 105, 125);		
+	}
+
+#content {
+	width			: 600px;
+	margin 			: 0px auto 50px auto;
+	text-align 		: left;
 }
 
+
+
 #footer {
+	width 		: 400px;
+	margin 		: 20px auto 0 auto;
+	text-align 	: left;
 	font-size 	: 11px;
+	height 		: 50px;
+	background 	: #fff url(/images/small_kabisa_logo.gif) no-repeat left top;
+	padding 	: 0 0 0 200px;
 }
 

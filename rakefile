@@ -28,4 +28,9 @@ task :todo do
 end
 
 
+task :test do
+  
+  
+end
+
 task :default => :todo

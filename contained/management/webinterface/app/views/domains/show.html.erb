@@ -1,9 +1,13 @@
-<h1><%= @domain.name %></h1>
-<span id='crum'>» <%= link_to "all domains", domains_url() %> » <%= @domain.name %> details</span><br />
+<% content_for :crum do %>
+	» <%= link_to "All domains", domains_url() %> » <%= @domain.name.to_s.capitalize %> details
+<% end %>
+
+<h1>Domain: <%= @domain.name %></h1>
 <br />
 <h3>Available Services</h3>
+<ul>
 <% @services.each do |service| %>
-	- <%= link_to service.name, domain_service_url(@domain, service)%>	<br />
+	<li>- <%= link_to service.name, domain_service_url(@domain, service)%></li>
 <%end%>
-
+</ul>
 <br />

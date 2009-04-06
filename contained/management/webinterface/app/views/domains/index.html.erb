@@ -1,6 +1,11 @@
-<h1>Domains</h1>
-<span id='crum'>» all domains</span><br />
-<br />
-<% @domains.each do |domain| %>
-	- <%= link_to "#{domain.name}", domain_url(domain) %> <br />
+<% content_for :crum do %>
+	» All domains
 <% end %>
+
+<h1>Domains</h1>
+<br />
+<ul>
+<% @domains.each do |domain| %>
+	<li>- <%= link_to "#{domain.name}", domain_url(domain) %> </li>
+<% end %>
+</ul>

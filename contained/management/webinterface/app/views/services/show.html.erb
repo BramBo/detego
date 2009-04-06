@@ -1,28 +1,42 @@
-<h1><%= @service.name %></h1>
-<span id='crum'>» <%= link_to("all domains", domains_url()) %> » <%= link_to("#{@domain.name} details", domain_url(@domain)) %> » <%= @service.name%> details</span><br />
+<% content_for :crum do %>
+	» <%= link_to("All domains", domains_url()) %> » <%= link_to("#{@domain.name.to_s.capitalize} details", domain_url(@domain)) %> » <%= @service.name.to_s.capitalize%> details
+<% end %>
+
+<h1>Service: <%= @service.name %></h1>
 <br />
 <h2>Available methods</h2>
  <h3>Exposed</h3>
+ <ul>
  <% @service.methods[:exposed].each do |method| %>
-	<%= method %><br /> 
+	<li><%= method %></li> 
  <%end%>
+</ul>
+
  <h3>Found</h3>	
+<ul>
  <% @service.methods[:all].each do |method| %>
-	<%= method %><br />
+	<li><%= method %></li>
  <%end%>
-<br />
+</ul>
 
 <h2>Available variables</h2>
  <h3>Read & write</h3>	
+<ul>
  <% @service.variables[:both].each do |var| %>
-	<%= var %><br />
+	<li><%= var %></li>
  <%end%>
+</ul>
+
  <h3>Write only</h3>	
+<ul>
  <% @service.variables[:write].each do |var| %>
-	<%= var %><br />
+	<li><%= var %></li>
  <%end%>
+</ul>
+
  <h3>Read only</h3>	
+<ul>
  <% @service.variables[:read].each do |var| %>
-	<%= var %><br />
+	<li><%= var %></li>
  <%end%>
-<br />
+</ul>

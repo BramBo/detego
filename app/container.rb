@@ -40,7 +40,10 @@ class Container
   end
   
   def remove(name)
+    # @todo: remove directory and underlying services
+    @domains[name].remove
     @domains.delete(name)
+    
     ContainerLogger.warn "Deleted domain #{name} (#{name.class})"
     true
   end
