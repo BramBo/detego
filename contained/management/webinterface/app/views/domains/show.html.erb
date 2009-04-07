@@ -3,11 +3,10 @@
 	<li><%= @domain.name.to_s.capitalize %> details</li>
 <% end %>
 
-<div class="details">
-  <h1>Domain: <%= @domain.name %></h1>
-  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
-  <p> Select a service from the list below</p>
-  <h3>Available Services</h3>
-  <%= list(@services, "services", "domain_service_url") %>
-  <br />
-</div>
+
+<h1>Domain: <%= @domain.name %></h1>
+ <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
+ <p> Select a service from the list below</p>
+
+<h3>Available Services</h3>
+ <%= list(@services, "services", "domain_service_url") %>

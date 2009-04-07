@@ -185,7 +185,7 @@ ul {
 	width			: 600px;
 	margin 			: 0px auto 0px auto;
 	text-align 		: left;
-	padding 		: 10px 0px 40px 0px;
+	padding 		: 10px 2px 40px 2px;
 }
 
 	span.ui-triangle {
@@ -201,11 +201,6 @@ ul {
 		font-style 	: italic;
 		font-size 	: 11px;
 	}
-	
-	.ui-widget-content.details {
-		padding 	: 5px;
-	}
-
 
 #footer {
 	width 		: 400px;

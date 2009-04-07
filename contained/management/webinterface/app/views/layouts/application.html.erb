@@ -21,7 +21,7 @@
 		<%= yield(:crumb) %>
 	</ul>
   </div>
-  <div id="content" class="ui-helper-reset ui-widget-content ui-corner-top ui-corner-bottom">
+  <div id="content" class="ui-helper-reset ui-widget-content">
 	<%- flash.each do |name, msg| -%>
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>
 	<%- end -%>
