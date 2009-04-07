@@ -64,6 +64,7 @@ ul {
 			float 			: left;
 			width 			: 18px;
 			display 		: none;
+			margin 			: 3px 0px 0px 3px;
 		}
 	
 		ul.var_list_helper li span.value {
@@ -169,14 +170,14 @@ ul {
 		content 			: "\0020 \0020 \0020 \00BB \0020";		
 	}
 	
-	#crumb a, #crumb_bottom a {
+	#crumb_top a, #crumb_bottom a {
   		font-style			: normal;
 		font-weight 		: bold;
 		color 				: #454545;
 		text-decoration 	: none;		
 	}
 	
-	#crumb a:hover, #crumb_bottom a:hover {
+	#crumb_top a:hover, #crumb_bottom a:hover {
 		color 				: rgb(73, 105, 125);		
 	}
 
@@ -200,6 +201,50 @@ ul {
 	.no_list_elements {
 		font-style 	: italic;
 		font-size 	: 11px;
+	}
+
+
+#navigation {
+	float 		: right;
+	width 		: 200px;
+	margin 		: 0px 50px 0px 0px;
+	padding 	: 2px 0px 10px 0px;
+}
+ 
+	#navigation ul {
+		margin 		: 5px 2px 2px 5px;
+		text-align 	: left;
+	}
+	
+	#navigation ul li {
+	  margin 		 	: 4px 0px 0px 0px;
+	  border-top 		: 2px solid rgb(73, 105, 125);		
+	  border-left 		: 5px solid rgb(73, 105, 125);
+	  border-bottom 	: 1px solid rgb(73, 105, 125);	
+	  letter-spacing	: 1px;
+	  padding-left 		: 5px;
+	}
+	
+	#navigation ul li a {
+		text-decoration 	: none;
+	}	
+	
+	#navigation ul li:hover, #navigation ul li:hover a  {
+		background-color 	: rgb(73, 105, 125);
+		color 				: #fff;
+	}
+	
+	#navigation ul ul {
+	  margin 		: 0px 0px 10px 2px;
+	}
+
+	#navigation ul ul li {
+	  margin 		 	: 0px 2px 0px 5px;
+	  border 			: 0;
+	  border-left 		: 5px solid rgb(73, 105, 125);
+	  border-bottom 	: 1px solid rgb(73, 105, 125);	
+	  letter-spacing	: 1px;
+	  padding-left 		: 5px;
 	}
 
 #footer {
