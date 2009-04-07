@@ -1,5 +1,3 @@
-require 'rspec'
-
 describe Container do
   it "should have test_domain" do
     container = Container.new

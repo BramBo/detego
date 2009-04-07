@@ -1,9 +1,14 @@
 class ServiceManager
-  attr_accessor :hello
+  attr_accessor :hallo, :hoi
+  attr_reader   :read_only
+  attr_writer   :write_only  
   exposed_methods :say_hello, :set_status, :get_status
   
   def initialize
-    @hello = "hallo"
+    @hallo      = "Hello"
+    @hoi        = "Hey"
+    @write_only = "NOT READABLE"
+    @read_only  = "READ ONLY"
   end
 
   def say_hello

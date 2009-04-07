@@ -7,19 +7,17 @@ class Container
         
     # find exisiting domains and services
     Dir.new(@path).each do |domain|
-      domain_dir = "#{@path}/#{domain}/"
-      next if domain =~ /^\.{1,2}/ || !File.directory?(domain_dir) 
+      next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
       
       Dir.new("#{@path}/#{domain}").each do |service|
-        service_dir = "#{@path}/#{domain}/#{service}"
-        next if service =~ /^\.{1,2}/ || !File.directory?(service_dir) 
+        next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
          add_domain(domain.to_sym).add_service(service.to_sym)
       end
     end
     
     # now start all the services
     find(:all).each do |k,d| 
-      d.find(:all).each do |n, s|
+      d.find(:all).each do |k,s|
         s.start()
       end
     end

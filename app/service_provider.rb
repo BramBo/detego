@@ -22,15 +22,16 @@ class ServiceProvider
       #  this will simply invoke the method set_status on :service_name within :domain_name
       def method_missing(method, *args, &block)
         required_set?
-
+        
         begin 
           service = @container.find(@domain).find(@service)
-          service.invoke(method, *args, &block) unless service.nil?
+          return service.invoke(method, *args, &block) unless service.nil?
         rescue => ex
-          ContainerLogger.error "#{ex} for service: #{@providee.name}", 2, 2, 2
+          ContainerLogger.error "#{ex} for service: #{@providee.name}", 2
+          return false
         ensure
           @domain = @service = nil
-        end      
+        end  
       end
   
   #

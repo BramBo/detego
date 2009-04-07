@@ -1,35 +1,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title><%= h(yield(:title) || "Detego Management interface") %></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<%= stylesheet_link_tag 'reset', 'application' %>
-	<%= javascript_include_tag "jquery" %>
-	<%= yield(:head) %>
+<title><%= h(yield(:title) || "Detego Management interface") %></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%= stylesheet_link_tag 'reset', 'application', 'jquery-ui' %>
+<%= javascript_include_tag "jquery", 'jquery-ui', 'jquery-plugin', 'application' %>
+<%= yield(:head) %>
+<script type="text/javascript" charset="utf-8">
+	<%= yield(:javascript) %>
+</script>
 </head>
 <body>
  <div id="container">
-	<div id="header">
-		<h1>DETEGO</h1>
-		<h2>Management web-interface</h2>
-	</div>	
-	<div id="crum">
-		<%= yield(:crum) %>		
-	</div>
-	<div id="content">
-		<%- flash.each do |name, msg| -%>
-			<%= content_tag :div, msg, :id => "flash_#{name}" %>
-		<%- end -%>
-				
-		<%= yield %>
-	</div>
+  <div id="header">
+	<h1>DETEGO</h1>
+	<h2>Management web-interface</h2>
+  </div>	
+  <div id="crumb_top" class='ui-corner-top ui-corner-bottom'>
+	<ul>
+		<%= yield(:crumb) %>
+	</ul>
+  </div>
+  <div id="content" class="ui-helper-reset ui-widget-content ui-corner-top ui-corner-bottom">
+	<%- flash.each do |name, msg| -%>
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<%- end -%>
+	<%= yield %>
+	<div class='clear'></div>
+  </div>
+ <div id="crumb_bottom" class='ui-corner-top ui-corner-bottom'>
+	<ul>
+		<%= yield(:crumb) %>
+	</ul>
  </div>
-<div id='footer'>
-	<p>
-	 <b>Server version:</b> <%= $provider.server_version %><br />
-	 <br />
-	 Copyright &copy; 2009 Bram Wijnands
-	</p>
-</div>
+ </div>
+ <div id='footer'>
+  <p>
+	<b>Server version:</b> &nbsp;&nbsp;&nbsp;&nbsp;<%= $provider.server_version %><br />
+	<b>Interface version:</b> <%= $interface_version %><br />
+	<br />	
+	Copyright &copy; 2009 Bram Wijnands
+  </p>
+ </div>
 </body>
 </html>

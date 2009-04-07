@@ -1,11 +1,12 @@
-<% content_for :crum do %>
-	» All domains
+<% content_for :crumb do %>
+	<li>All domains</li>
 <% end %>
 
-<h1>Domains</h1>
-<br />
-<ul>
-<% @domains.each do |domain| %>
-	<li>- <%= link_to "#{domain.name}", domain_url(domain) %> </li>
-<% end %>
-</ul>
+<div class="details">
+  <h1>Domains</h1>
+  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>
+  <p>Select a domain from the list below</p>
+  <h3>Available domains</h3>	
+  <%= list(@domains, "domains", "domain_url") %>
+  <br />
+</div>

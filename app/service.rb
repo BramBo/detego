@@ -1,7 +1,7 @@
 require "service_meta_data"
 
 class Service
-  attr_reader :started, :path, :full_name, :meta_data, :port_in, :port_out, :thread
+  attr_reader :path, :full_name, :meta_data, :port_in, :port_out, :thread
   attr_accessor :name, :runtime
     
   def initialize(name, domain)
@@ -77,24 +77,29 @@ class Service
     arg   = Marshal.dump(args)
     blck  = Marshal.dump(block)
 
-    if @meta_data.service_methods[:exposed].include?(method_name.to_s)
+    if @meta_data.service_methods[:exposed].include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green
-      if !args.nil? && !args.first.nil?
-        if block
-          return @runtime.runScriptlet(%{
-            arg = Marshal.load('#{arg}')
-            $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
-          })          
-        else 
-          return @runtime.runScriptlet(%{
-            arg = Marshal.load('#{arg}')
-            $service_manager.#{method_name}(arg)
-          })
+      begin
+        if !args.nil? && !args.first.nil?
+          if block
+            return @runtime.runScriptlet(%{
+              arg = Marshal.load('#{arg}')
+              $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
+            })          
+          else 
+            return @runtime.runScriptlet(%{
+              arg = Marshal.load('#{arg}')
+              $service_manager.#{method_name}(arg)
+            })
+          end
+        else
+          @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
         end
-      else
-        @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
+      rescue Exception => e
+        return nil
       end
     else
+      ContainerLogger.warn "Invoking #{method_name} #{@full_name} but is a no(n/t) (exposed) method"
       raise Exception.new("#{method_name} not available on #{@domain.name}::#{@name}")
     end    
   end
@@ -135,6 +140,11 @@ class Service
     true
   end
 
+
+  # Just here for code prettyness
+  def started?
+    @started
+  end
   
   # Inject code into the service: Remove ?!
   #

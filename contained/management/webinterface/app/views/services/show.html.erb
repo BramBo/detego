@@ -1,22 +1,79 @@
-<% content_for :crum do %>
-	» <%= link_to("All domains", domains_url()) %> » <%= link_to("#{@domain.name.to_s.capitalize} details", domain_url(@domain)) %> » <%= @service.name.to_s.capitalize%> details
+<% content_for :crumb do %>
+	<li><%= link_to("All domains", domains_url()) %> </li>
+	<li><%= link_to("#{@domain.name.to_s.capitalize} details", domain_url(@domain)) %> </li>
+	<li><%= @service.name.to_s.capitalize%> details </li>
 <% end %>
 
-<h1>Service: <%=@domain.name%>::<%= @service.name %></h1>
-<br />
-<h2>Available methods</h2>
- <h3>Exposed</h3>
- <%= list(@service.methods[:exposed], "methods")%>
+<div class="details">
+<h1>Service: <%=@domain.name%>::<%= @service.name %></h1>	
+  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
+  <br />
+  <div id='pane'>
+	 <h2>Available methods</h2>
+	</ul>
+	<div id='methods_section'>
+	 <h3>Exposed</h3>	
+	 <%= method_list(@service.methods[:exposed], "methods")%>
 
- <h3>Found</h3>	
- <%= list(@service.methods[:all], "methods")%>
+	 <h3>Found</h3>	
+	 <%= method_list(@service.methods[:all], "methods")%>
+	</div>
+	<br />
+	 <h2>Available variables</h2>	
+	<div id='var_section'>
+	 <h3>Read & write</h3>
+	 <%= var_list(@service.variables[:both], "variables", "rw")%>
 
-<h2>Available variables</h2>
- <h3>Read & write</h3>	
- <%= list(@service.variables[:both], "variables")%>
+	 <h3>Write only</h3>	
+	 <%= var_list(@service.variables[:write], "variables", "w")%>
 
- <h3>Write only</h3>	
- <%= list(@service.variables[:write], "variables")%>
+	 <h3>Read only</h3>		
+	 <%= var_list(@service.variables[:read], "variables")%>
+	</div>
+  </div>
+</div>
 
- <h3>Read only</h3>	
- <%= list(@service.variables[:read], "variables")%>
+<% # Create The accordions
+content_for :javascript do 
+%>
+$(function() {
+	$("#methods_section").accordion({collapsible: true, active: -1 });
+	$("#var_section").accordion({collapsible: true, active: -1 });
+});
+<%end%>
+
+<% # Make the variables clickable to invoke the setter
+content_for :javascript do 
+%>
+var group = "span.variable_value span, span.variable_value span input"
+$(function() {
+	$("span.variable_value span").click(to_input);
+});
+
+function to_input() {
+	value = $(this).html();
+	
+	if(value =="-----") value = ""; 
+	$(this).html("<input type='input' value='"+value+"' \>");
+	
+	$(group).unbind("click", to_input)
+			.focus();
+	
+	e = this;
+	$(this).children("input").blur(function() { to_text(e) });
+	$(this).next().show("puff", {}, 250);
+}
+
+function to_text(self) {
+	if (self == null) self = this;
+	
+	value = $(self).html().replace(/^.*?value\=[^\s]*?[\;\"\'](.*?)[\&\"\'].+?$/i, "$1");
+	
+	if(value=="") value ="-----";
+	$(self).html(value);	
+	
+	$(group).click(to_input);		
+	
+	$(self).next().hide("puff", {}, 500);
+}
+<%end%>

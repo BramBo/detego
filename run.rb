@@ -16,6 +16,7 @@
   require "container"
   require "service_provider"
   require 'drb'
+  Thread.abort_on_exception = false
 
   container     = Container.new
 loop do

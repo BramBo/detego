@@ -1,13 +1,13 @@
-<% content_for :crum do %>
-	» <%= link_to "All domains", domains_url() %> » <%= @domain.name.to_s.capitalize %> details
+<% content_for :crumb do %>
+	<li><%= link_to "All domains", domains_url() %></li>
+	<li><%= @domain.name.to_s.capitalize %> details</li>
 <% end %>
 
-<h1>Domain: <%= @domain.name %></h1>
-<br />
-<h3>Available Services</h3>
-<ul>
-<% @services.each do |service| %>
-	<li>- <%= link_to service.name, domain_service_url(@domain, service)%></li>
-<%end%>
-</ul>
-<br />
+<div class="details">
+  <h1>Domain: <%= @domain.name %></h1>
+  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
+  <p> Select a service from the list below</p>
+  <h3>Available Services</h3>
+  <%= list(@services, "services", "domain_service_url") %>
+  <br />
+</div>

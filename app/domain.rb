@@ -42,8 +42,16 @@ class Domain
     nil
   end
   
-  def remove(s)
-    @services.delete(s)
+  def remove(s=nil)
+    if s.nil?
+      @services.each do |s|
+        s.stop() if s.started?
+        s.uninstall
+      end
+      @services.clear
+    else
+      @services.delete(s)
+    end
   end
   
   private

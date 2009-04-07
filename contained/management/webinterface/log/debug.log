@@ -1,0 +1,4 @@
+[1m(error): [0m [31mservice_methodsallhello=helloexposedsay_helloset_statusget_statusexposed_variablesreadwritebothhello[0m in ./lib//container_logger.rb:17:in `method_missing'
+[1m(error): [0m [31mservice_methodsallexposedexposed_variablesreadwriteboth[0m in ./lib//container_logger.rb:17:in `method_missing'
+[1m(error): [0m [31mservice_methodsallhello=helloexposedsay_helloset_statusget_statusexposed_variablesreadwritebothhello[0m in ./lib//container_logger.rb:17:in `method_missing'
+[1m(error): [0m [31mservice_methodsallhello=helloexposedsay_helloset_statusget_statusexposed_variablesreadwritebothhello[0m in ./lib//container_logger.rb:17:in `method_missing'

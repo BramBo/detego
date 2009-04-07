@@ -11,7 +11,8 @@ body {
 h1, h2, h3, h4, h5 { font-weight: bold; font-style: normal; }
 h1 { font-size: 140%; padding-bottom:5px; padding-top:10px; }
 h2 { font-size: 120%; padding-bottom:5px; padding-top:5px; }
-h3 { font-size: 110%; padding-bottom:5px; padding-top:2px;  }
+h3 { font-size: 110%; padding-bottom:5px; padding-top:2px; }
+#pane h3 {padding-left: 25px !important; }
 h4 { font-size: 100%; }
 h5 { font-size: 100%; font-style: italic }
 h6 { font-size: 100%; font-weight: normal; }
@@ -25,12 +26,67 @@ a 		 { color 	: #005588; text-decoration: none; }
 a:hover  { color 	: #0099AA; text-decoration: underline; }
 
 ul {
-  margin 		 	: 5px 0px 10px 15px;
-  list-style-type 	: circle;
+  margin 		 	: 5px 0px 0px 0px;
 }
 
-li {
-  margin 			: 2px 0px 2px 0px;
+	ul.list_helper li {
+	  margin 		 	: 4px 0px 0px 0px;
+	  border-left 		: 10px solid rgb(73, 105, 125);
+	  border-bottom 	: 1px solid rgb(73, 105, 125);	
+	  letter-spacing	: 2px;
+	  padding-left 		: 5px;
+	}
+
+	ul.var_list_helper li {
+	  margin 		 	: 5px 0px 5px 0px;
+	  clear 			: both;
+	  height 			: 30px;
+	  vertical-align 	: middle;		
+	}
+
+		ul.var_list_helper li span {
+		  padding 			: 0;
+		  margin 			: 0;
+		  float 			: left;
+		  display 			: block;
+		}
+
+		ul.var_list_helper li span.variable_value {
+			cursor 			: pointer;
+		}
+
+		ul.var_list_helper li span.variable_value span {
+			float 			: left;
+			width 			: 150px;
+		}
+		
+		ul.var_list_helper li span.variable_value .var_control {
+			float 			: left;
+			width 			: 18px;
+			display 		: none;
+		}
+	
+		ul.var_list_helper li span.value {
+			color 			: #454545;
+			font-style		: italic;
+			float 			: right;
+			width 			: 185px;			
+		}
+	
+.block {
+	display 		: block !important;
+}	
+		
+.left {
+	float 			: left !important;
+}	
+
+.right {
+	float 			: right !important;	
+}
+
+.clear {
+	clear 			: both !important;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -79,8 +135,8 @@ li {
 	  color 		: rgb(73, 105, 125);
 	}
 
-#crum {
-  margin 			: 5px auto;
+#crumb_top, #crumb_bottom {
+  margin 			: 5px auto -5px auto;
   background 		: rgb(185,214,222) none repeat scroll 0 0;
   border 			: 2px solid rgb(145,174,182);
   width 			: 600px;
@@ -88,26 +144,66 @@ li {
   text-align 		: left;
   padding 			: 5px;
   font-style		: italic;
+  position 			: relative;
+  z-index 			: 1001;	
 }
-	#crum a {
+#crumb_bottom {
+	margin 			: -5px auto 0px auto;
+}
+	#crumb_top ul, #crumb_bottom ul {
+		margin-left 		: 0;
+		padding-left 		: 0;
+		display 			: inline;
+		border 				: none;
+	}
+	
+	#crumb_top li, #crumb_bottom li {
+		margin-left 		: 0;
+		padding-left 		: 2px;
+		border 				: none;
+		list-style			: none;
+		display 			: inline;		
+	}
+	
+	#crumb_top ul li:before, #crumb_bottom ul li:before {
+		content 			: "\0020 \0020 \0020 \00BB \0020";		
+	}
+	
+	#crumb a, #crumb_bottom a {
   		font-style			: normal;
 		font-weight 		: bold;
 		color 				: #454545;
 		text-decoration 	: none;		
 	}
 	
-	#crum a:hover {
+	#crumb a:hover, #crumb_bottom a:hover {
 		color 				: rgb(73, 105, 125);		
 	}
 
 #content {
+  	z-index 		: 1000;	
 	width			: 600px;
-	margin 			: 0px auto 50px auto;
+	margin 			: 0px auto 0px auto;
 	text-align 		: left;
+	padding 		: 10px 0px 40px 0px;
 }
+
+	span.ui-triangle {
+		background-image	: url(images/ui-icons_ef8c08_256x240.png);
+		background-position : -32px -16px;	
+		width 				: 16px;
+		height 				: 12px;
+		display 			: block;
+		float 				: left;
+	}
+
 	.no_list_elements {
 		font-style 	: italic;
 		font-size 	: 11px;
+	}
+	
+	.ui-widget-content.details {
+		padding 	: 5px;
 	}
 
 
@@ -116,8 +212,8 @@ li {
 	margin 		: 20px auto 0 auto;
 	text-align 	: left;
 	font-size 	: 11px;
-	height 		: 50px;
+	height 		: 60px;
 	background 	: #fff url(/images/small_kabisa_logo.gif) no-repeat left top;
-	padding 	: 0 0 0 200px;
+	padding 	: 10px 0 0 200px;
 }
 

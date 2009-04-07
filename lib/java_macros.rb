@@ -12,7 +12,7 @@ class JJRuby
           end
         })
       if result.class.to_s.downcase =~ /string/ && !result.to_s.gsub!(/^execution.+?error\:/i, "").nil?
-        ContainerLogger.debug "#{result}" 
+        ContainerLogger.error "#{result}", 2
         raise Exception.new("#{@full_name} #{result}")
       end
 
