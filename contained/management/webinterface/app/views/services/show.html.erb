@@ -4,10 +4,47 @@
 	<li><%= @service.name.to_s.capitalize%> details </li>
 <% end %>
 
-<h1>Service: <%=@domain.name%>::<%= @service.name %></h1>	
- <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
- <br />
+<h1>Service: <%=@domain.name%>::<%= @service.name %></h1>
+<p><%= status_to_icon(@service.status) %></p>
+ <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>
+
  <div id='pane'>
+ <div id='operations'>
+	<h3>Service Operations</h3>
+	<ul class='var_list_helper'>
+		<li>
+			<span class="ui-triangle"> </span>
+			<span>
+				<b>Start()</b><br />
+				Starts the service
+			</span>
+			<span class='value'>
+				OPERATIONS
+			</span>
+		</li>
+		<li>
+			<span class="ui-triangle"> </span>
+			<span>
+				<b>Stop()</b><br />
+				Stops the service
+			</span>
+			<span class='value'>
+				OPERATIONS
+			</span>
+		</li>
+		<li>
+			<span class="ui-triangle"> </span>
+			<span>
+				<b>Restart()</b><br />
+				Restart the service
+			</span>
+			<span class='value'>
+				OPERATIONS
+			</span>
+		</li>		
+	</ul>
+ </div>
+ <br />
   <h2>Available methods</h2>
   <div id='methods_section'>
 	 <h3>Exposed</h3>	
@@ -37,6 +74,7 @@ content_for :javascript do
 $(function() {
 	$("#methods_section").accordion({collapsible: true, active: -1 });
 	$("#var_section").accordion({collapsible: true, active: -1 });
+	$("#operations").accordion({collapsible: true });	
 });
 <%end%>
 

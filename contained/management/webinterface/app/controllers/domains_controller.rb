@@ -1,6 +1,6 @@
 class DomainsController < ApplicationController
   def index
-    @domains = Connector.new().domains
+    @domains = Connector.new().domains    
   end
   
   def show

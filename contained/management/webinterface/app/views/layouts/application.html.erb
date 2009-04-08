@@ -21,19 +21,9 @@
 		<%= yield(:crumb) %>
 	</ul>
   </div>
-  <div id='navigation' class='ui-helper-reset ui-widget-content ui-corner-top ui-corner-bottom'>
-	<h3>Quick nav.</h3>
-	<ul>
-	<% Connector.domains.each do |domain| %>
-	 <li><%= link_to("#{domain.to_s}", domain_url(domain)) %></li>
-		<ul>
-			<% domain.services().each do |service| %>
-	 			<li><%= link_to("#{service.to_s}", domain_service_url(domain, service)) %></li>		
-			<% end %>	
-		</ul>
-	<% end %>
-	</ul>	
-   </div>
+
+  <%= render :partial => "/layouts/navigation" %>
+
   <div id="content" class="ui-helper-reset ui-widget-content">
 	<%- flash.each do |name, msg| -%>
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>

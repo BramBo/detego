@@ -1,5 +1,6 @@
 class ServiceMetaData
   attr_reader :service_methods, :exposed_variables
+  attr_accessor :status
   
   def initialize(service)
     @service = service
@@ -9,6 +10,8 @@ class ServiceMetaData
     @service.runtime.runScriptlet(%{       
       $service_manager = ServiceManager.new      
     })  
+    
+    @status = @service.status
     
     # todo: only instantiated variables are read, so attr_reader, _writer and _accessor have not much todo with this.
     @exposed_variables = Marshal.load(@service.runtime.runScriptlet(%{

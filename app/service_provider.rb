@@ -22,16 +22,20 @@ class ServiceProvider
       #  this will simply invoke the method set_status on :service_name within :domain_name
       def method_missing(method, *args, &block)
         required_set?
-        
+
         begin 
-          service = @container.find(@domain).find(@service)
-          return service.invoke(method, *args, &block) unless service.nil?
+          service = @container.find(@domain).find(@service)        
+          
+          service.invoke(method, *args, &block) unless service.nil?
+        rescue Exception => ex
+          ContainerLogger.error "#{ex} for service: #{@providee.name}", 2
+          raise Exception.new(ex)          
         rescue => ex
           ContainerLogger.error "#{ex} for service: #{@providee.name}", 2
-          return false
+          raise Exception.new(ex)
         ensure
           @domain = @service = nil
-        end  
+        end
       end
   
   #
@@ -71,7 +75,8 @@ class ServiceProvider
         ContainerLogger.error "#{ex} for service: #{@providee.name}"
       ensure
         @domain = @service = nil
-      end    
+      end
+      nil    
     end
 
       #
@@ -83,12 +88,25 @@ class ServiceProvider
         begin 
           data = @container.find(@domain).find(@service).meta_data
       
-          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables}
+          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables, :status => data.status}
         rescue => ex
           ContainerLogger.error "#{ex} for service: #{@providee.name}"
         ensure
           @domain = @service = nil
         end    
+      end
+  
+      #
+      # Set a simple status string, so we can see how out service is doing
+      def set_status(str)
+        begin
+          service = @container.find(@domain).find(@service)
+          service.status = service.meta_data.status = str
+        rescue => ex
+          ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
+          raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
+        end
+        true        
       end
   
       # Adds a service to the container
@@ -122,14 +140,21 @@ class ServiceProvider
   # Adds a service to the container
   #  Added for the deployservice
   def add_service(domain_name, service_name)
+    s= nil
     begin 
-      s = @container.add_domain(domain_name).add_service(service_name).install()
-      s.start
+      s = @container.add_domain(domain_name).add_service(service_name)
+      s.install()
     rescue => ex
       ContainerLogger.error "Error adding service #{domain_name}::#{service_name}!", 1                  
       raise Exception.new("Error adding service #{domain_name}::#{service_name}!")
     end
-
+    
+    begin     
+        s.start
+    rescue => ex
+      ContainerLogger.error "Error starting service after install #{domain_name}::#{service_name}!\n #{ex}", 1                  
+      raise Exception.new("Error starting service after install #{domain_name}::#{service_name}!\n #{ex}")
+    end
     true
   end
   
@@ -139,7 +164,7 @@ class ServiceProvider
     begin 
       serv = @container.find(domain_name).find(service_name)
       serv.shutdown()
-      serv.remove(service_name)
+      @container.find(domain_name).remove(service_name)
     rescue => ex
       ContainerLogger.error "Error removing service #{domain_name}::#{service_name}!", 1
       raise Exception.new("Error removing service #{domain_name}::#{service_name}!")

@@ -24,6 +24,6 @@ class ServiceManager
   end
   
   def start
-    
+     $provider.for($service[:domain].to_sym, $service[:name].to_sym).set_status("Started")     
   end
 end

@@ -2,7 +2,7 @@ require "service_meta_data"
 
 class Service
   attr_reader :path, :full_name, :meta_data, :port_in, :port_out, :thread
-  attr_accessor :name, :runtime
+  attr_accessor :name, :runtime, :status
     
   def initialize(name, domain)
     raise Exception.new("#{name} is not a valid service name") unless valid_directory_name(name.to_s)
@@ -13,7 +13,8 @@ class Service
     @full_name  = "#{domain.name}::#{@name}"
     @path       = "#{SERVICES_PATH}/#{domain.name}/#{@name}"
     @port_in    = $port_start+=1
-    @port_out   = $port_start+=1    
+    @port_out   = $port_start+=1
+    @status     = "stopped"
         
     # Create the domain directory if not present
     FileUtils.mkdir_p(@path, :mode => 0755)
@@ -27,10 +28,10 @@ class Service
   # 
   def start
     raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
-
     # Boot it
     @runtime.runScriptlet(%{
-      LOAD_PATH = "./contained/#{@domain.name}/#{@name}"
+      CONTAINER_PATH  = "#{CONTAINER_PATH}"
+      LOAD_PATH       = "./contained/#{@domain.name}/#{@name}"
       $: << "./lib/"
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
@@ -53,6 +54,8 @@ class Service
       DRb.start_service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
       DRb.start_service "druby://127.0.0.1:#{@port_out}", ServiceManager.new
+
+      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).set_status("Booting..")
     })
 
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
@@ -63,7 +66,6 @@ class Service
     # Gather Service meta-data
     @meta_data.gather()
     
-    @started = true
     ContainerLogger.debug "#{@full_name} booted succesfully!".console_green
 
     return self
@@ -73,7 +75,7 @@ class Service
   #  
   # @todo: include blocks for invocation
   def invoke(method_name, *args, &block)
-    raise Exception.new("Service #{@name} not started!") unless @started 
+    raise Exception.new("Service #{@name} not started!") if @status =~ /stopped/i 
     arg   = Marshal.dump(args)
     blck  = Marshal.dump(block)
 
@@ -121,9 +123,8 @@ class Service
   # install
   # @todo: Make install subroutine
   def install()
-    r = @runtime.runScriptlet(%{
-
-    })
+    # r = @runtime.runScriptlet(%{
+    # })
 
     ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
     true
@@ -132,9 +133,9 @@ class Service
   # Uninstall
   # @todo: Make uninstall subroutine
   def uninstall()
-    r = @runtime.runScriptlet(%{
-
-    })
+    # r = @runtime.runScriptlet(%{
+    # 
+    # })
 
     ContainerLogger.debug "#{@domain.name}::#{@name} uninstalled succesfully"
     true

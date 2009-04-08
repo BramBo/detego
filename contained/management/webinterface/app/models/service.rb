@@ -1,6 +1,5 @@
-require 'yaml'
 class Service
-  attr_reader :domain, :name, :methods, :variables, :parent_route
+  attr_reader :domain, :name, :methods, :variables, :parent_route, :status
   def initialize(name, domain)
     @name         = name
     @domain       = domain
@@ -10,15 +9,24 @@ class Service
     
     @methods      = meta_data[:service_methods]
     @variables    = {}
+    @status       = meta_data[:status]
     
     meta_data[:exposed_variables].each do |k, v|
-        @variables[k] ||= {}
-        if v.class==Array
-          v.each { |vv| @variables[k][vv] = eval("$provider.for(domain.name, name).#{vv}()") }
-        else
-          @variables[k][v] = eval("$provider.for(domain, name).#{v}()") || "nil"
-        end
+      
+      begin       
+          @variables[k] ||= {}          
+          if v.class==Array
+            v.each { |vv| @variables[k][vv] = (k != :write) ? eval("$provider.for(domain.name, name).#{vv}()") : "-----" }
+          else
+            @variables[k][v] = (k != :write) ? eval("$provider.for(domain, name).#{v}()") || "nil" : "-----"
+          end            
+      rescue Exception => e
+        next
+      rescue => e
+        next
+      end          
     end
+    
   end
   
   def inspect

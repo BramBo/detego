@@ -3,7 +3,8 @@ PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH   = "#{PATH}/contained"
-DETEGO_VERSION  = "0.1.5"
+DETEGO_VERSION  = "0.1.6"
+CONTAINER_PATH  = "#{Dir.getwd}"
 
 # DRB Port management
 $port_start   = 15619

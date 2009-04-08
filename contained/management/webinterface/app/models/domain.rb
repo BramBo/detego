@@ -14,7 +14,6 @@ class Domain
     $provider.for(@name.to_sym).get_services().each do |n|
       servs << Service.new(n, self)
     end
-    
     servs
   end
   
