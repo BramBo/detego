@@ -40,6 +40,6 @@ class ServiceMetaData
       Marshal.dump(m)
     }))
 
-    @service_methods[:all] -= ((@exposed_variables[:read] + @exposed_variables[:both]) + @exposed_variables[:write])
+    @service_methods[:all] -= (@exposed_variables[:read] + @exposed_variables[:both] + @exposed_variables[:write])
   end
 end

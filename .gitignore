@@ -3,3 +3,4 @@ log/*
 doc
 doc/*
 jruby_filedescr.rb
+*.log
