@@ -11,7 +11,7 @@ class JJRuby
         rescue Exception => e
           "Execution error: " + e.message            
         rescue => e
-          "Execution error: " + e.message
+          "Execution error: " + e.messagea
         end
       })
               

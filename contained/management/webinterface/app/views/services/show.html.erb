@@ -11,44 +11,13 @@
  <div id='pane'>
  <div id='operations'>
 	<h3>Service Operations</h3>
-	<ul class='var_list_helper'>
-		<li>
-			<span class="ui-triangle"> </span>
-			<span>
-				<b>Start()</b><br />
-				Starts the service
-			</span>
-			<span class='value'>
-				OPERATIONS
-			</span>
-		</li>
-		<li>
-			<span class="ui-triangle"> </span>
-			<span>
-				<b>Stop()</b><br />
-				Stops the service
-			</span>
-			<span class='value'>
-				OPERATIONS
-			</span>
-		</li>
-		<li>
-			<span class="ui-triangle"> </span>
-			<span>
-				<b>Restart()</b><br />
-				Restart the service
-			</span>
-			<span class='value'>
-				OPERATIONS
-			</span>
-		</li>		
-	</ul>
+	 <%= method_list(%w{start() stop() restart()}, "methods", "runnable")%>		
  </div>
  <br />
   <h2>Available methods</h2>
   <div id='methods_section'>
 	 <h3>Exposed</h3>	
-	 <%= method_list(@service.methods[:exposed], "methods")%>
+	 <%= method_list(@service.methods[:exposed], "methods", "runnable")%>
 
 	 <h3>Found</h3>	
 	 <%= method_list(@service.methods[:all], "methods")%>
@@ -74,7 +43,9 @@ content_for :javascript do
 $(function() {
 	$("#methods_section").accordion({collapsible: true, active: -1 });
 	$("#var_section").accordion({collapsible: true, active: -1 });
-	$("#operations").accordion({collapsible: true });	
+	$("#operations").accordion({collapsible: true, active: -1 });	
+	
+	$(".runnable_method").click(invoke_handler);
 });
 <%end%>
 
@@ -86,6 +57,7 @@ $(function() {
 	$("span.variable_value span").click(to_input);
 });
 
+// Convert the value inside an span into an input box
 function to_input() {
 	value = $(this).html();
 	
@@ -96,14 +68,17 @@ function to_input() {
 			.focus();
 	
 	e = this;
-	$(this).children("input").blur(function() { to_text(e) });
-	$(this).next().show("puff", {}, 250);
+	$(this).children("input").blur(function() {		
+		to_text(e) 
+	});
+	$(this).next().show("puff", {}, 500);
 }
 
+// Convert the input box back to a span
 function to_text(self) {
 	if (self == null) self = this;
 	
-	value = $(self).html().replace(/^.*?value\=[^\s]*?[\;\"\'](.*?)[\&\"\'].+?$/i, "$1");
+	value = $(self).children("input").val()
 	
 	if(value=="") value ="-----";
 	$(self).html(value);	
@@ -111,5 +86,17 @@ function to_text(self) {
 	$(group).click(to_input);		
 	
 	$(self).next().hide("puff", {}, 500);
+}
+
+// this function will be scoped by jQuery, so this refers to the element clicked on
+function invoke_handler() {
+	self = $(this);
+	
+	self.show("pulsate", { times:25 }, 500);
+	$.get(window.location.href+"/invoke", {method: self.parent().parent().children("span").next().html()}, function(data, status) {
+		alert(status);
+		alert(data);		
+		self.stop(true, true).show("pulsate", { times:1 }, 1);
+	});
 }
 <%end%>

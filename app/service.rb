@@ -4,6 +4,7 @@ class Service
   attr_reader :path, :full_name, :meta_data, :port_in, :port_out, :thread
   attr_accessor :name, :runtime, :status
     
+  # Runtimes have been transfered to service no a runtime foreach domain. 
   def initialize(name, domain)
     raise Exception.new("#{name} is not a valid service name") unless valid_directory_name(name.to_s)
         

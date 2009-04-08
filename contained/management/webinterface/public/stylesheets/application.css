@@ -39,22 +39,25 @@ ul {
 	  font-weight 		: bold;	
 	}
 	
-	ul.var_list_helper li {
+	ul.var_list_helper li, ul.meth_list_helper li {
 	  margin 		 	: 5px 0px 5px 0px;
 	  clear 			: both;
 	  height 			: 30px;
 	  vertical-align 	: middle;		
 	}
+	ul.meth_list_helper li {
+		margin 			: 0;
+	}
 
 	ul.list_helper li:hover {
-		border-left  	: 10px solid rgb(185,214,222);;/**/
+		border-left  	: 10px solid rgb(185,214,222);
 	}
 		
 	ul.list_helper li a:hover {
 		text-decoration		: none;
 	}
 
-		ul.var_list_helper li span {
+		ul.var_list_helper li span, ul.meth_list_helper li span {
 		  padding 			: 0;
 		  margin 			: 0;
 		  float 			: left;
@@ -77,13 +80,17 @@ ul {
 			margin 			: 3px 0px 0px 3px;
 		}
 	
-		ul.var_list_helper li span.value {
+		ul.var_list_helper li span.value, ul.meth_list_helper li span.value {
 			color 			: #454545;
 			font-style		: italic;
 			float 			: right;
 			width 			: 185px;			
 		}
-	
+		
+		.runnable_method {
+			cursor 			: pointer;
+		}
+
 .block {
 	display 		: block !important;
 }	

@@ -21,11 +21,16 @@ module ServicesHelper
     end
   end  
   
-  def method_list(collection, type="elements")
+  def method_list(collection, type="elements", use="for show")
     if collection.size>0
       r ="<ul class='meth_list_helper'>"
       collection.each do |e|
-        r += "<li><span class='ui-triangle'></span><span>#{e.to_s}</span>"      
+        r += "<li><span class='ui-triangle'></span><span>#{e.to_s}</span>"
+        
+        if  use=="runnable"
+          r+= "<span class='value'><img src='/images/invoke.png' class='runnable_method' alt='Invoke #{e} on #{$service[:full_name]}' title='Invoke #{e} on #{$service[:full_name]}' /></span>"
+        end
+        
         r += "</li>"
       end
       

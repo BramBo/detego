@@ -3,7 +3,6 @@ require 'java_macros'
 require 'fileutils'
 require "service"
 
-# Every Domain has it's own context/JRuby instance
 class Domain
   attr_accessor :name
   
@@ -42,6 +41,8 @@ class Domain
     nil
   end
   
+  # Remove a specific service, namely : s
+  #  if s == nil All services will be removed!
   def remove(s=nil)
     if s.nil?
       @services.each do |s|

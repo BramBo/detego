@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
-  map.resources :domains, :has_many => :services
+  map.resources :domains do |domain|
+   	 domain.resources :services, :member => {:invoke => :get}
+  end
 
 
   map.root :controller => "domains"

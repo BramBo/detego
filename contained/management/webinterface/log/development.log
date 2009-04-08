@@ -28520,3 +28520,2156 @@ Rendering template within layouts/application
 Rendering services/show
 Rendered layouts/_navigation (0.05700)
 Completed in 0.08300 (12 reqs/sec) | Rendering: 0.06600 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:13:21) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.001000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.10900)
+Completed in 0.19200 (5 reqs/sec) | Rendering: 0.15000 (78%) | DB: 0.00100 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:16:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.15300)
+Completed in 0.22300 (4 reqs/sec) | Rendering: 0.16200 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:20:55) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.12100 (8 reqs/sec) | Rendering: 0.08200 (67%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:21:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.12500)
+Completed in 0.17700 (5 reqs/sec) | Rendering: 0.15000 (84%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:21:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06100)
+Completed in 0.11200 (8 reqs/sec) | Rendering: 0.08300 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:22:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.10500 (9 reqs/sec) | Rendering: 0.06700 (63%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:22:17) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05300)
+Completed in 0.11600 (8 reqs/sec) | Rendering: 0.09000 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:23:59) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.13000 (7 reqs/sec) | Rendering: 0.10700 (82%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:24:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.09200 (10 reqs/sec) | Rendering: 0.06100 (66%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:25:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05600)
+Completed in 0.11100 (9 reqs/sec) | Rendering: 0.08000 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:25:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04600)
+Completed in 0.09800 (10 reqs/sec) | Rendering: 0.06000 (61%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:26:02) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04600)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06300 (69%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:26:56) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.10800 (9 reqs/sec) | Rendering: 0.08500 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:27:20) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06300 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:27:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04700)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06500 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:28:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05700)
+Completed in 0.10300 (9 reqs/sec) | Rendering: 0.07300 (70%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:28:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06300)
+Completed in 0.16300 (6 reqs/sec) | Rendering: 0.13000 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:28:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04600)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06600 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 14:28:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04200)
+Completed in 0.08000 (12 reqs/sec) | Rendering: 0.04800 (60%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:09:53) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.03500)
+Completed in 0.06600 (15 reqs/sec) | Rendering: 0.04700 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing DomainsController#index (for 127.0.0.1 at 2009-04-08 15:10:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"domains", "action"=>"index"}
+Rendering template within layouts/application
+Rendering domains/index
+Rendered layouts/_navigation (0.04100)
+Completed in 0.08200 (12 reqs/sec) | Rendering: 0.07200 (87%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:10:19) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04100)
+Completed in 0.07800 (12 reqs/sec) | Rendering: 0.04600 (58%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:10:55) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04300)
+Completed in 0.08200 (12 reqs/sec) | Rendering: 0.04800 (58%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:10:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.07900 (12 reqs/sec) | Rendering: 0.06000 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:16:43) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.03500)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06700 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-08 15:16:48) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/domains/core/services/deployer/invoke" with {:method=>:get}):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:385:in `recognize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-08 15:18:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {}
+
+
+NameError (undefined local variable or method `action' for main:Object):
+    /config/routes.rb:5
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/resources.rb:441:in `map_resource'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/resources.rb:432:in `map_resource'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/resources.rb:351:in `resources'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/resources.rb:351:in `each'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/resources.rb:351:in `resources'
+    /config/routes.rb:4
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:208:in `draw'
+    /config/routes.rb:1
+    /config/routes.rb:503:in `load'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/dependencies.rb:503:in `load'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/dependencies.rb:503:in `load'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:254:in `load_routes!'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:234:in `load!'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:249:in `reload'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:130:in `reload_application'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:173:in `evaluate_method'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:161:in `call'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:90:in `run'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:90:in `each'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:90:in `run'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/callbacks.rb:272:in `run_callbacks'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:106:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-08 15:18:48) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/domains/core/services/deployer/invoke" with {:method=>:get}):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:385:in `recognize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-08 15:23:01) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/domains/core/services/deployer/invoke" with {:method=>:get}):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/routing/route_set.rb:385:in `recognize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 15:23:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"invoke", "domain_id"=>"core"}
+Redirected to http://localhost:5005show
+Completed in 0.00600 (166 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/domains/core/services/invoke]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 15:23:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"invoke", "domain_id"=>"core"}
+Redirected to http://localhost:5005show
+Completed in 0.00300 (333 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/domains/core/services/invoke]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 15:23:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Redirected to http://localhost:5005show
+Completed in 0.00300 (333 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/domains/core/services/deployer/invoke]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 15:23:24) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:29:44) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04100)
+Completed in 0.07200 (13 reqs/sec) | Rendering: 0.04800 (66%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:29:47) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04200)
+Completed in 0.06600 (15 reqs/sec) | Rendering: 0.04700 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:30:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.03400)
+Completed in 0.06500 (15 reqs/sec) | Rendering: 0.04200 (64%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:30:43) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04200)
+Completed in 0.06700 (14 reqs/sec) | Rendering: 0.04800 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:30:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.41200 (2 reqs/sec) | Rendering: 0.06700 (16%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:41:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06700)
+Completed in 0.09200 (10 reqs/sec) | Rendering: 0.07200 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:48:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.12000 (8 reqs/sec) | Rendering: 0.07100 (59%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:48:54) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06500)
+Completed in 0.09300 (10 reqs/sec) | Rendering: 0.07500 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:49:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06300)
+Completed in 0.09400 (10 reqs/sec) | Rendering: 0.07400 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:51:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.08100)
+Completed in 0.12300 (8 reqs/sec) | Rendering: 0.09700 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:51:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06500)
+Completed in 0.09500 (10 reqs/sec) | Rendering: 0.07600 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:54:02) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06900)
+Completed in 0.10500 (9 reqs/sec) | Rendering: 0.08100 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:54:11) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06600)
+Completed in 0.10000 (10 reqs/sec) | Rendering: 0.07700 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:54:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.08600)
+Completed in 0.12200 (8 reqs/sec) | Rendering: 0.09900 (81%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:55:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07100)
+Completed in 0.12300 (8 reqs/sec) | Rendering: 0.09700 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:56:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05700)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06500 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:57:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+ERROR: compiling _run_erb_47app47views47layouts47_navigation46html46erb RAISED /rails_proj/container/contained/management/webinterface/app/views/layouts/_navigation.html.erb:5: , unexpected tRPAREN
+Function body: def _run_erb_47app47views47layouts47_navigation46html46erb(local_assigns)
+navigation = local_assigns[:navigation]
+object = local_assigns[:object]
+navigation_counter = local_assigns[:navigation_counter]
+_erbout = ''; _erbout.concat "<div id='navigation' class='ui-helper-reset ui-widget-content ui-corner-top ui-corner-bottom'>\n"
+_erbout.concat "\t<h3>Quick nav.</h3>\n"
+_erbout.concat "\t<ul>\n"
+_erbout.concat "\t";  Connector.domains.each_with_index do |domain, d| ; _erbout.concat "\n"
+_erbout.concat "\t <li class='ui-corner-all'>"; _erbout.concat(( link_to("#{domain.to_s}", domain_url(domain), :alt => "#{domain.to_s}", :title => "#{domain.to_s}") ) ).to_s); _erbout.concat "</li>\n"
+_erbout.concat "\t\t<ul>\n"
+_erbout.concat "\t\t\t";  domain.services().each_with_index do |service, s| ; _erbout.concat "\n"
+_erbout.concat "\t \t\t\t<li>"; _erbout.concat(( link_to("#{service.to_s}", domain_service_url(domain, service), :alt => "#{domain.to_s}::#{service.to_s}", :title => "#{domain.to_s}::#{service.to_s}") ).to_s); _erbout.concat "</li>\n"
+_erbout.concat "\t\t\t\t";  if s>=4 ; _erbout.concat "\n"
+_erbout.concat "\t\t\t\t\t <li>"; _erbout.concat(( link_to("More Services...", domain_service_url(domain, service), :class => "shy_nav") ).to_s); _erbout.concat "</li>\t\t\t\t\n"
+_erbout.concat "\t\t\t\t";  break; end ; _erbout.concat "\t\n"
+_erbout.concat "\t\t\t";  end ; _erbout.concat "\n"
+_erbout.concat "\t\t</ul>\n"
+_erbout.concat "\t\t";  if d>=4 ; _erbout.concat "\n"
+_erbout.concat "\t\t\t <li>"; _erbout.concat(( link_to("More domains...", domains_url, :class => "shy_nav") ).to_s); _erbout.concat "</li>\t\t\t\t\n"
+_erbout.concat "\t\t";  break; end ; _erbout.concat "\t\t\n"
+_erbout.concat "\t";  end ; _erbout.concat "\n"
+_erbout.concat "\t</ul>\t\n"
+_erbout.concat " </div>"; _erbout
+end
+Backtrace: /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:42:in `module_eval'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:42:in `compile_template'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:55:in `prepare!'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/partial_template.rb:15:in `initialize'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/partials.rb:110:in `render_partial'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:277:in `render'
+/rails_proj/container/contained/management/webinterface/app/views/layouts/application.html.erb:34:in `_run_erb_47app47views47layouts47application46html46erb'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:342:in `execute'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:29:in `render'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:35:in `render'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:22:in `render_template'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:257:in `render_with_a_layout'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+/usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+/usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+/usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+:1:in `start'
+
+
+ActionView::TemplateError (/rails_proj/container/contained/management/webinterface/app/views/layouts/_navigation.html.erb:5: , unexpected tRPAREN
+) on line #5 of layouts/_navigation.html.erb:
+2: 	<h3>Quick nav.</h3>
+3: 	<ul>
+4: 	<% Connector.domains.each_with_index do |domain, d| %>
+5: 	 <li class='ui-corner-all'><%= link_to("#{domain.to_s}", domain_url(domain), :alt => "#{domain.to_s}", :title => "#{domain.to_s}") ) %></li>
+6: 		<ul>
+7: 			<% domain.services().each_with_index do |service, s| %>
+8: 	 			<li><%= link_to("#{service.to_s}", domain_service_url(domain, service), :alt => "#{domain.to_s}::#{service.to_s}", :title => "#{domain.to_s}::#{service.to_s}") %></li>
+
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:42:in `module_eval'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:42:in `compile_template'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:55:in `prepare!'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/partial_template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/partials.rb:110:in `render_partial'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:277:in `render'
+    app/views/layouts/application.html.erb:34:in `_run_erb_47app47views47layouts47application46html46erb'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:342:in `execute'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template_handlers/compilable.rb:29:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:35:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:22:in `render_template'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:257:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:57:48) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.09700 (10 reqs/sec) | Rendering: 0.07800 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 15:57:55) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"test_deployment_example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06500 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/test_deployment_example]
+
+
+Processing DomainsController#show (for 127.0.0.1 at 2009-04-08 16:00:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"domains", "action"=>"show", "id"=>"management"}
+Rendering template within layouts/application
+Rendering domains/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.15200 (6 reqs/sec) | Rendering: 0.13500 (88%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:00:42) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06300)
+Completed in 0.11900 (8 reqs/sec) | Rendering: 0.07000 (58%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:06:20) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.11900 (8 reqs/sec) | Rendering: 0.10100 (84%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:06:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.16400)
+Completed in 0.18700 (5 reqs/sec) | Rendering: 0.17000 (90%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:07:27) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.13300 (7 reqs/sec) | Rendering: 0.11100 (83%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:08:11) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06100)
+Completed in 0.13700 (7 reqs/sec) | Rendering: 0.12400 (90%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:09:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.09000 (11 reqs/sec) | Rendering: 0.07500 (83%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:09:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.07200 (13 reqs/sec) | Rendering: 0.05400 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:10:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"management", "id"=>"webinterface"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04700)
+Completed in 0.07300 (13 reqs/sec) | Rendering: 0.05900 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/management/services/webinterface]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:10:17) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06500 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:10:55) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.09500 (10 reqs/sec) | Rendering: 0.06200 (65%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:11:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.05800 (69%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:12:06) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05100)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.05700 (67%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:12:42) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08700 (11 reqs/sec) | Rendering: 0.05600 (64%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:13:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04700)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.05300 (63%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:13:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05600)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06200 (70%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:13:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"test_deployment_example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05600)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06500 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/test_deployment_example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:13:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.08200 (12 reqs/sec) | Rendering: 0.05400 (65%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06500 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:22) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.08200 (12 reqs/sec) | Rendering: 0.06000 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08700 (11 reqs/sec) | Rendering: 0.06800 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:34) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05300)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06500 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:38) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06700 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:47) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06300)
+Completed in 0.10000 (9 reqs/sec) | Rendering: 0.07900 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:54) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.08300 (12 reqs/sec) | Rendering: 0.06500 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:14:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06100)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06700 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:15:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06600 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:16:53) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07700)
+Completed in 0.10700 (9 reqs/sec) | Rendering: 0.09000 (84%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:17:08) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04600)
+Completed in 0.10800 (9 reqs/sec) | Rendering: 0.08700 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:17:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04800)
+Completed in 0.09800 (10 reqs/sec) | Rendering: 0.07900 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:20:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05300)
+Completed in 0.09200 (10 reqs/sec) | Rendering: 0.07000 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:21:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08900 (11 reqs/sec) | Rendering: 0.07200 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:21:32) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.09000 (11 reqs/sec) | Rendering: 0.06900 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:22:29) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.07200 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:22:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06600)
+Completed in 0.10000 (10 reqs/sec) | Rendering: 0.08100 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:22:48) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06300 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:23:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.11200 (8 reqs/sec) | Rendering: 0.09400 (83%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:24:08) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.09500 (10 reqs/sec) | Rendering: 0.07500 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:24:09) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07300)
+Completed in 0.11800 (8 reqs/sec) | Rendering: 0.08200 (69%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:25:17) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05600)
+Completed in 0.09600 (10 reqs/sec) | Rendering: 0.06900 (71%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:25:30) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06600)
+Completed in 0.10300 (9 reqs/sec) | Rendering: 0.08000 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:25:44) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.09800 (10 reqs/sec) | Rendering: 0.07800 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:25:46) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.09000 (11 reqs/sec) | Rendering: 0.07100 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:25:54) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04600)
+Completed in 0.09200 (10 reqs/sec) | Rendering: 0.07000 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:27:06) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07300)
+Completed in 0.13200 (7 reqs/sec) | Rendering: 0.11100 (84%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:27:22) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07900)
+Completed in 0.11400 (8 reqs/sec) | Rendering: 0.09200 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:29:09) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.09700 (10 reqs/sec) | Rendering: 0.07200 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:29:24) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07300)
+Completed in 0.11100 (9 reqs/sec) | Rendering: 0.08900 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:30:44) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06000)
+Completed in 0.09800 (10 reqs/sec) | Rendering: 0.07400 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:30:53) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07600)
+Completed in 0.11400 (8 reqs/sec) | Rendering: 0.09100 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:31:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06700 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:33:20) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05100)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06400 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:33:30) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06500 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:33:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06400 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:01) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05100)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06300 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:03) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06300)
+Completed in 0.08900 (11 reqs/sec) | Rendering: 0.06800 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.08200 (12 reqs/sec) | Rendering: 0.06400 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05700)
+Completed in 0.08300 (12 reqs/sec) | Rendering: 0.06200 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.07300 (13 reqs/sec) | Rendering: 0.05600 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:21) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08000 (12 reqs/sec) | Rendering: 0.06000 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:28) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06600 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:29) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06500 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:34) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.07800 (12 reqs/sec) | Rendering: 0.06100 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05100)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06200 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:34:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05400)
+Completed in 0.08700 (11 reqs/sec) | Rendering: 0.06600 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:35:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06100)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06900 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:35:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.09000 (11 reqs/sec) | Rendering: 0.07200 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:35:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06500 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:35:37) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04900)
+Completed in 0.08300 (12 reqs/sec) | Rendering: 0.06500 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:36:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08700 (11 reqs/sec) | Rendering: 0.06300 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:40:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05500)
+Completed in 0.08900 (11 reqs/sec) | Rendering: 0.06700 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:40:03) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"<span class=\"ui-triangle\"></span><span>restart()</span><span class=\"value\"><img src=\"/images/invoke.png\" class=\"runnable_method\" alt=\"Invoke restart() on management::webinterface\" title=\"Invoke restart() on management::webinterface\"></span>", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:40:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05700)
+Completed in 0.08600 (11 reqs/sec) | Rendering: 0.06900 (80%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:40:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:40:59) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06700 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:41:01) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:41:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:43:19) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.04700)
+Completed in 0.07400 (13 reqs/sec) | Rendering: 0.05200 (70%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:43:22) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.to_sym):
+    /app/controllers/services_controller.rb:9:in `invoke'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1166:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:43:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05600)
+Completed in 0.08400 (11 reqs/sec) | Rendering: 0.06100 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:43:43) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.to_sym):
+    /app/controllers/services_controller.rb:10:in `invoke'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1166:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:44:01) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.to_sym):
+    /app/controllers/services_controller.rb:10:in `invoke'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1166:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:44:24) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.08000 (12 reqs/sec) | Rendering: 0.05800 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:44:27) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.to_sym):
+    /app/controllers/services_controller.rb:10:in `invoke'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1166:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:46:57) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+SyntaxError ((eval):1: , unexpected tLPAREN2
+):
+    (eval):1:in `invoke'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:47:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05200)
+Completed in 0.07600 (13 reqs/sec) | Rendering: 0.05800 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:47:27) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+NameError (undefined local variable or method `core' for #<ServicesController:0xcc7444>):
+    (eval):1:in `invoke'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:48:21) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.09100 (10 reqs/sec) | Rendering: 0.06600 (72%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:48:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"start()", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+
+
+DRb::DRbConnError (connection closed):
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:570:in `load'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:632:in `recv_reply'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:922:in `recv_reply'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1200:in `send_message'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1091:in `method_missing'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1175:in `open'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1090:in `method_missing'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1108:in `with_friend'
+    /usr/local/jruby/lib/ruby/1.8/drb/drb.rb:1089:in `method_missing'
+    (eval):1:in `invoke'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:49:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.06100)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.06700 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:49:22) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+
+
+ActionView::MissingTemplate (Missing template services/invoke.html.erb in view path /rails_proj/container/contained/management/webinterface/app/views):
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/template.rb:15:in `initialize'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_view/base.rb:248:in `render_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1112:in `render_for_file'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:845:in `render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/layout.rb:251:in `render_with_a_layout'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activesupport-2.1.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:51:in `render_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1161:in `default_render'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:1167:in `perform_action'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:572:in `perform_action_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/benchmarking.rb:68:in `perform_action_with_benchmark'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/rescue.rb:201:in `perform_action_with_rescue'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_with_caching'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:529:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/filters.rb:568:in `process_with_filters'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/session_management.rb:130:in `process_with_session_management_support'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/base.rb:389:in `process'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:112:in `handle_dispatch'
+    /usr/local/jruby/lib/ruby/gems/1.8/gems/rails-2.1.2/lib/webrick_server.rb:78:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/jruby/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/jruby/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    :1:in `start'
+
+Rendering /usr/local/jruby/lib/ruby/gems/1.8/gems/actionpack-2.1.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:49:50) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.08100 (12 reqs/sec) | Rendering: 0.06300 (77%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:49:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+Rendered layouts/_navigation (0.07800)
+Completed in 0.09800 (10 reqs/sec) | Rendering: 0.08900 (90%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:50:07) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05300)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.07000 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:50:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+Rendered layouts/_navigation (0.09800)
+Completed in 0.11200 (8 reqs/sec) | Rendering: 0.10300 (91%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:52:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05000)
+Completed in 0.08500 (11 reqs/sec) | Rendering: 0.05500 (64%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:52:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke
+Rendered layouts/_navigation (0.08800)
+Completed in 0.10600 (9 reqs/sec) | Rendering: 0.09500 (89%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:53:20) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07200)
+Completed in 0.10000 (10 reqs/sec) | Rendering: 0.07700 (76%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:53:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/invoke.js.erb
+Rendered layouts/_navigation (0.11200)
+Completed in 0.14700 (6 reqs/sec) | Rendering: 0.13900 (94%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:54:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05900)
+Completed in 0.08800 (11 reqs/sec) | Rendering: 0.06500 (73%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:54:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering services/invoke.js.erb
+Completed in 0.00900 (111 reqs/sec) | Rendering: 0.00100 (11%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:54:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.09000 (11 reqs/sec) | Rendering: 0.06800 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:55:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering services/invoke.js.erb
+Completed in 0.00900 (111 reqs/sec) | Rendering: 0.00100 (11%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-08 16:55:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"deployer"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.05800)
+Completed in 0.08100 (12 reqs/sec) | Rendering: 0.06400 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:55:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering services/invoke.js.erb
+Completed in 0.01700 (58 reqs/sec) | Rendering: 0.00300 (17%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:56:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.001000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering services/invoke.js.erb
+Completed in 0.24400 (4 reqs/sec) | Rendering: 0.00600 (2%) | DB: 0.00100 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-08 16:56:50) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"poll", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"deployer"}
+Rendering services/invoke.js.erb
+Completed in 0.10400 (9 reqs/sec) | Rendering: 0.00200 (1%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/deployer/invoke?method=poll]
