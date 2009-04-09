@@ -99,11 +99,16 @@ function invoke_handler() {
 	  url				: window.location.href+"/invoke",
 	  data 				: ({method: in_method}),
 	  dataType			: "html",
-	  success			: function(data, status) {
-		report("success", "<b>Succesfully invoked "+in_method+"!</b><br />Results:<span class='result'>"+data+"</span>")
+	  success			: function(data, status) {	
+		if(data.match(/^error;/i)) {
+			report("<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+data.replace(/error\;(.+?$)/i, "$1")+"</span>", "error")
+		} else {
+			report("<b>Succesfully invoked "+in_method+"!</b><br />Results:<span class='result'>"+data+"</span>", "success")			
+		}
+			
 	  },
 	  error				: function(XMLHttpRequest, textStatus, errorThrown) {
-		report("error", "<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+XMLHttpRequest.responseText+"</span>")
+		report("<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+XMLHttpRequest.responseText+"</span>", "error")
 	  },
 	  complete 			: function() {
 		self.stop(true, true).show("pulsate", { times:1 }, 1);
@@ -111,12 +116,14 @@ function invoke_handler() {
 	});
 }
 
-function report(type, what) {
+// Simple function to report the received message
+function report(what, type) {
 	var type = (type) ? type.toLowerCase() : "notice"	
 	if($("#js_report_"+type).size()>0) $("#js_report_"+type).remove()
 	
 	$("#content").children(":first").before("<div id='js_report_"+type+"' class='"+type+"'>"+what+"</div>");
-	$("#js_report_"+type).show("blind", { direction: "vertical" }, 1000);
+	$("#js_report_"+type).show("blind", { direction: "vertical" }, 1000)
+						 .show("pulsate", {times: 2});
 
 	window.setTimeout(function(){$("#js_report_"+type).hide("blind", {direction: "vertical"}, 1000);}, 5000)
 }
