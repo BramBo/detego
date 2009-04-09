@@ -7,6 +7,7 @@
 <%= javascript_include_tag "jquery", 'jquery-ui', 'jquery-plugin', 'application' %>
 <%= yield(:head) %>
 <script type="text/javascript" charset="utf-8">
+<!--
 	$(function() {
 		var max_width = 174;
 		$("#navigation ul li, #navigation ul ul li").each(function() {
@@ -17,6 +18,7 @@
 	});
 	
 	<%= yield(:javascript) %>
+-->	
 </script>
 </head>
 <body>

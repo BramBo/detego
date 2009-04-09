@@ -62,7 +62,7 @@ function to_input() {
 	value = $(this).html();
 	
 	if(value =="-----") value = ""; 
-	$(this).html("<input type='input' value='"+value+"' \>");
+	$(this).html("<input type='text' value='"+value+"' \>");
 	
 	$(group).unbind("click", to_input)
 			.focus();
@@ -90,13 +90,34 @@ function to_text(self) {
 
 // this function will be scoped by jQuery, so this refers to the element clicked on
 function invoke_handler() {
-	self = $(this);
+	self 		= $(this);
+	in_method	=  self.parent().parent().children("span").next().html();
 	
 	self.show("pulsate", { times:25 }, 500);
-	$.get(window.location.href+"/invoke", {method: self.parent().parent().children("span").next().html()}, function(data, status) {
-		alert(status);
-		alert(data);		
+	$.ajax({
+	  type				: "GET",
+	  url				: window.location.href+"/invoke",
+	  data 				: ({method: in_method}),
+	  dataType			: "html",
+	  success			: function(data, status) {
+		report("success", "<b>Succesfully invoked "+in_method+"!</b><br />Results:<span class='result'>"+data+"</span>")
+	  },
+	  error				: function(XMLHttpRequest, textStatus, errorThrown) {
+		report("error", "<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+XMLHttpRequest.responseText+"</span>")
+	  },
+	  complete 			: function() {
 		self.stop(true, true).show("pulsate", { times:1 }, 1);
+	  }
 	});
+}
+
+function report(type, what) {
+	var type = (type) ? type.toLowerCase() : "notice"	
+	if($("#js_report_"+type).size()>0) $("#js_report_"+type).remove()
+	
+	$("#content").children(":first").before("<div id='js_report_"+type+"' class='"+type+"'>"+what+"</div>");
+	$("#js_report_"+type).show("blind", { direction: "vertical" }, 1000);
+
+	window.setTimeout(function(){$("#js_report_"+type).hide("blind", {direction: "vertical"}, 1000);}, 5000)
 }
 <%end%>

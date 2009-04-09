@@ -2,9 +2,11 @@
 PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
-SERVICES_PATH   = "#{PATH}/contained"
-DETEGO_VERSION  = "0.1.6"
-CONTAINER_PATH  = "#{Dir.getwd}"
+SERVICES_PATH     = "#{PATH}/contained"
+DETEGO_VERSION    = "0.1.7"
+CONTAINER_PATH    = "#{Dir.getwd}"
+ENV["DETEGO_ENV"] = "development"
+
 
 # DRB Port management
 $port_start   = 15619

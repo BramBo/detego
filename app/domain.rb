@@ -2,6 +2,7 @@ require 'java'
 require 'java_macros'
 require 'fileutils'
 require "service"
+require "service_provider"
 
 class Domain
   attr_accessor :name
@@ -24,8 +25,7 @@ class Domain
   # Public method to add a Service
   #   new_services(Service.new) gets called
   def add_service(name)
-    raise Exception.new("#{name} is already taken on domain #{@name}") unless @services[name].nil? 
-    serv = new_service(Service.new(name, self))
+    serv = @services[name] || new_service(Service.new(name, self))
   end
     
   # :service_name || :all as paramater
@@ -45,14 +45,24 @@ class Domain
   #  if s == nil All services will be removed!
   def remove(s=nil)
     if s.nil?
-      @services.each do |s|
+      @services.each do |k, s|
+        name = s.name
         s.stop() if s.started?
         s.uninstall
       end
+      
       @services.clear
+      Dir.unlink("#{SERVICES_PATH}/#{@name}")
     else
+      service = find(s) 
+      name    = service.name
+      
+      service.stop() if service.started?
+      service.uninstall
       @services.delete(s)
     end
+    
+    true
   end
   
   private

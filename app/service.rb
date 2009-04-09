@@ -1,8 +1,8 @@
 require "service_meta_data"
 
 class Service
-  attr_reader :path, :full_name, :meta_data, :port_in, :port_out, :thread
-  attr_accessor :name, :runtime, :status
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :thread, :domain
+  attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
   def initialize(name, domain)
@@ -32,8 +32,8 @@ class Service
     # Boot it
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
-      LOAD_PATH       = "./contained/#{@domain.name}/#{@name}"
-      $: << "./lib/"
+      LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
+      $: << "#{CONTAINER_PATH}/lib/"
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
     
@@ -117,6 +117,8 @@ class Service
   # shutdown the service
   # @todo: Make shutdown subroutine
   def shutdown()
+    
+    @status = "stopped"
     ContainerLogger.debug "#{@domain.name}::#{@name} shutdown"
     true
   end
@@ -138,6 +140,7 @@ class Service
     # 
     # })
 
+    Dir.unlink("#{SERVICES_PATH}/#{@domain.name}/#{@name}")
     ContainerLogger.debug "#{@domain.name}::#{@name} uninstalled succesfully"
     true
   end

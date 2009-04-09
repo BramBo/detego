@@ -106,23 +106,40 @@ ul {
 .clear {
 	clear 			: both !important;
 }
+.result {
+	font-family 	: arial, Helvetica;
+	display 		: block;
+	margin 			: 5px;	
+	padding 		: 5px 2px 5px 2px;
+}
 
-#flash_notice, #flash_error, #flash_alert {
+#js_report_notice .result {
+  border 			: 1px solid #ff7900;
+}
+#js_report_success .result {
+  border 			: solid 1px #6C6;
+}
+
+#js_report_error .result {
+  border 			: solid 1px #C66;
+}
+
+#flash_notice, #flash_error, #flash_alert, .js_report {
   padding 			: 5px 8px;
   margin 			: 10px 0;
 }
 
-#flash_alert {
+#flash_alert, #js_report_notice {
   background-color 	: #ffca59;
   border 			: 1px solid #ff7900;
 }
 
-#flash_notice, .flash_notice {
+#flash_notice, .flash_notice, #js_report_success {
   background-color 	: #CFC;
   border 			: solid 1px #6C6;
 }
 
-#flash_error, .flash_error {
+#flash_error, .flash_error, #js_report_error {
   background-color 	: #FCC;
   border 			: solid 1px #C66;
 }
