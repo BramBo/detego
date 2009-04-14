@@ -50,6 +50,21 @@ task :todo do
   puts "#{todos} todo's over #{files} files".console_dark_yellow
 end
 
+task :lines do
+  lines = 0
+  files = 0
+  %w{. app config lib contained/core/deployer/app contained/management/webinterface/app/controllers contained/management/webinterface/app/models}.each do |dir|
+    Dir.entries(dir).each do |entry|
+      next unless entry =~ /\.rb$/i
+      files += 1
+      f      = File.new("#{dir}/#{entry}")
+      m      = f.read().scan(/^[\s]*?[^#].+?$/i)
+      lines += m.size
+      f.close()
+    end
+  end
+  puts "Total number lines of code over #{files} files: #{lines}".console_dark_yellow
+end
 
 task :test do
   
