@@ -4,7 +4,6 @@ include_class('org.jruby.Ruby') {|pkg, name| "JJRuby" }
 #         Probably best to do this using fork and drb to get the return value
 class JJRuby
   def runScriptlet(code)  
-
     result = eval_scriptlet(%{
         begin
           #{code}

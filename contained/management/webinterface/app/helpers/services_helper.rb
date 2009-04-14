@@ -25,10 +25,13 @@ module ServicesHelper
     if collection.size>0
       r ="<ul class='meth_list_helper'>"
       collection.each do |e|
-        r += "<li><span class='ui-triangle'></span><span>#{e.to_s}</span>"
+        click_handler = (e.class==Array) ? "click=\"#{e[1]}\"" : ""
+        n             = (e.class==Array) ? e[0] : e
+          
+        r += "<li><span class='ui-triangle'></span><span>#{n.to_s}</span>"
         
         if  use=="runnable"
-          r+= "<span class='value'><img src='/images/invoke.png' class='runnable_method' alt='Invoke #{e} on #{$service[:full_name]}' title='Invoke #{e} on #{$service[:full_name]}' /></span>"
+          r+= "<span class='value'><img src='/images/invoke.png' class='runnable_method' #{click_handler}  alt='Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}' /></span>"
         end
         
         r += "</li>"

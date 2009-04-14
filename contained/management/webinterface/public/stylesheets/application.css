@@ -124,6 +124,14 @@ ul {
   border 			: solid 1px #C66;
 }
 
+.js_report {
+	position 		: absolute;
+	display 		: block;
+	top 			: 65px;
+	width 			: 580px;
+	z-index			: 2001;
+}
+
 #flash_notice, #flash_error, #flash_alert, .js_report {
   padding 			: 5px 8px;
   margin 			: 10px 0;

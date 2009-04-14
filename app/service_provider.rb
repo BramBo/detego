@@ -22,7 +22,7 @@ class ServiceProvider
       #  this will simply invoke the method set_status on :service_name within :domain_name
       def method_missing(method, *args, &block)
         required_set?
-
+        
         begin 
           service = @container.find(@domain).find(@service)        
           
@@ -80,6 +80,20 @@ class ServiceProvider
     end
 
       #
+      # Get the service status string; No need to fetch the entire meta_data
+      def status()
+        required_set?
+
+        begin 
+          return @container.find(@domain).find(@service).status
+        rescue => ex
+          ContainerLogger.error "#{ex} for service: #{@providee.name}"
+        ensure
+          @domain = @service = nil
+        end        
+      end
+    
+      #
       # Get service meta-data {exposed_methods, exposed_variables }
       #  callable like:  $provider.for(:domain_name, :service_name).get_meta_data()  
       def get_meta_data()
@@ -88,7 +102,7 @@ class ServiceProvider
         begin 
           data = @container.find(@domain).find(@service).meta_data
       
-          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables, :status => data.status}
+          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables}
         rescue => ex
           ContainerLogger.error "#{ex} for service: #{@providee.name}"
         ensure
@@ -98,10 +112,10 @@ class ServiceProvider
   
       #
       # Set a simple status string, so we can see how out service is doing
-      def set_status(str)
+      def status=(str)
         begin
           service = @container.find(@domain).find(@service)
-          service.status = service.meta_data.status = str
+          service.status = str
         rescue => ex
           ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
           raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
@@ -113,14 +127,17 @@ class ServiceProvider
       #  Added for the deployservice and management interface
       def start_service()
         required_set?
-    
+        
         begin
           @container.find(@domain).find(@service).start()
+          true
+        rescue Exception => ex
+          ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
+          "error;#{ex}"                    
         rescue => ex
-          ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
-          raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
+          ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
+          "error;Error starting service #{@domain}::#{@service}!"
         end
-        true
       end
   
       # Stops a service
@@ -129,10 +146,31 @@ class ServiceProvider
         required_set?
     
         begin
-          @container.find(@domain).find(@service).stop()
+          @container.find(@domain).find(@service).shutdown()
+          @container.find(@domain).find(@service).status
+        rescue Exception => ex
+          ContainerLogger.error "Error stopping service #{@domain}::#{@service}!".console_yellow, 1
+          return "error;#{ex}"
         rescue => ex
-          ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
-          raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
+          ContainerLogger.error "Error stopping service #{@domain}::#{@service}!".console_yellow, 1
+          return "Error stopping service #{@domain}::#{@service}!"
+        end
+      end
+      
+      # Stops a service
+      #  Added for the deployservice and management interface      
+      def restart_service()
+        required_set?
+    
+        begin
+          @container.find(@domain).find(@service).restart()
+          
+        rescue Exception => ex
+          ContainerLogger.error "Error restarting service #{@domain}::#{@service}!".console_yellow, 1
+          return "error;#{ex}"
+        rescue => ex
+          ContainerLogger.error "Error restarting service #{@domain}::#{@service}!".console_yellow, 1
+          return "Error restarting service #{@domain}::#{@service}!"
         end
         true
       end
@@ -162,9 +200,7 @@ class ServiceProvider
   #  Added for the deployservice
   def remove_service(domain_name, service_name)
     begin 
-      serv = @container.find(domain_name).find(service_name)
-      serv.shutdown()
-      @container.find(domain_name).remove(service_name)
+      @container.find(domain_name.to_sym).remove(service_name.to_sym)
     rescue => ex
       ContainerLogger.error "Error removing service #{domain_name}::#{service_name}!", 1
       raise Exception.new("Error removing service #{domain_name}::#{service_name}!")

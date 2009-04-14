@@ -2,7 +2,7 @@ class ServiceManager
   attr_accessor :hallo, :hoi
   attr_reader   :read_only
   attr_writer   :write_only  
-  exposed_methods :say_hello, :set_status, :get_status
+  exposed_methods :say_hello, :set_status, :get_status, :sleep_test
   
   def initialize
     @hallo      = "Hello"
@@ -24,6 +24,11 @@ class ServiceManager
   end
   
   def start
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).set_status("Started")     
+     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Started"     
+  end
+  
+  def sleep_test
+    sleep(10)
+    "slept for 10 sec!"
   end
 end

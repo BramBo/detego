@@ -1,4 +1,4 @@
-require 'spec_config.rb'
+require 'config/spec_config'
 require 'java'
 require 'ftools'
 require 'fileutils'
@@ -40,16 +40,17 @@ describe Service do
     
     Dir["#{@service.path}"].should  eql ["#{@service.path}"]
   end
-  
-  it "should have it's own runtime environment" do
-    @service.runtime.class.should   eql(org.jruby.Ruby)
-  end
-  
+    
   # see /test/spec/services/example
   it "should be able to start and have an service manager available" do
     @service.start.should   eql(@service)
     @service.status.should  eql("Started")
   end
+  
+      it "should have it's own runtime environment after startup" do
+        @service.runtime.class.should   eql(org.jruby.Ruby)
+      end  
+  
       it "should have an service manager in it's private scope" do
         @service.instance_variable_get("@service_manager").class.should   eql(DRbObject)
       end
@@ -69,7 +70,7 @@ describe Service do
         
           # this test is depenend on the implementation of the service
           # the installed service' ServiceManager is defined as follows:
-          service_methods[:exposed].should      eql ["say_hello", "set_status", "get_status"]
+          service_methods[:exposed].should      eql [["say_hello", []], ["set_status", ["str"]], ["get_status", []]]
           service_methods[:all].should          eql []
           
           # and the attr accessor/readers/writers

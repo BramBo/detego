@@ -1,8 +1,9 @@
 class FileSystemPoller
   attr_reader :current_structure, :old_structure
   
-  def initialize(path)
+  def initialize(path, manager)
     @path     = path
+    @manager  = manager
     get_current_structure
   end
   
@@ -13,35 +14,41 @@ class FileSystemPoller
       get_current_structure
     
       # check for missing entities in the old directory tree
-      (@old_structure.keys - @current_structure.keys).to_a.each do |d|
+      i = (@old_structure.keys - @current_structure.keys).to_a.each do |d|
         # domain got deleted !
         ContainerLogger.warn "Domain #{d} got deleted!"                
         $provider.remove_domain(d.to_sym)
       end
+      @manager.message_stack << "Delete #{i} domains" if i.size > 0
+    
     
       # Check for new entities in the current directory tree
-      (@current_structure.keys - @old_structure.keys).to_a.each do |d|
+      i = (@current_structure.keys - @old_structure.keys).to_a.each do |d|
          ContainerLogger.debug "found new Domain! #{d}"            
         # found new domain
-        @current_structure[d].each do |s|
+        j=@current_structure[d].each do |s|
          ContainerLogger.debug "New service discovered! #{d}::#{s}"                 
           $provider.add_service(d.to_sym, s.to_sym)    
         end
+        @manager.message_stack << "found #{j} service(s)" if j.size > 0        
       end
+      @manager.message_stack << "found #{i} domain(s)" if i.size > 0
 
       # finally check for deleted services within the current domains
       @current_structure.each do |k, d|
 
         unless @old_structure[k].nil?
-          (@current_structure[k] - @old_structure[k]).to_a.each do |s|
+          i = (@current_structure[k] - @old_structure[k]).to_a.each do |s|
             ContainerLogger.debug "New service discovered! #{k}::#{s}"                  
             $provider.add_service(k.to_sym, s.to_sym)             
           end
+          @manager.message_stack << "Installed #{i} new service(s)" if i.size > 0
       
-          (@old_structure[k] - @current_structure[k]).to_a.each do |s|      
+          i = (@old_structure[k] - @current_structure[k]).to_a.each do |s|      
             ContainerLogger.warn "Service removed! #{k}::#{s}"            
             $provider.remove_service(k.to_sym, s.to_sym)             
           end
+          @manager.message_stack << "Removed #{i} service(s)" if i.size > 0
         end
       end
     rescue => ex
@@ -56,7 +63,7 @@ class FileSystemPoller
       @current_structure = {}
       begin
         Dir.new(@path).each do |domain|
-          ServiceUnPacker.new(@path, domain) if ServiceUnPacker.supported_file_type?(domain)
+          @manager.message_stack << ServiceUnPacker.new(@path, domain) if ServiceUnPacker.supported_file_type?(domain)
           domain_dir = "#{@path}/#{domain}/"
         
           next if domain =~ /^\.{1,2}/ || !File.directory?(domain_dir) 
@@ -65,14 +72,13 @@ class FileSystemPoller
         end
       rescue => e
         ContainerLogger.debug e, 1
-        puts e
       end
       @current_structure
     end
     
     def read_dir(domain)      
       Dir.new("#{@path}/#{domain}").each do |service|
-        ServiceUnPacker.new(@path, domain, service) if ServiceUnPacker.supported_file_type?(service)        
+        @manager.message_stack << ServiceUnPacker.new(@path, domain, service) if ServiceUnPacker.supported_file_type?(service)
         
         service_dir = "#{@path}/#{domain}/#{service}"
         next if service =~ /^\.{1,2}/ || !File.directory?(service_dir) 

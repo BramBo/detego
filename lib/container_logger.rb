@@ -17,7 +17,7 @@ class String
 end
 
 module Kernel
-  def calling_method(lvl = 0)
+  def calling_method(lvl = 1)
     return caller[lvl]
   end
 end

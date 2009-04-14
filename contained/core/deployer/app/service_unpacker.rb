@@ -14,7 +14,7 @@ class ServiceUnPacker
       raise e
     end
       
-    true
+    "Unpacked #{@filename.gsub(/^.+?\.([a-z]+)$/i, "\\1").to_s} succesfully for #{domain.to_s}"
   end
 
   private 

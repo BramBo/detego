@@ -9,10 +9,9 @@ class Service
     
     @methods      = meta_data[:service_methods]
     @variables    = {}
-    @status       = meta_data[:status]
+    @status       = $provider.for(@domain.name.to_sym, @name.to_sym).status();
     
     meta_data[:exposed_variables].each do |k, v|
-      
       begin       
           @variables[k] ||= {}          
           if v.class==Array
@@ -20,12 +19,11 @@ class Service
           else
             @variables[k][v] = (k != :write) ? eval("$provider.for(domain, name).#{v}()") || "nil" : "-----"
           end            
-      rescue Exception => e
-        next
-      rescue => e
-        next
+          
+       rescue Exception => e;  next
+       rescue => e;            next
       end          
-    end
+    end unless meta_data[:exposed_variables].nil?
     
   end
   

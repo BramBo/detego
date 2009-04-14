@@ -3,7 +3,7 @@ PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH     = "#{PATH}/contained"
-DETEGO_VERSION    = "0.1.7"
+DETEGO_VERSION    = "0.2"
 CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
 

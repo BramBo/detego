@@ -24,7 +24,6 @@ class Container
   end
   
   def remove(name=nil)
-    # @todo: remove directory and underlying services
     if name.nil?
       @domains.each do |n, domain|
         domain.remove

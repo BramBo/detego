@@ -1,4 +1,4 @@
-require 'spec_config.rb'
+require 'config/spec_config'
 
 describe Domain do
   before(:all) do

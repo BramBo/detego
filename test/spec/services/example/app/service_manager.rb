@@ -15,6 +15,7 @@ class ServiceManager
     return "hello from hello.rb in #{$service[:full_name]} #{str} Status: #{$state}"
   end
 
+  has_paramaters :set_status, "str"
   def set_status(str)
     $state = str
   end
@@ -24,6 +25,6 @@ class ServiceManager
   end
   
   def start
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).set_status("Started")     
+     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status = "Started"
   end
 end

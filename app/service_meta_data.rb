@@ -1,18 +1,20 @@
 class ServiceMetaData
   attr_reader :service_methods, :exposed_variables
-  attr_accessor :status
   
   def initialize(service)
     @service = service
+  end
+  
+  def reset
+    @service_methods    = {:all => [] , :exposed => []}
+    @exposed_variables  = {:both => [], :read => []   , :write => []}
   end
   
   def gather
     @service.runtime.runScriptlet(%{       
       $service_manager = ServiceManager.new      
     })  
-    
-    @status = @service.status
-    
+
     # todo: only instantiated variables are read, so attr_reader, _writer and _accessor have not much todo with this.
     @exposed_variables = Marshal.load(@service.runtime.runScriptlet(%{
       vs = {:both => [], :read => [], :write => []}
@@ -35,8 +37,10 @@ class ServiceMetaData
     
     @service_methods = Marshal.load(@service.runtime.runScriptlet(%{
       m = {:all => [], :exposed => []}
-      $service_manager.all_methods.each {|e| m[:exposed] << e.to_s}
-      m[:all]      = ($service_manager.public_methods-Object.public_instance_methods) - m[:exposed] - ["start", "all_methods", "stop"]
+      $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_paramater_methods[e.to_s] || [] ]}
+      
+      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop"]
+      
       Marshal.dump(m)
     }))
     

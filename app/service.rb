@@ -16,6 +16,7 @@ class Service
     @port_in    = $port_start+=1
     @port_out   = $port_start+=1
     @status     = "stopped"
+    @runtime    = JJRuby.newInstance()
         
     # Create the domain directory if not present
     FileUtils.mkdir_p(@path, :mode => 0755)
@@ -28,8 +29,10 @@ class Service
   # Start/boot the service 
   # 
   def start
-    raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
-    # Boot it
+    raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
+    # @todo: Expand with org.jruby.RubyInstanceConfig    
+    
+    # Boot it            
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
@@ -38,8 +41,10 @@ class Service
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
     
       require "container_logger"
+
     
       class ServiceManager
+        def self.all_paramater_methods; @@p ||= Hash.new; end
         def all_methods; []; end
         def self.exposed_methods(*meths)
           if meths.class==Array
@@ -48,17 +53,30 @@ class Service
             define_method("all_methods") { [meths] }
           end
         end
+        def self.has_paramaters(meth, *params)
+          all_paramater_methods[meth.to_s] = params.to_a
+        end        
       end
 
-      require 'startup.rb'
+      begin                
+          require 'startup'
+      rescue LoadError 
+        begin
+          require 'service_manager'
+        rescue LoadError
+          ContainerLogger.error "Neither startup or ServiceManager could be loaded for #{@full_name}", 2          
+          raise Exception.new("Neither startup or ServiceManager could be loaded for #{@full_name}")
+        end
+      end
+
       require 'drb'
       DRb.start_service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
       DRb.start_service "druby://127.0.0.1:#{@port_out}", ServiceManager.new
 
-      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).set_status("Booting..")
+      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
-
+    
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
     @thread = Thread.new do
       @service_manager.start()
@@ -80,7 +98,7 @@ class Service
     arg   = Marshal.dump(args)
     blck  = Marshal.dump(block)
 
-    if @meta_data.service_methods[:exposed].include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
+    if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green
       begin
         if !args.nil? && !args.first.nil?
@@ -111,36 +129,64 @@ class Service
   #
   def restart()
     shutdown()
-    startup()
+    start()
   end
   
   # shutdown the service
-  # @todo: Make shutdown subroutine
+  # 
   def shutdown()
+    return if @status=~/stopped/i
     
-    @status = "stopped"
-    ContainerLogger.debug "#{@domain.name}::#{@name} shutdown"
+    @runtime.runScriptlet(%{
+      DRb.stop_service 
+      begin                
+        require 'shutdown'
+      rescue LoadError => e
+        ContainerLogger.warn "Skipping shutdown script for #{@full_name}..."
+      end
+    })
+    @runtime.tearDown()
+
+    @runtime    = nil
+    @runtime    = JJRuby.newInstance()        
+    @status     = "stopped"
+    @meta_data.reset    
+    ContainerLogger.debug "#{@full_name} shutdown"
     true
   end
 
   # install
-  # @todo: Make install subroutine
+  # 
   def install()
-    # r = @runtime.runScriptlet(%{
-    # })
+     r = @runtime.runScriptlet(%{
+       begin                
+         require 'install'
+       rescue LoadError => e;end       
+     })
 
     ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
     true
   end
 
   # Uninstall
-  # @todo: Make uninstall subroutine
+  # 
   def uninstall()
-    # r = @runtime.runScriptlet(%{
-    # 
-    # })
+     shutdown() unless @status =~ /stopped/i
+     @status = "uninstalling"
+     r = @runtime.runScriptlet(%{
+       begin                
+         require 'uninstall'
+       rescue LoadError;end     
+     })
+    @runtime    = nil
 
-    Dir.unlink("#{SERVICES_PATH}/#{@domain.name}/#{@name}")
+     begin 
+       FileUtils.rm_rf("#{SERVICES_PATH}/#{@domain.name}/#{@name}")
+     rescue Exception => e
+       Containerlogger.warn e,2 
+     rescue  e
+       Containerlogger.warn e,2       
+     end
     ContainerLogger.debug "#{@domain.name}::#{@name} uninstalled succesfully"
     true
   end
@@ -148,7 +194,8 @@ class Service
 
   # Just here for code prettyness
   def started?
-    @started
+    puts "Service Started? (#{@name}): #{@status =~ /!stopped/}"
+    @status =~ /!stopped/
   end
   
   # Inject code into the service: Remove ?!

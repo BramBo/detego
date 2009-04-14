@@ -47,17 +47,15 @@ class Domain
     if s.nil?
       @services.each do |k, s|
         name = s.name
-        s.stop() if s.started?
+        s.shutdown() if s.started?
         s.uninstall
       end
       
       @services.clear
-      Dir.unlink("#{SERVICES_PATH}/#{@name}")
+      FileUtils.rm_rf("#{SERVICES_PATH}/#{@name}")      
     else
-      service = find(s) 
-      name    = service.name
-      
-      service.stop() if service.started?
+      service = find(s)
+      service.shutdown() if service.started?
       service.uninstall
       @services.delete(s)
     end
@@ -70,11 +68,7 @@ class Domain
     #  Instantiate a new runtime
     #  Start a new DRB server so this service can access it's ServiceProvider
     def new_service(service)
-      @services[service.name]         = service
-      
-      # @todo: Expand with org.jruby.RubyInstanceConfig
-      @services[service.name].runtime = JJRuby.newInstance()
-      
+      @services[service.name]         = service      
       DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, @services[service.name])
       
       return @services[service.name]
