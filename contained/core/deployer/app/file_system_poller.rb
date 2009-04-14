@@ -1,3 +1,28 @@
+# Copyright (c) 2009 Bram Wijnands
+#                                                                     
+# Permission is hereby granted, free of charge, to any person         
+# obtaining a copy of this software and associated documentation      
+# files (the "Software"), to deal in the Software without             
+# restriction, including without limitation the rights to use,        
+# copy, modify, merge, publish, distribute, sublicense, and/or sell   
+# copies of the Software, and to permit persons to whom the           
+# Software is furnished to do so, subject to the following      
+# conditions:
+# 
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+
+# Will scan the given path 2 dimension deep on new directory or files where ServiceUnpacker responds to
 class FileSystemPoller
   attr_reader :current_structure, :old_structure
   
@@ -7,6 +32,8 @@ class FileSystemPoller
     get_current_structure
   end
   
+  # Differential between structures
+  # old - new may result in the installation/deletion of a new service/domain
   def poll
     begin
       ContainerLogger.debug "New poll (#{Time.now}) #{$service[:full_name]}"
@@ -59,6 +86,7 @@ class FileSystemPoller
   end
   
   private 
+    # Scan first dimension, the domains or a mew archive file which should be a domain including services
     def get_current_structure
       @current_structure = {}
       begin
@@ -75,7 +103,8 @@ class FileSystemPoller
       end
       @current_structure
     end
-    
+
+    # Scan seconds dimension, the services in a given domain, or a new archive file to be unarchived and installed
     def read_dir(domain)      
       Dir.new("#{@path}/#{domain}").each do |service|
         @manager.message_stack << ServiceUnPacker.new(@path, domain, service) if ServiceUnPacker.supported_file_type?(service)
