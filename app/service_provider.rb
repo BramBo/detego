@@ -98,6 +98,7 @@ class ServiceProvider
         return names
       rescue => ex
         ContainerLogger.error "#{ex} for service: #{@providee.name}"
+        return ex
       ensure
         @domain = @service = nil
       end
@@ -145,7 +146,7 @@ class ServiceProvider
           ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
           raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
         end
-        true        
+        "#{@service} status set: #{str}"
       end
   
       # Adds a service to the container
@@ -155,7 +156,6 @@ class ServiceProvider
         
         begin
           @container.find(@domain).find(@service).start()
-          true
         rescue Exception => ex
           ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
           "error;#{ex}"                    
@@ -163,6 +163,7 @@ class ServiceProvider
           ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
           "error;Error starting service #{@domain}::#{@service}!"
         end
+        "#{@service} started!"
       end
   
       # Stops a service
@@ -180,6 +181,7 @@ class ServiceProvider
           ContainerLogger.error "Error stopping service #{@domain}::#{@service}!".console_yellow, 1
           return "Error stopping service #{@domain}::#{@service}!"
         end
+        "#{@service} stopped!"
       end
       
       # Stops a service
@@ -197,7 +199,7 @@ class ServiceProvider
           ContainerLogger.error "Error restarting service #{@domain}::#{@service}!".console_yellow, 1
           return "Error restarting service #{@domain}::#{@service}!"
         end
-        true
+        "#{@service} restarted!"
       end
       
   # Adds a service to the container

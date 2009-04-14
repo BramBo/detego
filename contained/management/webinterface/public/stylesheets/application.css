@@ -132,6 +132,16 @@ ul {
 	z-index			: 2001;
 }
 
+#close_report {
+	float 			: right;
+	margin 			: 2px;
+	cursor 			: pointer;
+	background 		: url(/images/cross.png) left top no-repeat;
+	display 		: block;
+	width 			: 16px;
+	height 			: 16px;
+}
+
 #flash_notice, #flash_error, #flash_alert, .js_report {
   padding 			: 5px 8px;
   margin 			: 10px 0;

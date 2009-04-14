@@ -21,7 +21,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 class ServiceManager
-  attr_accessor :interval, :message_stack
+  attr_accessor :interval
+  attr_reader :message_stack
   exposed_methods :poll 
   
   def initialize 
@@ -46,6 +47,6 @@ class ServiceManager
   def poll
     @message_stack = []
     @poller.poll
-    return @message_stack
+    return (@message_stack.size>0) ? @message_stack : "Nothing happend"
   end
 end

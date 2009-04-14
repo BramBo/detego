@@ -35,7 +35,7 @@ function invoke_handler() {
 	in_method	=  self.parent().parent().children("span").next().html();
 	
 	self.show("pulsate", { times:100 }, 500);
-	method_request(in_method, function() {
+	method_request(in_method, null, function() {
 		self.stop(true, true).show("pulsate", { times:1 }, 1);
 		update_status();
 	});
@@ -54,7 +54,7 @@ function remove_service(){
 	}
 }
 
-function method_request(in_method, on_complete) {
+function method_request(in_method, on_success, on_complete) {
 	$.ajax({
 	  type				: "GET",
 	  url				: window.location.href+"/invoke",
@@ -66,12 +66,14 @@ function method_request(in_method, on_complete) {
 		} else {
 			report("<b>Succesfully invoked "+in_method+"!</b><br />Results:<span class='result'>"+data+"</span>", "success")			
 		}
-			
+		if(on_success) on_success();
 	  },
 	  error				: function(XMLHttpRequest, textStatus, errorThrown) {
 		report("<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+XMLHttpRequest.responseText+"</span>", "error")
 	  },
-	  complete 			: on_complete()
+	  complete 			: function() { 
+		if(on_complete) on_complete();
+	  }
 	});	
 	
 }
@@ -91,8 +93,14 @@ function report(what, type) {
 		window.clearTimeout(timeouts[type]);
 	}
 	
-	$("#content").children(":first").before("<div id='js_report_"+type+"' class='js_report "+type+"'>"+what+"</div>");
+	$("#content").children(":first").before("<div id='js_report_"+type+"' class='js_report "+type+"'><span id='close_report'></span>"+what+"</div>");
+	$("#close_report").click(function(){ close(type, 1000)});
+	
 	$("#js_report_"+type).show("slide", { direction: "up" }, 1000);
 
-	timeouts[type] = window.setTimeout(function(){$("#js_report_"+type).hide("slide", {direction: "up"}, 1000);}, 10000)
+	timeouts[type] = window.setTimeout(function(){close(type, 1000);}, 10000)
+}
+
+function close(type, dur) {
+	$("#js_report_"+type).hide("slide", {direction: "up"}, dur);
 }
