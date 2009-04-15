@@ -1,0 +1,20 @@
+h1.Detego
+
+h2.Quickstart
+|jruby -S run.rb|
+
+h2.Dir. Structure
+
+*app
+*config
+*contained
+**core
+***deployer
+***example
+**management
+***webinterface
+*doc
+*lib
+*log
+*test
+*spec

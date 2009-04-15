@@ -64,13 +64,12 @@ function invoke_method_w_parameters() {
 	parameter_value	=  self.parents("span").children("span").html();
 	
 	invoke 			= ""+in_method+"('"+parameter_value+"')"
-	self.show("pulsate", { times:100 }, 500);
 	method_request({method: invoke}, null, function() {
-		self.stop(true, true).show("pulsate", { times:1 }, 1);			
 		update_status();
 	});
 }
 
+// Sent an AJAX GET request to the service controller: domains/__domain__/services/__service__/invoke/__method__
 function method_request(paramaters, on_success, on_complete, on_error) {
 	$.ajax({
 	  type				: "GET",
@@ -97,6 +96,7 @@ function method_request(paramaters, on_success, on_complete, on_error) {
 	
 }
 
+// Gets a new service status.
 function update_status() {
 	$.get(window.location.href+"/status", {}, function(data) {
 		$("#service_status").html(data);
