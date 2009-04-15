@@ -1,14 +1,18 @@
-h1.Detego
+h1. Detego
 
-h2.Quickstart
+h2. Quickstart
+Easy !
 |{background:#ddd}jruby -S run.rb|
+Wait for WEBrick to boot and goto http://127.0.0.1:5005/
 
-h2.Dir. Structure
 
+h2. Dir. Structure
 
 * app
+ the core of container
 * config
 * contained
+ All the pre-installed services, including a management interface(rails), a deployer and an example to demostrate usage
 ** core
 *** deployer
 *** example
