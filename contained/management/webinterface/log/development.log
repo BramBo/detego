@@ -44897,3 +44897,126 @@ Rendering template within layouts/application
 Rendering services/show
 Rendered layouts/_navigation (0.08500)
 Completed in 0.22500 (4 reqs/sec) | Rendering: 0.13300 (59%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-15 14:53:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"hallo=('Hoi...')", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"example"}
+DEPRECATION WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library will be REMOVED FROM RAILS 2.2. Please switch to the offical mysql gem: `gem install mysql`  See http://www.rubyonrails.org/deprecation for details. (called from mysql_connection at /usr/local/jruby/lib/ruby/gems/1.8/gems/activerecord-2.1.2/lib/active_record/connection_adapters/mysql_adapter.rb:81)
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+Rendering services/invoke.js.erb
+Completed in 0.01900 (52 reqs/sec) | Rendering: 0.00300 (15%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/invoke?method=hallo%3D(%27Hoi...%27)]
+
+
+Processing ServicesController#status (for 127.0.0.1 at 2009-04-15 14:53:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"status", "domain_id"=>"core", "id"=>"example"}
+Rendering services/status.js.erb
+Completed in 0.04500 (22 reqs/sec) | Rendering: 0.03400 (75%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/status]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-15 14:53:42) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"hoi=('Hey')", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"example"}
+Rendering services/invoke.js.erb
+Completed in 0.02600 (38 reqs/sec) | Rendering: 0.00100 (3%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/invoke?method=hoi%3D(%27Hey%27)]
+
+
+Processing ServicesController#status (for 127.0.0.1 at 2009-04-15 14:53:42) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"status", "domain_id"=>"core", "id"=>"example"}
+Rendering services/status.js.erb
+Completed in 0.01500 (66 reqs/sec) | Rendering: 0.00200 (13%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/status]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-15 14:53:46) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"hoi=('Hey')", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"example"}
+Rendering services/invoke.js.erb
+Completed in 0.02200 (45 reqs/sec) | Rendering: 0.00200 (9%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/invoke?method=hoi%3D(%27Hey%27)]
+
+
+Processing ServicesController#status (for 127.0.0.1 at 2009-04-15 14:53:46) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"status", "domain_id"=>"core", "id"=>"example"}
+Rendering services/status.js.erb
+Completed in 0.01600 (62 reqs/sec) | Rendering: 0.00100 (6%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/status]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-15 14:53:50) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"hoi=('Hey')", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"example"}
+Rendering services/invoke.js.erb
+Completed in 0.01900 (52 reqs/sec) | Rendering: 0.00100 (5%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/invoke?method=hoi%3D(%27Hey%27)]
+
+
+Processing ServicesController#status (for 127.0.0.1 at 2009-04-15 14:53:50) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"status", "domain_id"=>"core", "id"=>"example"}
+Rendering services/status.js.erb
+Completed in 0.01300 (76 reqs/sec) | Rendering: 0.00100 (7%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/status]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-15 14:54:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.22100)
+Completed in 0.40500 (2 reqs/sec) | Rendering: 0.28500 (70%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-15 14:54:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.11600)
+Completed in 0.18800 (5 reqs/sec) | Rendering: 0.13200 (70%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-15 14:55:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.07400)
+Completed in 0.14300 (6 reqs/sec) | Rendering: 0.08900 (62%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#show (for 127.0.0.1 at 2009-04-15 15:05:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"show", "domain_id"=>"core", "id"=>"example"}
+Rendering template within layouts/application
+Rendering services/show
+Rendered layouts/_navigation (0.08100)
+Completed in 0.17600 (5 reqs/sec) | Rendering: 0.13100 (74%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example]
+
+
+Processing ServicesController#invoke (for 127.0.0.1 at 2009-04-15 15:05:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"method"=>"get_status", "controller"=>"services", "action"=>"invoke", "domain_id"=>"core", "id"=>"example"}
+Rendering services/invoke.js.erb
+Completed in 0.01300 (76 reqs/sec) | Rendering: 0.00200 (15%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/invoke?method=get_status]
+
+
+Processing ServicesController#status (for 127.0.0.1 at 2009-04-15 15:05:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--e4c3a61dccf9f7ee7ccfc4490c783d04d5751ea7
+  Parameters: {"controller"=>"services", "action"=>"status", "domain_id"=>"core", "id"=>"example"}
+Rendering services/status.js.erb
+Completed in 0.01700 (58 reqs/sec) | Rendering: 0.00300 (17%) | DB: 0.00000 (0%) | 200 OK [http://localhost/domains/core/services/example/status]

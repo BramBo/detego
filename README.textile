@@ -2,6 +2,9 @@ h1. Detego
 
 Detego is a JRuby application container...
 
+http://app_container.lighthouseapp.com/projects/28317-detego/overview
+
+
 
 h2. Quickstart
 

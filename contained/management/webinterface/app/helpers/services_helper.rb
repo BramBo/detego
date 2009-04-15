@@ -21,11 +21,11 @@ module ServicesHelper
     end
   end  
   
-  def method_list(collection, type="elements", use="for show")
+  def method_list(collection, type="elements", use="for show", handler="def")
     if collection.size>0
       r ="<ul class='meth_list_helper'>"
       collection.each do |e|
-        click_handler = (e.class==Array) ? "click=\"#{e[1]}\"" : ""
+        click_handler = (e.class==Array && handler != "def") ? "click=\"#{e[1]}\"" : ""
         n             = (e.class==Array) ? e[0] : e
           
         r += "<li><span class='ui-triangle'></span><span>#{n.to_s}</span>"
