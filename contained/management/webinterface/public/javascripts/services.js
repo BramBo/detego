@@ -19,14 +19,18 @@ function to_input() {
 function to_text(self) {
 	if (self == null) self = this;
 	
-	value = $(self).children("input").val()
-	
-	if(value=="") value ="-----";
-	$(self).html(value);	
-	
-	$(group).click(to_input);		
-	
-	$(self).next().hide("puff", {}, 500);
+	window.setTimeout(function(){ 
+		value = $(self).children("input").val()
+
+		if(value=="") value ="-----";
+		$(self).html(value);	
+
+		$(group).click(to_input);		
+		
+		
+		$(self).next().hide("puff", {}, 750); 
+		
+	}, 1000);
 }
 
 // Default handler for a service method call, bound through class='runnable'

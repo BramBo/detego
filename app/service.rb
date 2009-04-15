@@ -156,6 +156,7 @@ class Service
   
   # shutdown the service
   # 
+  # @todo: better shutdown routing, server still keeps active
   def shutdown()
     return if @status=~/stopped/i
     

@@ -9,7 +9,7 @@ module ServicesHelper
         if mode == "r"
           r += "<span class='value'>#{value}</span>"
         else
-          r += "<span class='variable_value value'><span>#{value}</span><img src='/images/icons/script_go.png' class='var_control' /></span>"
+          r += "<span class='variable_value value' title='Click to set this parameter'><span>#{value}</span><img src='/images/icons/script_go.png' class='var_control' /></span>"
         end
         
         r += "</li>"
