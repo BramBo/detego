@@ -22,7 +22,6 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 
-
 # Providers a way for the services to access the server through DRB 
 # The provider is available in every service once it got started by the server
 # $provider contains the DRB connection

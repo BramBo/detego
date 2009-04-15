@@ -11,6 +11,7 @@ class ServicesController < ApplicationController
 
     begin
       @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}")
+      ContainerLogger.debug @value
       @value = @value.join("<br />") if @value.class == Array
     rescue Exception => e
       @value = "error;#{e.message.capitalize}"

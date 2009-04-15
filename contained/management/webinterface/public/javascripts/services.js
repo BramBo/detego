@@ -36,15 +36,17 @@ function invoke_handler() {
 	
 	self.show("pulsate", { times:100 }, 500);
 	method_request(in_method, null, function() {
-		self.stop(true, true).show("pulsate", { times:1 }, 1);
-		update_status();
-	});
+			self.stop(true, true).show("pulsate", { times:1 }, 1);			
+			update_status();
+		}	
+	);
 }
 
 // Wrapper for method_request: special case: Remove a service from the server
 function remove_service(){
 	if (window.confirm("Are you sure you want to delete this service?")) {
 		self 		= $(this);
+		// <span><span></span><span>method_name</span><span><img !clicked! /></span></span>
 		in_method	=  self.parent().parent().children("span").next().html();
 	
 		self.show("pulsate", { times:100 }, 500);
@@ -54,7 +56,7 @@ function remove_service(){
 	}
 }
 
-function method_request(in_method, on_success, on_complete) {
+function method_request(in_method, on_success, on_complete, on_error) {
 	$.ajax({
 	  type				: "GET",
 	  url				: window.location.href+"/invoke",
@@ -62,14 +64,16 @@ function method_request(in_method, on_success, on_complete) {
 	  dataType			: "html",
 	  success			: function(data, status) {	
 		if(data.match(/^error;/i)) {
-			report("<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+data.replace(/error\;(.+?$)/i, "$1")+"</span>", "error")
+			$("#content").children(":first").flash_message("Error invoking "+in_method+"!", data.replace(/error\;(.+?$)/i, "$1"), "error");
 		} else {
-			report("<b>Succesfully invoked "+in_method+"!</b><br />Results:<span class='result'>"+data+"</span>", "success")			
+			$("#content").children(":first").flash_message("Succesfully invoked "+in_method+"!", data, "success");
 		}
 		if(on_success) on_success();
 	  },
 	  error				: function(XMLHttpRequest, textStatus, errorThrown) {
-		report("<b>Error invoking "+in_method+"!</b><br />Results:<span class='result'>"+XMLHttpRequest.responseText+"</span>", "error")
+		$("#content").children(":first").flash_message("Error invoking "+in_method+"!", XMLHttpRequest.responseText, "error");
+		
+		if(on_error) on_error();				
 	  },
 	  complete 			: function() { 
 		if(on_complete) on_complete();
@@ -82,25 +86,4 @@ function update_status() {
 	$.get(window.location.href+"/status", {}, function(data) {
 		$("#service_status").html(data);
 	}, "text");
-}
-
-// Simple function to report the received message
-var timeouts = new Array();
-function report(what, type) {
-	var type = (type) ? type.toLowerCase() : "notice"	
-	if($("#js_report_"+type).size()>0) {
-		$("#js_report_"+type).remove();
-		window.clearTimeout(timeouts[type]);
-	}
-	
-	$("#content").children(":first").before("<div id='js_report_"+type+"' class='js_report "+type+"'><span id='close_report'></span>"+what+"</div>");
-	$("#close_report").click(function(){ close(type, 1000)});
-	
-	$("#js_report_"+type).show("slide", { direction: "up" }, 1000);
-
-	timeouts[type] = window.setTimeout(function(){close(type, 1000);}, 10000)
-}
-
-function close(type, dur) {
-	$("#js_report_"+type).hide("slide", {direction: "up"}, dur);
 }

@@ -107,21 +107,21 @@ ul {
 	clear 			: both !important;
 }
 .result {
-	font-family 	: arial, Helvetica;
+	font-family 	: courier, Helvetica, arial, verdana;
 	display 		: block;
 	margin 			: 5px;	
 	padding 		: 5px 2px 5px 2px;
 }
 
 #js_report_notice .result {
-  border 			: 1px solid #ff7900;
+  border 			: dashed 1px #ff7900;
 }
 #js_report_success .result {
-  border 			: solid 1px #6C6;
+  border 			: dashed 1px #6C6;
 }
 
 #js_report_error .result {
-  border 			: solid 1px #C66;
+  border 			: dashed 1px #C66;
 }
 
 .js_report {
@@ -135,6 +135,7 @@ ul {
 #close_report {
 	float 			: right;
 	margin 			: 2px;
+	padding 		: 0;
 	cursor 			: pointer;
 	background 		: url(/images/cross.png) left top no-repeat;
 	display 		: block;
