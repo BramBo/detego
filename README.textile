@@ -1,10 +1,14 @@
 h1. Detego
 
+Detego is a JRuby application container...
+
+
 h2. Quickstart
 
-Easy !
+It's easy..
 |{background:#ddd}jruby -S run.rb|
 Wait for WEBrick to boot and goto http://127.0.0.1:5005/
+
 
 h2. Dir. Structure
 
@@ -23,3 +27,10 @@ h2. Dir. Structure
 * log
 * test
 * spec
+
+
+h2. Rake tasks
+
+:lines
+:todo
+:test
