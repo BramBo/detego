@@ -15,13 +15,29 @@ class Service
       begin       
           @variables[k] ||= {}          
           if v.class==Array
-            v.each { |vv| @variables[k][vv] = (k != :write) ? eval("$provider.for(domain.name, name).#{vv}()") : "-----" }
+            v.each do |vv| 
+              if (k== :write)
+               @variables[k][vv] = "-----"
+              elsif (k== :both)
+                next unless vv =~ /\=/
+                @variables[k][vv] = eval("$provider.for(domain.name, name).#{vv.gsub(/\=/, "")}()")   
+              else
+                @variables[k][vv] = eval("$provider.for(domain.name, name).#{vv}()")
+              end 
+            end
           else
-            @variables[k][v] = (k != :write) ? eval("$provider.for(domain, name).#{v}()") || "nil" : "-----"
+            if (k== :write)
+             @variables[k][v]   = "-----"
+            elsif (k== :both)
+              next unless vv =~ /\=/              
+              @variables[k][v]  = eval("$provider.for(domain.name, name).#{v.gsub(/\=/, "")}()")           
+            else
+              @variables[k][v] = eval("$provider.for(domain.name, name).#{v}()")
+            end
           end            
           
-       rescue Exception => e;  next
-       rescue => e;            next
+       rescue Exception => e; next
+       rescue => e;           next
       end          
     end unless meta_data[:exposed_variables].nil?
     

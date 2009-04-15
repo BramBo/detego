@@ -24,7 +24,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'lib/system_helper'
+require 'lib/container_logger'
 
 task :todo do
   todos = 0

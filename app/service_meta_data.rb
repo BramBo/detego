@@ -46,11 +46,12 @@ class ServiceMetaData
         w_meth = (m.gsub(/\@/, "")+"=").to_sym
 
         if $service_manager.respond_to?(r_meth) && $service_manager.respond_to?(w_meth)
-          vs[:both]  << r_meth.to_s
+          vs[:both]   << r_meth.to_s          
+          vs[:both]   << w_meth.to_s          
         elsif $service_manager.respond_to?(w_meth)
-          vs[:write] << r_meth.to_s
+          vs[:write]  << w_meth.to_s
         elsif $service_manager.respond_to?(r_meth)
-          vs[:read]  << r_meth.to_s
+          vs[:read]   << r_meth.to_s
         end
       end
       

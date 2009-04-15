@@ -35,7 +35,7 @@ function invoke_handler() {
 	in_method	=  self.parent().parent().children("span").next().html();
 	
 	self.show("pulsate", { times:100 }, 500);
-	method_request(in_method, null, function() {
+	method_request({method: in_method}, null, function() {
 			self.stop(true, true).show("pulsate", { times:1 }, 1);			
 			update_status();
 		}	
@@ -50,17 +50,32 @@ function remove_service(){
 		in_method	=  self.parent().parent().children("span").next().html();
 	
 		self.show("pulsate", { times:100 }, 500);
-		method_request(in_method, function() {
+		method_request({method: in_method}, function() {
 			window.location.href=window.location.href.replace(/(^.+?)\/[^\/]+\/[^\/]+?$/, "$1");
 		});
 	}
 }
 
-function method_request(in_method, on_success, on_complete, on_error) {
+// wrapper for method_request: special case: var_control img clicked !
+function invoke_method_w_parameters() { 
+	self = $(this);
+	// <span><span></span><span>method_name</span><span><img !clicked! /></span></span>
+	in_method		=  self.parents("span").parent().children("span").next().html();
+	parameter_value	=  self.parents("span").children("span").html();
+	
+	invoke 			= ""+in_method+"('"+parameter_value+"')"
+	self.show("pulsate", { times:100 }, 500);
+	method_request({method: invoke}, null, function() {
+		self.stop(true, true).show("pulsate", { times:1 }, 1);			
+		update_status();
+	});
+}
+
+function method_request(paramaters, on_success, on_complete, on_error) {
 	$.ajax({
 	  type				: "GET",
 	  url				: window.location.href+"/invoke",
-	  data 				: ({method: in_method}),
+	  data 				: (paramaters),
 	  dataType			: "html",
 	  success			: function(data, status) {	
 		if(data.match(/^error;/i)) {

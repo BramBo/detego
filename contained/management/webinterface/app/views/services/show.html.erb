@@ -65,3 +65,12 @@ $(function() {
 	$("span.variable_value span").click(to_input);
 });
 <%end%>
+
+
+<% # Make the controllers do something !
+content_for :javascript do 
+%>
+$(function() {
+	$("img.var_control").click(invoke_method_w_parameters);
+});
+<%end%>
