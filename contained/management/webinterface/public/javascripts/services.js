@@ -67,6 +67,8 @@ function invoke_method_w_parameters() {
 	in_method		=  self.parents("span").parent().children("span").next().html();
 	parameter_value	=  self.parents("span").children("span").html();
 	
+	if(parameter_value.match(/\<input/i)) parameter_value = parameter_value.replace(/^.+?value\=[\'\"](.+?)[\'\"].+?$/i, "$1");
+	
 	invoke 			= ""+in_method+"('"+parameter_value+"')"
 	method_request({method: invoke}, null, function() {
 		update_status();
