@@ -6,7 +6,6 @@ Easy !
 |{background:#ddd}jruby -S run.rb|
 Wait for WEBrick to boot and goto http://127.0.0.1:5005/
 
-
 h2. Dir. Structure
 
 * app
