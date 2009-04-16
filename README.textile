@@ -4,7 +4,7 @@
 
 h1. Detego
 
-Detego is a JRuby application container... "Server page":server
+Detego is a JRuby:http://jruby.codehaus.org/ application container... See "Server page":server page for more details.
 
 Found a bug ? Please post it on "lighthouse":lighthouse
 
@@ -13,7 +13,7 @@ h2. Quickstart
 
 Startup is easy, just run the boot script:
 
-|{border:1px solid black;background:#ddd}. jruby -S run.rb|
+|{background:#ddd}. jruby -S run.rb|
 
 After this 3 services will be available (tho no expose services have been made, so they're currently only available inside the container.).
 
@@ -46,6 +46,7 @@ h2. Dir. Structure
 *** example
 ** management
 *** webinterface
+ This is the rails web interface
 * doc
 * lib
 * log
@@ -56,5 +57,10 @@ h2. Dir. Structure
 h2. Rake tasks
 
 :lines
+Silly task, count amount of code lines
+
 :todo
+checks the container code-base on @todo and will report it
+
 :test
+nothing yet, will hold a task to run all the specs at once
