@@ -5,9 +5,8 @@ function kickoff_services() {
 	$("span.variable_value span").click(to_input);
 	
 	for(a in accordions) {
-		console.debug(accordions[a][0] + " Should activate: " +accordions[a][1])
 		$(accordions[a][0])
-			.accordion({collapsible: true, active: accordions[a][1], icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' } })
+			.accordion({collapsible: true, active: accordions[a][1], icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' }, header: "h3" })
 			.bind('accordionchange', set_open_accordion);
 	}
 
@@ -45,7 +44,8 @@ function to_text(self) {
 	if (self == null) self = this;
 	
 	window.setTimeout(function(){ 
-		value = $(self).children("input").val()
+		value = $(self).children("input").val();
+		console.debug(value);
 
 		if(value=="") value ="-----";
 		$(self).html(value);	
@@ -93,7 +93,7 @@ function invoke_method_w_parameters() {
 	in_method		=  self.parents("span").parent().children("span").next().html();
 	parameter_value	=  self.parents("span").children("span").html();
 	
-	if(parameter_value.match(/\<input/i)) parameter_value = parameter_value.replace(/^.+?value\=[\'\"](.+?)[\'\"].+?$/i, "$1");
+	if(parameter_value.match(/\<input/i)) parameter_value = self.parents("span").children("span").children("input").val();
 	
 	invoke 			= ""+in_method+"('"+parameter_value+"')"
 	method_request({method: invoke}, null, function() {
@@ -136,6 +136,7 @@ function update_status() {
 	}, "text");
 }
 
+// Easy ajax get and replace
 function update_details() {
 	$.get(window.location.href+"/update_details", function(data) {
 		$("#service_details").html(data);
@@ -143,8 +144,9 @@ function update_details() {
 }
 
 // When an accordion header gets clicked set the array to the current active one, Really should be easily fetchable through 'option', 'active' !
-function set_open_accordion(event, ui) {			
+function set_open_accordion(event, ui) {
 	i=0;
+
 	ui.newHeader.parent().children("h3").each(function(){
 		if(ui.newHeader[0] === this) {
 			// works outside the binding context so.. :

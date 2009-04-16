@@ -22,7 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 ##############################
-##     Boot test_script     ##
+##       Boot example       ##
 ##############################
 
 # LOAD_PATH holds the absolute path to the service.

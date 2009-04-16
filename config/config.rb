@@ -26,7 +26,7 @@ PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH     = "#{PATH}/contained"
-DETEGO_VERSION    = "0.2.1"
+DETEGO_VERSION    = "0.2.2"
 CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
 

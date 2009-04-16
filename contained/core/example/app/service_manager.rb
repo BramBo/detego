@@ -24,22 +24,22 @@
 
 # The communication layer between this service and the server
 class ServiceManager
-  attr_accessor :hallo, :hoi
+  attr_accessor :hello
   attr_reader   :read_only
   attr_writer   :write_only  
   exposed_methods :say_hello, :set_status, :get_status, :sleep_test
   
   # Gets run by the server when start() is invoked on it. This will happen right after the installation, or can be invoked through the management interface
   def initialize
-    @hallo      = "Hello"
-    @hoi        = "Hey"
-    @write_only = "NOT READABLE"
-    @read_only  = "READ ONLY"
+    @hello      = "Hello world!"
+    @invisible  = "Yarrr..."
+    @write_only = "For your eyes only"
+    @read_only  = "Can't be overwritten"
   end
 
   # Example function
   def say_hello
-    return "hello from hello.rb in #{$service[:full_name]} #{str} Status: #{$state}"
+    return "hello from #{$service[:full_name]}. Current status: #{$state}"
   end
 
   # Another example function. See the management interface on port 5005
@@ -53,14 +53,14 @@ class ServiceManager
     return "#{$service[:full_name]} status: #{$state}"
   end
   
-  # This method should always be present in the service manager, this can be empty but the server will invoke this to start the service
-  def start
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Started"     
-  end
-  
   # Another example, just here to show off some nice js ^^
   def sleep_test
     sleep(10)
     "slept for 10 sec!"
+  end
+  
+  # This method should always be present in the service manager, this can be empty but the server will invoke this to start the service
+  def start
+     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Started"     
   end
 end

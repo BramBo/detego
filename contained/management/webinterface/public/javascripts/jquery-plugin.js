@@ -34,18 +34,31 @@
 		  effect			: "slide",
 		  show_for 			: 5000,
 		  duration_modifier	: 0.5,			// Effect duration modifer (duration*modifier). close effect onClick
-		  duration 			: 1000
+		  duration 			: 1000,
+		  warning_color 	: "#f33",
+		  warning_effect 	: "highlight"		
 		},options);
 	
 		suffix 	= (suffix) ? suffix.toLowerCase() : "notice";
 
 		if($("#js_report_"+suffix).size()>0) {
-			return $(this).each(function() {
+			$(this).each(function() {
 				$("#js_report_"+suffix)
-					.effect("highlight", {color: "#EB8F00"}, 1000);
+					.effect(options.warning_effect, 
+							{color: options.warning_color}, 
+							500, 
+							function() {
+								$(this).remove();
+								window.clearTimeout(timeouts[suffix]);
+							}	
+					);
+				window.setTimeout(function() { return show_message($(this), title, message, suffix, options);}, 1000);	
 			});
 		}
+		return show_message($(this), title, message, suffix, options);
+	}
 	
+	function show_message(self, title, message, suffix, options) {
 		timeouts[suffix] = window.setTimeout(function() { 
 			$("#js_report_"+suffix)
 				.hide(options.effect, 
@@ -55,10 +68,10 @@
 						$(this).remove();
 						window.clearTimeout(timeouts[suffix]);
 					  }
-			);
+				);
 		}, options.show_for + options.duration);
 		
-		return $(this)
+		return self
 				.before("<div id='js_report_"+suffix+"' class='js_report "+suffix+"'><span id='close_report'></span><b>"+title+"</b><br />Results:<br /><span class='result'>"+message+"</span></div>")
 				.prev()
 				.find("#close_report")
@@ -74,6 +87,6 @@
 						);
 					})
 				.end()
-				.show(options.effect, { direction: options.direction }, options.duration);		
+				.show(options.effect, { direction: options.direction }, options.duration);
 	}
 })(jQuery);
