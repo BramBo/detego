@@ -1,19 +1,29 @@
+[server]http://wiki.github.com/BramBo/detego/server
+[lighthouse]http://app_container.lighthouseapp.com/projects/28317-detego/overview
+[your_server]http://127.0.0.1:5005/
+
 h1. Detego
 
-Detego is a JRuby application container...
+Detego is a JRuby application container... "Server page":server
 
-http://app_container.lighthouseapp.com/projects/28317-detego/overview
-
+Found a bug ? Please post it on "lighthouse":lighthouse
 
 
 h2. Quickstart
 
-It's easy..
+Startup is easy, just run the boot script:
 
-table{border:1px solid black}.
-|jruby -S run.rb|
+|{border:1px solid black}jruby -S run.rb|
 
-Wait for WEBrick to boot and goto http://127.0.0.1:5005/
+After this 3 services will be available (tho no expose services have been made, so they're currently only available inside the container.).
+*Deployer*
+Will poll the filesystem every so often(default every 120sec.) to see if a new zip or directory has been placed. If so i will try to install it as a service.
+
+*Example*
+An example service to see how it all fits together, has some trivial methods. 
+
+*Webinterface*
+ Well, go and see! Wait for WEBrick to boot and goto "your server interface":your_server
 
 
 h2. Dir. Structure
@@ -22,7 +32,7 @@ h2. Dir. Structure
  the core of container
 * config
 * contained
- All the pre-installed services, including a management interface(rails), a deployer and an example to demostrate usage
+ All the pre-installed services, include a management interface(rails), a deployer and an example to demostrate usage
 ** core
 *** deployer
 *** example
