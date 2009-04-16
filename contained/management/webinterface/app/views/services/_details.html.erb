@@ -1,0 +1,30 @@
+<div id='operations'>
+	<h3>Service Operations</h3>
+	 <%= method_list(['start_service', 'stop_service', 'restart_service', ["remove_service('#{@domain.name}', '#{@service.name}')", "remove_service"]], "methods", "runnable", "js")%>		
+</div>
+<br />
+ <h2>Available methods</h2>
+ <div id='methods_section'>
+	 <h3>Exposed</h3>	
+	 <%= method_list(@service.methods[:exposed], "methods", "runnable")%>
+
+	 <h3>Found</h3>	
+	 <%= method_list(@service.methods[:all], "methods")%>
+	</div>
+	<br />
+	 <h2>Available variables</h2>	
+	<div id='var_section'>
+	 <h3>Read & write</h3>
+	 <%= var_list(@service.variables[:both], "variables", "rw")%>
+
+	 <h3>Write only</h3>	
+	 <%= var_list(@service.variables[:write], "variables", "w")%>
+
+	 <h3>Read only</h3>		
+	 <%= var_list(@service.variables[:read], "variables")%>
+ </div>
+
+<%# Bah... -%>
+<script type='text/javascript' charset='utf-8'>
+$(function() { kickoff_services(); });
+</script>

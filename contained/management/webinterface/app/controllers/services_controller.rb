@@ -26,6 +26,13 @@ class ServicesController < ApplicationController
     render :action => "invoke.js.erb", :layout => false
   end
 
+  def update_details
+    @domain   = Domain.find(params[:domain_id])
+    @service  = @domain.service(params[:id])
+    
+    render :action => "_details", :layout => false
+  end
+
   def status 
     @domain           = params[:domain_id]
     @service          = params[:id]    

@@ -23,7 +23,7 @@
 require "service_meta_data"
 
 class Service
-  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :thread, :domain
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
@@ -64,6 +64,9 @@ class Service
     
       require "container_logger"
 
+      ['INT', 'TERM'].each {|signal|
+        trap(signal) {exit}
+      }
     
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end
@@ -94,15 +97,16 @@ class Service
       require 'drb'
       DRb.start_service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
-      DRb.start_service "druby://127.0.0.1:#{@port_out}", ServiceManager.new
+      DRb.start_service "druby://127.0.0.1:#{@port_out}", (s=ServiceManager.new)
 
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
+      
+      @starting_thread = Thread.new do
+        s.start()
+      end
     })
     
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
-    @thread = Thread.new do
-      @service_manager.start()
-    end
     
     # Gather Service meta-data
     @meta_data.gather()
@@ -156,24 +160,29 @@ class Service
   
   # shutdown the service
   # 
-  # @todo: better shutdown routing, server still keeps active
+  # @todo: Look into rails to figure out how to force exit WEBrick..
   def shutdown()
     return if @status=~/stopped/i
-    
-    @runtime.runScriptlet(%{
-      DRb.stop_service 
-      begin                
-        require 'shutdown'
-      rescue LoadError => e
-        ContainerLogger.warn "Skipping shutdown script for #{@full_name}..."
-      end
-    })
-    @runtime.tearDown()
 
-    @runtime    = nil
+    begin
+      @runtime.runScriptlet(%{
+        DRb.stop_service 
+        begin                
+          require 'shutdown'
+        rescue LoadError => e
+          ContainerLogger.warn "Skipping shutdown script for #{@full_name}..."
+        end
+        @starting_thread.exit      
+      })
+      @runtime.tearDown()
+    rescue => e
+      ContainerLogger.warn "#{@full_name} error shutting down: #{e}"
+    end    
+
+    @runtime    = nil    
     @runtime    = JJRuby.newInstance()        
     @status     = "stopped"
-    @meta_data.reset    
+    @meta_data.reset
     ContainerLogger.debug "#{@full_name} shutdown"
     true
   end

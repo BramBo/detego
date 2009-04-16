@@ -32,7 +32,7 @@
 		var options = $.extend( {
 		  direction			: "up",
 		  effect			: "slide",
-		  show_for 			: 10000,
+		  show_for 			: 5000,
 		  duration_modifier	: 0.5,			// Effect duration modifer (duration*modifier). close effect onClick
 		  duration 			: 1000
 		},options);

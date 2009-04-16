@@ -32,7 +32,5 @@
   Thread.abort_on_exception = false
 
   container     = Container.new
-loop do
-  # @todo: better exit signal
-  exit if gets
-end
+  
+  loop do;  trap("INT") { exit }; end

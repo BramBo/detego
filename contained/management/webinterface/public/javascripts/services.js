@@ -1,3 +1,28 @@
+var group 		= "span.variable_value span, span.variable_value span input";
+var accordions	= [["#methods_section", -1], ["#var_section", -1], ["#operations", -1]]
+// Function to bind all the needed handlers, and effects.
+function kickoff_services() {
+	$("span.variable_value span").click(to_input);
+	
+	for(a in accordions) {
+		console.debug(accordions[a][0] + " Should activate: " +accordions[a][1])
+		$(accordions[a][0])
+			.accordion({collapsible: true, active: accordions[a][1], icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' } })
+			.bind('accordionchange', set_open_accordion);
+	}
+
+	$(".runnable_method").each(function() { 
+		if($(this).attr("click")) {
+			$(this).click(eval($(this).attr("click")));
+		} else {
+			$(this).click(invoke_handler);
+		}
+	});
+	
+	$("img.var_control").click(invoke_method_w_parameters);		
+}
+
+
 // Convert the value inside an span into an input box
 function to_input() {
 	value = $(this).html();
@@ -42,6 +67,7 @@ function invoke_handler() {
 	method_request({method: in_method}, null, function() {
 			self.stop(true, true).show("pulsate", { times:1 }, 1);			
 			update_status();
+			update_details();
 		}	
 	);
 }
@@ -72,6 +98,7 @@ function invoke_method_w_parameters() {
 	invoke 			= ""+in_method+"('"+parameter_value+"')"
 	method_request({method: invoke}, null, function() {
 		update_status();
+		update_details();		
 	});
 }
 
@@ -107,4 +134,36 @@ function update_status() {
 	$.get(window.location.href+"/status", {}, function(data) {
 		$("#service_status").html(data);
 	}, "text");
+}
+
+function update_details() {
+	$.get(window.location.href+"/update_details", function(data) {
+		$("#service_details").html(data);
+	});
+}
+
+// When an accordion header gets clicked set the array to the current active one, Really should be easily fetchable through 'option', 'active' !
+function set_open_accordion(event, ui) {			
+	i=0;
+	ui.newHeader.parent().children("h3").each(function(){
+		if(ui.newHeader[0] === this) {
+			// works outside the binding context so.. :
+			for(ac in accordions) {
+				if(accordions[ac][0]=="#"+$(this).parent()[0].id) {
+				 	accordions[ac][1] = i;
+					break;
+				}
+			}
+		}
+		i++;
+	});
+	
+	if(ui.newHeader.size()==0) {
+		for(ac in accordions) {	
+			if(accordions[ac][0]=="#"+this.id) {
+			 	accordions[ac][1] = -1;
+				break;
+			}
+		}
+	}
 }

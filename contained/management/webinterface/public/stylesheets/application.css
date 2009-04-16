@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5 { font-weight: bold; font-style: normal; }
 h1 { font-size: 140%; padding-bottom:5px; padding-top:10px; }
 h2 { font-size: 120%; padding-bottom:5px; padding-top:5px; }
 h3 { font-size: 110%; padding-bottom:5px; padding-top:2px; }
-#pane h3 {padding-left: 25px !important; }
+#service_details h3 {padding-left: 25px !important; }
 h4 { font-size: 100%; }
 h5 { font-size: 100%; font-style: italic }
 h6 { font-size: 100%; font-weight: normal; }

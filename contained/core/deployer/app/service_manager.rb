@@ -28,14 +28,13 @@ class ServiceManager
   def initialize 
      @message_stack = []  
      @poller     = FileSystemPoller.new(LOAD_PATH.gsub(/(^.+?[\/]+.+?)\/[^\/]+?\/[^\/]+?$/i, "\\1"), self)
-     @interval ||= 120     
+     @interval ||= 10     
   end
   
   def start  
     begin  
     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status = "Running.."
-      loop do
-        @poller.poll
+      while poll do
         sleep(interval.to_i) # Sleep by default two minutes before polling again
       end
     rescue => e

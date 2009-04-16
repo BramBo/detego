@@ -8,69 +8,10 @@
  <span id='service_status'><%= status_to_icon(@service.status) %></span>
  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>
 
- <div id='pane'>
- <div id='operations'>
-	<h3>Service Operations</h3>
-	 <%= method_list(['start_service', 'stop_service', 'restart_service', ["remove_service('#{@domain.name}', '#{@service.name}')", "remove_service"]], "methods", "runnable", "js")%>		
+ <div id='service_details'>
+	<%=	 render :partial => "details" %>
  </div>
- <br />
-  <h2>Available methods</h2>
-  <div id='methods_section'>
-	 <h3>Exposed</h3>	
-	 <%= method_list(@service.methods[:exposed], "methods", "runnable")%>
-
-	 <h3>Found</h3>	
-	 <%= method_list(@service.methods[:all], "methods")%>
-	</div>
-	<br />
-	 <h2>Available variables</h2>	
-	<div id='var_section'>
-	 <h3>Read & write</h3>
-	 <%= var_list(@service.variables[:both], "variables", "rw")%>
-
-	 <h3>Write only</h3>	
-	 <%= var_list(@service.variables[:write], "variables", "w")%>
-
-	 <h3>Read only</h3>		
-	 <%= var_list(@service.variables[:read], "variables")%>
-  </div>
-</div>
 
 <%content_for :head do%>
  <%= javascript_include_tag "services"%>
-<%end%>
-<% # Create The accordions
-content_for :javascript do 
-%>
-$(function() {
-	$("#methods_section").accordion({collapsible: true, active: -1 });
-	$("#var_section").accordion({collapsible: true, active: -1 });
-	$("#operations").accordion({collapsible: true, active: -1 });	
-	
-	$(".runnable_method").each(function() { 
-		if($(this).attr("click")) {
-			$(this).click(eval($(this).attr("click")));
-		} else {
-			$(this).click(invoke_handler);
-		}
-	});
-});
-<%end%>
-
-<% # Make the variables clickable to invoke the setter
-content_for :javascript do 
-%>
-var group = "span.variable_value span, span.variable_value span input"
-$(function() {
-	$("span.variable_value span").click(to_input);
-});
-<%end%>
-
-
-<% # Make the controllers do something !
-content_for :javascript do 
-%>
-$(function() {
-	$("img.var_control").click(invoke_method_w_parameters);
-});
 <%end%>
