@@ -242,8 +242,9 @@ ul {
 }
 
 	.service_status {
-		margin 		: -20px 25px 0px 0px;
-		float 		: right;
+		position 	: relative;
+		top 		: -24px;
+		left 		: 95%;
 	}
 
 	span.ui-triangle {

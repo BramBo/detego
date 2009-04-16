@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>start (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 53</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Already started #{@full_name}&quot;</span>)          <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/stopped/i</span>
+    <span class="ruby-comment cmt"># @todo: Expand with org.jruby.RubyInstanceConfig    </span>
+    
+    <span class="ruby-comment cmt"># Boot it            </span>
+    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
+      CONTAINER_PATH  = &quot;#{CONTAINER_PATH}&quot;
+      LOAD_PATH       = &quot;#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}&quot;
+      $: &lt;&lt; &quot;#{CONTAINER_PATH}/lib/&quot;
+      $: &lt;&lt; LOAD_PATH
+      $service = { :name =&gt; &quot;#{@name.to_s}&quot;, :full_name =&gt; &quot;#{@full_name.to_s}&quot;, :domain =&gt; &quot;#{@domain.name.to_s}&quot; }
+      
+      trap('INT') {exit}
+          
+      require &quot;container_logger&quot;
+    
+      class ServiceManager
+        def self.all_paramater_methods; @@p ||= Hash.new; end
+        def all_methods; []; end
+        def self.exposed_methods(*meths)
+          if meths.class==Array
+            define_method(&quot;all_methods&quot;) { meths }
+          else
+            define_method(&quot;all_methods&quot;) { [meths] }
+          end
+        end
+        def self.has_paramaters(meth, *params)
+          all_paramater_methods[meth.to_s] = params.to_a
+        end        
+      end
+
+      begin                
+          require 'startup'
+      rescue LoadError 
+        begin
+          require 'service_manager'
+        rescue LoadError
+          ContainerLogger.error &quot;Neither startup or ServiceManager could be loaded for #{@full_name}&quot;, 2          
+          raise Exception.new(&quot;Neither startup or ServiceManager could be loaded for #{@full_name}&quot;)
+        end
+      end
+
+      require 'drb'
+      DRb.start_service
+      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
+      DRb.start_service &quot;druby://127.0.0.1:#{@port_out}&quot;, (s=ServiceManager.new)
+
+      $provider.for(&quot;#{@domain.name}&quot;.to_sym, &quot;#{@name.to_sym}&quot;.to_sym).status = &quot;Booting..&quot;
+      
+      @starting_thread = Thread.new do
+        s.start()
+      end
+    }</span>)
+    
+    <span class="ruby-ivar">@service_manager</span> = <span class="ruby-constant">DRbObject</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-node">&quot;druby://127.0.0.1:#{@port_out}&quot;</span>)
+    
+    <span class="ruby-comment cmt"># Gather Service meta-data</span>
+    <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">gather</span>()
+    
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;#{@full_name} booted succesfully!&quot;</span>.<span class="ruby-identifier">console_green</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

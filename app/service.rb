@@ -61,12 +61,10 @@ class Service
       $: << "#{CONTAINER_PATH}/lib/"
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
-    
+      
+      trap('INT') {exit}
+          
       require "container_logger"
-
-      ['INT', 'TERM'].each {|signal|
-        trap(signal) {exit}
-      }
     
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end

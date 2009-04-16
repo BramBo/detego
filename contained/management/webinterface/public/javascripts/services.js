@@ -25,12 +25,13 @@ function kickoff_services() {
 // Convert the value inside an span into an input box
 function to_input() {
 	value = $(this).html();
-	
+
 	if(value =="-----") value = ""; 
 	$(this).html("<input type='text' value='"+value+"' \>");
 	
-	$(group).unbind("click", to_input)
-			.focus();
+	$(group)
+		.unbind("click", to_input)
+		.focus();
 	
 	e = this;
 	$(this).children("input").blur(function() {		
@@ -93,6 +94,7 @@ function invoke_method_w_parameters() {
 	in_method		=  self.parents("span").parent().children("span").next().html();
 	parameter_value	=  self.parents("span").children("span").html();
 	
+	// Silly effect fix, while this is being executed the <input> is still active!
 	if(parameter_value.match(/\<input/i)) parameter_value = self.parents("span").children("span").children("input").val();
 	
 	invoke 			= ""+in_method+"('"+parameter_value+"')"

@@ -35,9 +35,8 @@ class ServiceMetaData
   def gather
     @service.runtime.runScriptlet(%{       
       $service_manager = ServiceManager.new      
-    })  
+    })
 
-    # todo: only instantiated variables are read, so attr_reader, _writer and _accessor have not much todo with this.
     @exposed_variables = Marshal.load(@service.runtime.runScriptlet(%{
       vs = {:both => [], :read => [], :write => []}
       

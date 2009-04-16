@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 30</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">domain</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{name} is not a valid service name&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_directory_name</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>)
+        
+    <span class="ruby-ivar">@name</span>       = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@booted</span>     = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@domain</span>     = <span class="ruby-identifier">domain</span>
+    <span class="ruby-ivar">@full_name</span>  = <span class="ruby-node">&quot;#{domain.name}::#{@name}&quot;</span>
+    <span class="ruby-ivar">@path</span>       = <span class="ruby-node">&quot;#{SERVICES_PATH}/#{domain.name}/#{@name}&quot;</span>
+    <span class="ruby-ivar">@port_in</span>    = <span class="ruby-identifier">$port_start</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+    <span class="ruby-ivar">@port_out</span>   = <span class="ruby-identifier">$port_start</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+    <span class="ruby-ivar">@status</span>     = <span class="ruby-value str">&quot;stopped&quot;</span>
+    <span class="ruby-ivar">@runtime</span>    = <span class="ruby-constant">JJRuby</span>.<span class="ruby-identifier">newInstance</span>()
+        
+    <span class="ruby-comment cmt"># Create the domain directory if not present</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-ivar">@path</span>, <span class="ruby-identifier">:mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0755</span>)
+    
+    <span class="ruby-comment cmt"># And finally set the meta-data for the service</span>
+    <span class="ruby-ivar">@meta_data</span>  = <span class="ruby-constant">ServiceMetaData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Service added #{domain.name}::#{name}&quot;</span>    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
