@@ -68,6 +68,6 @@ class ServiceMetaData
     }))
     
 
-    @service_methods[:all] -= (@exposed_variables[:read] + @exposed_variables[:both] + @exposed_variables[:both].map{|e| "#{e}="} + @exposed_variables[:write].map{|e| "#{e}="})
+    @service_methods[:all] -= (@exposed_variables[:read] + @exposed_variables[:both] + @exposed_variables[:write])
   end
 end

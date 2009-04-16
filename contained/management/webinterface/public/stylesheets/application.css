@@ -261,13 +261,17 @@ ul {
 	}
 
 
-#navigation {
+#navigation, #links {
+	clear 		: right;
 	float 		: right;
 	width 		: 200px;
-	margin 		: 0px 50px 0px 0px;
+	margin 		: 10px 50px 0px 0px;
 	padding 	: 2px 0px 10px 0px;
 }
- 
+
+#links {
+	cursor 		: pointer;
+}
 	#navigation ul {
 		margin 		: 5px 2px 2px 5px;
 		text-align 	: left;
@@ -283,20 +287,20 @@ ul {
 	  font-weight 		: bold;
 	}
 	
-	#navigation ul li a {
+	#navigation ul li a, #links ul li a {
 		text-decoration 	: none;
 	}	
 	
-	#navigation ul li:hover, #navigation ul li:hover a  {
+	#navigation ul li:hover, #navigation ul li:hover a, #links ul li:hover, #links ul li:hover a  {
 		background-color 	: rgb(73, 105, 125);
 		color 				: #fff;
 	}
 	
-	#navigation ul ul {
+	#navigation ul ul, #links ul {
 	  margin 		: 0px 0px 10px 2px;
 	}
 
-	#navigation ul ul li {
+	#navigation ul ul li, #links ul li {
 	  margin 		 	: 0px 2px 0px 5px;
 	  border 			: 0;
 	  border-left 		: 5px solid rgb(73, 105, 125);

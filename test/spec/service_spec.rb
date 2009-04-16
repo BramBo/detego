@@ -74,8 +74,8 @@ describe Service do
           service_methods[:all].should          eql []
           
           # and the attr accessor/readers/writers
-          variables[:both].should               eql ["hallo", "hoi"]
-          variables[:write].should              eql ["write_only"]
+          variables[:both].should               eql ["hallo", "hallo=", "hoi", "hoi="]
+          variables[:write].should              eql ["write_only="]
           variables[:read].should               eql ["read_only"]
       end
 
