@@ -13,17 +13,25 @@ h2. Quickstart
 
 Startup is easy, just run the boot script:
 
-|{border:1px solid black}jruby -S run.rb|
+|{border:1px solid black;background:#ddd}. jruby -S run.rb|
 
 After this 3 services will be available (tho no expose services have been made, so they're currently only available inside the container.).
+
+
 *Deployer*
+
 Will poll the filesystem every so often(default every 120sec.) to see if a new zip or directory has been placed. If so i will try to install it as a service.
 
+
 *Example*
+
 An example service to see how it all fits together, has some trivial methods. 
 
+
 *Webinterface*
- Well, go and see! Wait for WEBrick to boot and goto "your server interface":your_server
+
+Well, go and see! Wait for WEBrick to boot and goto "your server interface":your_server
+
 
 
 h2. Dir. Structure
