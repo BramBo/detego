@@ -232,12 +232,6 @@ div.search_box input {
 		cursor 			: pointer;
 	}
 	
-	.search_results ul li .search_matches {
-		position 		: relative;
-		right 			: 0;
-		font-style		: italic;
-	}
-	
 	.search_results ul ul li {
 		font-weight 	: normal;
 		background 		: url(/images/service.png) no-repeat 10px 2px;
