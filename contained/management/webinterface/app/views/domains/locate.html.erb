@@ -1,0 +1,13 @@
+<ul>
+<% @result.each do |domain_name, domain_hash| %>
+	<li href="<%= "/domains/#{domain_name}" %>"><b><%= domain_name %></b> <span class='search_matches'><%= domain_hash.matches %></span></li>
+	<ul>
+	<% domain_hash.services[0].each do |service| %>
+		<li href="<%= "/domains/#{domain_name}/services/#{service}" %>"><%= service %></li>
+	<%end%>
+	</ul>
+<% end %>
+</ul>
+
+
+	

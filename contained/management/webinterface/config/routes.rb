@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
    	 domain.resources :services, :member => {:invoke => :get, :status => :get, :update_details => :get}
   end
 
-
+  map.purchase 'invoke', :controller => 'domains', :action => 'locate'
   map.root :controller => "domains"
   
   # Sample of regular route:

@@ -63,8 +63,8 @@ class Service
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
       
       trap('INT') {exit}
-          
       require "container_logger"
+
     
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end
@@ -96,7 +96,6 @@ class Service
       DRb.start_service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
       DRb.start_service "druby://127.0.0.1:#{@port_out}", (s=ServiceManager.new)
-
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
       
       @starting_thread = Thread.new do

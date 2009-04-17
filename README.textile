@@ -1,10 +1,12 @@
-[server]http://wiki.github.com/BramBo/detego/server
+[jruby]http://jruby.codehaus.org/
 [lighthouse]http://app_container.lighthouseapp.com/projects/28317-detego/overview
+[server]http://wiki.github.com/BramBo/detego/server
 [your_server]http://127.0.0.1:5005/
+
 
 h1. Detego
 
-Detego is a JRuby:http://jruby.codehaus.org/ application container... See "Server page":server page for more details.
+Detego is a "JRuby":jruby application container... See "Server page":server page for more details.
 
 Found a bug ? Please post it on "lighthouse":lighthouse
 

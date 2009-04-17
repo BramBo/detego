@@ -90,3 +90,60 @@
 				.show(options.effect, { direction: options.direction }, options.duration);
 	}
 })(jQuery);
+
+// Will make a simple input an awesome ajax live search
+(function($){  
+ var limit_request_timer = null;
+ var remove_result_timer = null;
+	
+  $.fn.is_search_box = function(options) {
+	var self 	= $(this);
+	var options = $.extend( {
+		url			: location.href
+	}, options);
+	
+	return self	 	
+		.val("Search..")
+		.focus(function(){
+
+			if(self.val()=="Search..") self.val("");
+			
+			if(remove_result_timer) window.clearTimeout(remove_result_timer);
+		})
+		.blur(function(){
+			self = $(this);
+			if(self.val()=="") self.val("Search..");	
+			
+			remove_result_timer = window.setTimeout(function(){
+				 self.nextAll("div.search_results").remove();
+			}, 750);
+		})
+		.keypress(function(){
+			self 	= $(this);			
+			if(self.val().length>=2) {				
+				if(limit_request_timer) window.clearTimeout(limit_request_timer);
+				limit_request_timer = window.setTimeout(function(){
+					$.get(options.url+"", {query: self.val()}, function(data) { show_search_results(self, data); });
+				}, 500);
+			} else {
+				remove_result_timer = window.setTimeout(function(){
+					 self.nextAll("div.search_results").remove();
+				}, 750);
+			}
+		});
+	}
+	
+	function show_search_results($input, data) {
+		$input
+			.nextAll("div.search_results")
+			 .remove()
+			.end()
+			.after("<div class='ui-helper-reset ui-widget-content search_results' id='search_results'></div>")
+			.next()
+			.html(data)
+			.find("ul li, ul ul li")
+			  .click(function() {
+				window.location.href = $(this).attr("href");
+			 });
+	}
+})(jQuery);
