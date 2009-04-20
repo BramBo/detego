@@ -25,6 +25,7 @@ class Connector
     query.gsub!(/[\s]+/   , ".+?")        # instead of (a) space(s) we insert a wildcard    
     query.gsub!(/[\_\-]/  , "[\_\s\-]*")  # '_' '=' or ' ' it doesn't mather
     query.gsub!(/[\:]+/   , "[\:]+")      # : == :: || :: == : etc.
+    query.gsub!(/\.(?!\{})/      , "\.{1}")      # : == :: || :: == : etc.    
     
     results  = {}
     $provider.get_domains().each do |d|
@@ -40,8 +41,7 @@ class Connector
       $provider.for(d).get_services().each do |s|
         service_name          = (s.to_s).downcase
         full_name             = "#{domain_name}::#{service_name}"
-        
-        puts "#{service_name} #{service_name.class}"
+
         if service_name =~ /^.*?#{query}.*?$/i || full_name =~ /^.*?#{query}.*?$/i
           results[d][:services] << service_name
           results[d][:matches]  += 1          

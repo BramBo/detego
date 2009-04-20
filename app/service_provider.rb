@@ -254,8 +254,6 @@ class ServiceProvider
       domain = @container.find(domain_name.to_sym)
       
       domain.find(:all).each do |n, s|
-        puts "service ?"
-        puts "#{n}  #{s}"
         s.shutdown()
         s.remove(service_name)
       end
