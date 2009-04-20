@@ -27,8 +27,8 @@
 // flash_message takes atleast 2 paramaters; The title and message of the "report"
 // the suffix can be left blank but only one report of each suffix may be created
 //
-(function($){
-	var timeouts 			= new Array();
+(function($){  // Flash Message
+	var timeout 			= null;
 	var js_report_styles	= {top: 0, position: "absolute"};
 	
 	// Calculate the css properties by adding and removing a element with the given js_reports class. (only do this once!)
@@ -36,7 +36,7 @@
 		$e = $("body").children(":last").after("<div class='js_report'></div>").next();
 		js_report_styles.top  		= $e.css("top");
 		js_report_styles.position  	= $e.css("position");
-		$e.remove();
+		$e.remove();		
 	})
 	
 	$.fn.flash_message = function(title, message, suffix, options) {	
@@ -45,14 +45,11 @@
 		  effect			: "slide",
 		  show_for 			: 5000,
 		  duration_modifier	: 0.5,			// Effect duration modifer (duration*modifier). close effect onClick
-		  duration 			: 900,
-		  warning_color 	: "#f33",
-		  warning_effect 	: "highlight"		
+		  duration 			: 1000
 		},options);
 	
-		suffix 	= (suffix) ? suffix.toLowerCase() : "notice";
 		cleaner(options);
-
+		suffix 	= (suffix) ? suffix.toLowerCase() : "notice";
 		self	= $(this);
 		ex 		= parseInt((new Date().getTime()))+options.show_for;
 		
@@ -62,29 +59,31 @@
 			$e = $($(".js_report:first"));
 			y += parseInt(cur_size)*parseInt(parseInt($e.height()) + parseInt($e.css("margin-top")) + parseInt($e.css("margin-bottom")));
 		}
+
+		self
+			.before("<div expires='"+ex+"' class='js_report "+suffix+"'><span class='close_report'></span><b>"+title+"</b><br />Results:<br /><span class='result'>"+message+"</span></div>")
+			.prev()
+			.css("top", y)
+			.find(".close_report")
+				.click(function(){ 
+					$(this).parents(".js_report")
+						.hide(options.effect, 
+							  {direction: options.direction}, 
+							  options.duration*options.duration_modifier, 
+							  function() {
+								$(this).remove();
+							  }
+					);
+				});
 				
-		return self
-				.before("<div expires='"+ex+"' class='js_report "+suffix+"'><span class='close_report'></span><b>"+title+"</b><br />Results:<br /><span class='result'>"+message+"</span></div>")
-				.prev()
-				.css("top", y)
-				.find(".close_report")
-					.click(function(){ 
-						$(this).parents(".js_report")
-							.hide(options.effect, 
-								  {direction: options.direction}, 
-								  options.duration*options.duration_modifier, 
-								  function() {
-									$(this).remove();
-								  }
-						);
-					})
-				.end()
-				.show(options.effect, { direction: options.direction }, options.duration);
+		return self.prev().show(options.effect, { direction: options.direction }, options.duration);
 	}
 	
 	// Interval, clean up the expired messages.
 	function cleaner(options) {
-		window.setInterval(function() {
+		if(timeout) return;
+		
+		timeout = window.setInterval(function() {
 			$('.js_report').each(function() { 
 				if($(this).attr("expires")<=(new Date().getTime())) {
 					 $(this)
@@ -102,7 +101,7 @@
 })(jQuery);
 
 // Will make a simple input an awesome ajax live search
-(function($){  
+(function($){  // Live Search
  var limit_request_timer = null;
  var remove_result_timer = null;
  var selected 			 = null;

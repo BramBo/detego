@@ -43,6 +43,14 @@ class Container
   
   def add_domain(name)
     @domains[name] = @domains[name] || Domain.new(name, self)
+    
+    domains = @domains.sort{|a,b| "#{a[0]}"<=>"#{b[0]}"}
+    @domains.clear
+    domains.each do |k,v|
+      @domains[k] = v
+    end
+      
+    @domains[name]
   end
   
   def remove(name=nil)
@@ -60,15 +68,17 @@ class Container
     true
   end
   
-  private 
+  private
+  
    def initiate_installed_services()
      # find exisiting domains and services
      Dir.new(@path).each do |domain|
        next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
+       add_domain(domain.to_sym)
  
        Dir.new("#{@path}/#{domain}").each do |service|
          next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
-          add_domain(domain.to_sym).add_service(service.to_sym)
+          find(domain.to_sym).add_service(service.to_sym)
        end
      end
 

@@ -1,8 +1,16 @@
 class Domain
   attr_reader :name
 
+  def self.create(name)     
+    return $provider.add_domain(name.to_sym) 
+  end    
+
   def self.find(name)
     return Domain.new(name.to_sym)
+  end
+  
+  def self.remove(name)
+    return $provider.remove_domain(name.to_sym)     
   end
 
   def initialize(name)

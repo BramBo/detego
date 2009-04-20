@@ -2,10 +2,29 @@
 	<li>All domains</li>
 <% end %>
 
+
 <h1>Domains</h1>
+<span id='add_domain'>Add Domain</span>
  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>
  <p>Select a domain from the list below</p>
 
 <h3>Available domains</h3>	
  <%= list(@domains, "domains", "domain_url") %>
  <br />
+
+
+<% content_for :javascript do %>
+$(function() {
+	$("#add_domain").click(function() {
+		name = window.prompt("Domain name");
+		
+		if(name.length > 0 && name.match(/^[a-z0-9\_\.\-]+$/i)) {
+			url = (location.href.match(/domains/)) ? location.href+"/new" : location.href+"domains/new"
+			
+			method_request(url, {name: name, method: "new_domain"}, function() {location.href=location.href});
+		} else {
+			$("#content").children(":first").flash_message("invalid name!", "Rules: /^[a-z0-9\_\.\-]+$/i", "error");
+		}
+	})
+});
+<% end %>

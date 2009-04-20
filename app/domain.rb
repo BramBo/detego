@@ -48,13 +48,15 @@ class Domain
   #   new_services(Service.new) gets called
   def add_service(name)
     serv = @services[name] || new_service(Service.new(name, self))
+    @services.sort{|a,b| "#{a[0]}"<=>"#{b[0]}"}
+    serv
   end
     
   # :service_name || :all as paramater
   #   :all gives the entire collection of services on this domain
   #   :service_name will return a service or nil if none can be found
   def find(service_name)
-    return @services  if service_name == :all
+    return @services if service_name == :all
     
     service = @services[service_name]
     return service    unless service.nil? 

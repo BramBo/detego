@@ -21,6 +21,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "service_meta_data"
+require "service_variables"
 
 class Service
   attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
@@ -65,7 +66,6 @@ class Service
       trap('INT') {exit}
       require "container_logger"
 
-    
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end
         def all_methods; []; end
@@ -161,6 +161,15 @@ class Service
   def shutdown()
     return if @status=~/stopped/i
 
+    data = {}
+    @meta_data.get_readable_var_values
+    @meta_data.readable_var_values.each do |key, val|
+        data[key] = val
+    end
+    f = File.new("#{@path}/service_data.yml", "w+")
+    f.puts data.to_yaml
+    f.close
+
     begin
       @runtime.runScriptlet(%{
         DRb.stop_service 
@@ -171,11 +180,10 @@ class Service
         end
         @starting_thread.exit      
       })
-      @runtime.tearDown()
     rescue => e
       ContainerLogger.warn "#{@full_name} error shutting down: #{e}"
-    end    
-
+    end
+    
     @runtime    = nil    
     @runtime    = JJRuby.newInstance()        
     @status     = "stopped"

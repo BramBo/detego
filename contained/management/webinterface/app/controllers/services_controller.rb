@@ -4,6 +4,21 @@ class ServicesController < ApplicationController
     @service  = @domain.service(params[:id])
   end
   
+  def new
+    @domain   = Domain.find(params[:domain_id])    
+  end
+  
+  def create
+    # upload and place the shiznit
+    @results      =  params[:file].original_filename
+
+    # create the file path
+#    path = File.join(directory, name)
+    # write the file
+ #   File.open(path, "wb") { |f| f.write(upload['datafile'].read) }    
+    render :action => "create"
+  end
+  
   def invoke 
     @domain           = params[:domain_id]
     @service          = params[:id]    

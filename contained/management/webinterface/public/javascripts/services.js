@@ -65,7 +65,7 @@ function invoke_handler() {
 	in_method	=  self.parent().parent().children("span").next().html();
 	
 	self.show("pulsate", { times:100 }, 500);
-	method_request({method: in_method}, null, function() {
+	method_request(location.href+"/invoke", {method: in_method}, null, function() {
 			self.stop(true, true).show("pulsate", { times:1 }, 1);			
 			update_status();
 			update_details();
@@ -81,7 +81,7 @@ function remove_service(){
 		in_method	=  self.parent().parent().children("span").next().html();
 	
 		self.show("pulsate", { times:100 }, 500);
-		method_request({method: in_method}, function() {
+		method_request(location.href+"/invoke", {method: in_method}, function() {
 			window.location.href=window.location.href.replace(/(^.+?)\/[^\/]+\/[^\/]+?$/, "$1");
 		});
 	}
@@ -98,38 +98,12 @@ function invoke_method_w_parameters() {
 	if(parameter_value.match(/\<input/i)) parameter_value = self.parents("span").children("span").children("input").val();
 	
 	invoke 			= ""+in_method+"('"+parameter_value+"')"
-	method_request({method: invoke}, null, function() {
+	method_request(location.href+"/invoke", {method: invoke}, null, function() {
 		update_status();
 		update_details();		
 	});
 }
 
-// Sent an AJAX GET request to the service controller: domains/__domain__/services/__service__/invoke/__method__
-function method_request(paramaters, on_success, on_complete, on_error) {
-	$.ajax({
-	  type				: "GET",
-	  url				: window.location.href+"/invoke",
-	  data 				: (paramaters),
-	  dataType			: "html",
-	  success			: function(data, status) {	
-		if(data.match(/^error;/i)) {
-			$("#content").children(":first").flash_message("Error invoking "+in_method+"!", data.replace(/error\;(.+?$)/i, "$1"), "error");
-		} else {
-			$("#content").children(":first").flash_message("Succesfully invoked "+in_method+"!", data, "success");
-		}
-		if(on_success) on_success();
-	  },
-	  error				: function(XMLHttpRequest, textStatus, errorThrown) {
-		$("#content").children(":first").flash_message("Error invoking "+in_method+"!", XMLHttpRequest.responseText, "error");
-		
-		if(on_error) on_error();				
-	  },
-	  complete 			: function() { 
-		if(on_complete) on_complete();
-	  }
-	});	
-	
-}
 
 // Gets a new service status.
 function update_status() {

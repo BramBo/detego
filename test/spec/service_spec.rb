@@ -68,20 +68,47 @@ describe Service do
           variables.class.should                eql Hash
           variables.keys.should                 eql [:both, :read, :write]
         
+          # Exposed values, represent the readable instance vars
+          values = @service.meta_data.readable_var_values
+          values.class.should                   eql Hash
+        
           # this test is depenend on the implementation of the service
           # the installed service' ServiceManager is defined as follows:
-          service_methods[:exposed].should      eql [["say_hello", []], ["set_status", ["str"]], ["get_status", []]]
+          service_methods[:exposed].should      eql [["say_hello", []], ["set_status", ["str"]], ["get_status", []], ["sleep_test", []] ]
           service_methods[:all].should          eql []
           
           # and the attr accessor/readers/writers
-          variables[:both].should               eql ["hallo", "hallo=", "hoi", "hoi="]
+          variables[:both].should               eql ["hello", "hello="]
           variables[:write].should              eql ["write_only="]
           variables[:read].should               eql ["read_only"]
+          
+          # Are our values correct?
+          values.keys.should                    eql [:hello, :read_only]
+          values[:hello].should                 eql "Hello world!"
+          values[:read_only].should             eql "Can't be overwritten"
+          
+          # Alter for later test
+          @service.runtime.runScriptlet(%{
+            $service_manager.hello="Altered in test!"
+          })
       end
 
   it "should be able to stop" do
     @service.shutdown.should  be_true
     @service.status.should    eql("stopped")    
+  end
+  
+  it "should have persistant instance variables" do
+    @service.start.should         eql(@service)
+    @service.status.should        eql("Started")
+    
+    values = @service.meta_data.readable_var_values
+    values.class.should           eql Hash   
+    
+    values[:hello].should         eql "Altered in test!"
+    
+    @service.shutdown.should      be_true
+    @service.status.should        eql("stopped")    
   end
   
   after(:all) do  

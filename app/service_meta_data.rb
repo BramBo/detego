@@ -20,14 +20,16 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
+require 'yaml'
 class ServiceMetaData
-  attr_reader :service_methods, :exposed_variables
+  attr_reader :service_methods, :exposed_variables, :readable_var_values
   
   def initialize(service)
     @service = service
   end
   
   def reset
+    @readable_var_values = {}
     @service_methods    = {:all => [] , :exposed => []}
     @exposed_variables  = {:both => [], :read => []   , :write => []}
   end
@@ -47,8 +49,9 @@ class ServiceMetaData
         w_meth = (m.gsub(/\@/, "")+"=").to_sym
 
         if $service_manager.respond_to?(r_meth) && $service_manager.respond_to?(w_meth)
-          vs[:both]   << r_meth.to_s          
-          vs[:both]   << w_meth.to_s          
+          vs[:both]   << r_meth.to_s         
+          vs[:both]   << w_meth.to_s              
+          
         elsif $service_manager.respond_to?(w_meth)
           vs[:write]  << w_meth.to_s
         elsif $service_manager.respond_to?(r_meth)
@@ -59,6 +62,19 @@ class ServiceMetaData
       Marshal.dump(vs)
     }))
     
+
+    get_readable_var_values()
+    if(File.exists?("#{@service.path}/service_data.yml"))
+      data = YAML::load( File.open( "#{@service.path}/service_data.yml" ) )
+      data.each do |k, v|
+        @readable_var_values[k.to_sym] = v
+        @service.runtime.runScriptlet(%{$service_manager.instance_variable_set("@#{k}", "#{v}")})
+      end
+      
+      # now delete it !
+      File.delete("#{@service.path}/service_data.yml")
+    end
+    
     @service_methods = Marshal.load(@service.runtime.runScriptlet(%{
       m = {:all => [], :exposed => []}
       $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_paramater_methods[e.to_s] || [] ]}
@@ -68,7 +84,19 @@ class ServiceMetaData
       Marshal.dump(m)
     }))
     
-
     @service_methods[:all] -= (@exposed_variables[:read] + @exposed_variables[:both] + @exposed_variables[:write])
+  end
+  
+  def get_readable_var_values
+    @readable_var_values = Marshal.load(@service.runtime.runScriptlet(%{
+      vs = {}
+      
+      $service_manager.instance_variables.each do |m|
+        r_meth = m.gsub(/\@/, "").to_sym
+        vs[r_meth] = instance_eval("$service_manager."+r_meth.to_s+"()") if $service_manager.respond_to?(r_meth)
+      end
+      
+      Marshal.dump(vs)
+    }))
   end
 end

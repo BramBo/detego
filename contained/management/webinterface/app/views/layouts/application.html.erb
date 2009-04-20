@@ -37,22 +37,24 @@
 	</ul>
   </div>
 
-  <%= render :partial => "/layouts/navigation" %>
-  <%= render :partial => "/layouts/links" %>
-
   <div id="content" class="ui-helper-reset ui-widget-content">
 	<%- flash.each do |name, msg| -%>
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>
 	<%- end -%>
 	<%= yield %>
 	<div class='clear'></div>
-  </div>
+ </div>
  <div id="crumb_bottom" class='ui-helper-reset ui-corner-top ui-corner-bottom'>
 	<ul>
 		<%= yield(:crumb) %>
 	</ul>
  </div>
- </div>
+
+<div id="right_nav">
+ <%= render :partial => "/layouts/navigation" %>
+ <%= render :partial => "/layouts/links" %>
+</div>
+
  <div id='footer'>
   <p>
 	<b>Server version:</b> &nbsp;&nbsp;&nbsp;&nbsp;<%= $provider.server_version %><br />

@@ -3,10 +3,25 @@
 	<li><%= @domain.name.to_s.capitalize %> details</li>
 <% end %>
 
-
 <h1>Domain: <%= @domain.name %></h1>
+ <span id='del_domain' title='Delete <%=@domain.name%>'>Delete Domain</span>
+ <span id='add_service' title='Add a service to <%=@domain.name%>'>Add Service</span>
+<br />
  <p>Nunc sit amet nunc. Curabitur accumsan. Sed ac dui et nunc bibendum ultricies. Duis felis odio, egestas vitae, rhoncus sed, luctus dapibus, eros. Proin placerat luctus lorem. Ut mi justo, malesuada at, mattis nec, rutrum commodo, odio. Curabitur feugiat mi vel mi.</p>		
  <p> Select a service from the list below</p>
 
 <h3>Available Services</h3>
  <%= list(@services, "services", "domain_service_url") %>
+
+<% content_for :javascript do %>
+$(function() {
+	$("#del_domain").click(function() {
+		if(window.confirm("Delete domain?")) {
+			method_request(location.href+"/delete", {name: name, method: "delete_domain"}, function() {location.href=location.href.replace(/(^.+?)\/[^\/].+?$/i, "$1")});
+		} 
+	})
+	$("#add_service").click(function() {
+		location.href = "<%= new_domain_service_url(@domain) %>";
+	})	
+});
+<% end %>

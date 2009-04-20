@@ -19,8 +19,6 @@ h6 { font-size: 100%; font-weight: normal; }
 
 p { margin: 15px 0; margin-top:0; }
 
-fieldset { clear 	: both;}
-
 a img 	 { border 	: none;}
 a 		 { color 	: #005588; text-decoration: none; }
 a:hover  { color 	: #0099AA; text-decoration: underline; }
@@ -304,10 +302,12 @@ div.search_box input {
 	}
 
 #content {
+	clear 			: none;
 	width			: 600px;
 	margin 			: 0px auto 0px auto;
 	text-align 		: left;
 	padding 		: 10px 2px 40px 2px;
+	vertical-align	: top;
 }
 
 	.service_status {
@@ -329,10 +329,36 @@ div.search_box input {
 		font-style 	: italic;
 		font-size 	: 11px;
 	}
+	
+	#add_domain, #del_domain, #add_service {	
+		display 		: block;
+		height 			: 16px;
+		padding 		: 0 0 0 20px;
+		letter-spacing 	: 2px;
+		cursor 			: pointer;
+		font-weight 	: bold;
+		margin 			: 0 0 5px 10px;	
+	}
+	
+	#add_domain {
+		background 		: url(/images/add_domain.png) no-repeat left top;
+	}
+	
+	#del_domain {
+		background 		: url(/images/delete_domain.png) no-repeat left top;		
+	}
 
+	#add_service {
+		background 		: url(/images/add_service.png) no-repeat left top;
+	}
+
+#right_nav {
+	position 	: absolute;
+	right 		: 10px;
+	top 		: 80px;
+}
+	
 #navigation, #links {
-	clear 		: right;
-	float 		: right;
 	width 		: 200px;
 	margin 		: 10px 50px 0px 0px;
 	padding 	: 2px 0px 10px 0px;
