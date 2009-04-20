@@ -21,73 +21,83 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
+
 // flash_message shows a message div above the given element, much like a rails flash message
 // 
 // flash_message takes atleast 2 paramaters; The title and message of the "report"
 // the suffix can be left blank but only one report of each suffix may be created
 //
-(function($){  
-	var timeouts = new Array();
-	$.fn.flash_message = function(title, message, suffix, options) {
+(function($){
+	var timeouts 			= new Array();
+	var js_report_styles	= {top: 0, position: "absolute"};
+	
+	// Calculate the css properties by adding and removing a element with the given js_reports class. (only do this once!)
+	$(function(){
+		$e = $("body").children(":last").after("<div class='js_report'></div>").next();
+		js_report_styles.top  		= $e.css("top");
+		js_report_styles.position  	= $e.css("position");
+		$e.remove();
+	})
+	
+	$.fn.flash_message = function(title, message, suffix, options) {	
 		var options = $.extend( {
 		  direction			: "up",
 		  effect			: "slide",
 		  show_for 			: 5000,
 		  duration_modifier	: 0.5,			// Effect duration modifer (duration*modifier). close effect onClick
-		  duration 			: 1000,
+		  duration 			: 900,
 		  warning_color 	: "#f33",
 		  warning_effect 	: "highlight"		
 		},options);
 	
 		suffix 	= (suffix) ? suffix.toLowerCase() : "notice";
+		cleaner(options);
 
-		if($("#js_report_"+suffix).size()>0) {
-			$(this).each(function() {
-				$("#js_report_"+suffix)
-					.effect(options.warning_effect, 
-							{color: options.warning_color}, 
-							500, 
-							function() {
-								$(this).remove();
-								window.clearTimeout(timeouts[suffix]);
-							}	
-					);
-				window.setTimeout(function() { return show_message($(this), title, message, suffix, options);}, 1000);	
-			});
-		}
-		return show_message($(this), title, message, suffix, options);
-	}
-	
-	function show_message(self, title, message, suffix, options) {
-		timeouts[suffix] = window.setTimeout(function() { 
-			$("#js_report_"+suffix)
-				.hide(options.effect, 
-					  {direction: options.direction}, 
-					  options.duration, 
-					  function() {
-						$(this).remove();
-						window.clearTimeout(timeouts[suffix]);
-					  }
-				);
-		}, options.show_for + options.duration);
+		self	= $(this);
+		ex 		= parseInt((new Date().getTime()))+options.show_for;
 		
+		// Y = top + (amount of flash messages)
+		var y = parseInt(js_report_styles.top);
+		if((cur_size = $(".js_report").size()) > 0) {
+			$e = $($(".js_report:first"));
+			y += parseInt(cur_size)*parseInt(parseInt($e.height()) + parseInt($e.css("margin-top")) + parseInt($e.css("margin-bottom")));
+		}
+				
 		return self
-				.before("<div id='js_report_"+suffix+"' class='js_report "+suffix+"'><span id='close_report'></span><b>"+title+"</b><br />Results:<br /><span class='result'>"+message+"</span></div>")
+				.before("<div expires='"+ex+"' class='js_report "+suffix+"'><span class='close_report'></span><b>"+title+"</b><br />Results:<br /><span class='result'>"+message+"</span></div>")
 				.prev()
-				.find("#close_report")
+				.css("top", y)
+				.find(".close_report")
 					.click(function(){ 
-						$("#js_report_"+suffix)
+						$(this).parents(".js_report")
 							.hide(options.effect, 
 								  {direction: options.direction}, 
 								  options.duration*options.duration_modifier, 
 								  function() {
 									$(this).remove();
-									window.clearTimeout(timeouts[suffix]);
 								  }
 						);
 					})
 				.end()
 				.show(options.effect, { direction: options.direction }, options.duration);
+	}
+	
+	// Interval, clean up the expired messages.
+	function cleaner(options) {
+		window.setInterval(function() {
+			$('.js_report').each(function() { 
+				if($(this).attr("expires")<=(new Date().getTime())) {
+					 $(this)
+						.hide(options.effect,
+						   {direction: options.direction}, 
+							options.duration,
+							function() {
+								$(this).remove();
+							 }
+						);		
+				}
+			});
+		}, 1000);
 	}
 })(jQuery);
 
@@ -95,7 +105,9 @@
 (function($){  
  var limit_request_timer = null;
  var remove_result_timer = null;
-	
+ var selected 			 = null;
+
+  // Add some handlers to the given element
   $.fn.is_search_box = function(options) {
 	var self 	= $(this);
 	var options = $.extend( {
@@ -105,10 +117,12 @@
 	return self	 	
 		.val("Search..")
 		.focus(function(){
-
-			if(self.val()=="Search..") self.val("");
-			
+			if(self.val()=="Search..") self.val("");		
 			if(remove_result_timer) window.clearTimeout(remove_result_timer);
+			
+			if(self.val().length>=1) {
+				$.get(options.url+"", {query: self.val()}, function(data) { show_search_results(self, data); });		
+			}
 		})
 		.blur(function(){
 			self = $(this);
@@ -118,9 +132,13 @@
 				 self.nextAll("div.search_results").remove();
 			}, 750);
 		})
-		.keypress(function(){
-			self 	= $(this);			
-			if(self.val().length>=2) {				
+		.keypress(function(e){
+			self 	= $(this);
+			if(e.keyCode == 38 || e.keyCode == 40)	return navigate(self, e);  	// Next on arrow down/up
+			if(e.keyCode == 13 && selected)			return go(self, e);			// goto href=URL on enter
+			if(e.keyCode == 27)						return close(self);			// close on esc
+									
+			if(self.val().length>=1) {				
 				if(limit_request_timer) window.clearTimeout(limit_request_timer);
 				limit_request_timer = window.setTimeout(function(){
 					$.get(options.url+"", {query: self.val()}, function(data) { show_search_results(self, data); });
@@ -130,20 +148,56 @@
 					 self.nextAll("div.search_results").remove();
 				}, 750);
 			}
+			if(e.keyCode == 38 || e.keyCode == 40) return false;	
 		});
 	}
 	
+	function close($input) {
+		if(limit_request_timer) window.clearTimeout(limit_request_timer);
+		$input
+			.val("Search..")
+			.blur()
+			.nextAll("div.search_results").remove();
+		
+		return false;
+	}	
+	// Navigate with the arrow keys
+	function navigate($input, event) {
+		var direction  	= (event.keyCode==40) //#  \/ => 40   /\ => 38
+		var $targets 	= $input.next(".search_results").find("ul li, ul ul li, ul ul ul li");
+		
+		if (selected==null) {
+				selected = (direction) ? 0: $targets.size()-1;
+		} else {
+			cur_size = $targets.size();
+			$targets.eq(selected).removeClass("active");
+			selected = (direction) 
+							? (selected<(cur_size-1)) ? selected+1 : 0 
+							: (selected>0) ? selected-1 : cur_size-1;
+		}
+		
+		$targets.eq(selected).addClass("active");
+		return false;
+	}
+	
+	// go to the selected element
+	function go($input, event) {
+		window.location.href = $input.next(".search_results").find("ul li, ul ul li, ul ul ul li").eq(selected).attr("href");
+	}
+	
+	// Nice jQuery chain which deletes previous results, adds a new resultcontainer, inserts the responeText and alters this so the li's are clickable.
 	function show_search_results($input, data) {
 		$input
-			.nextAll("div.search_results")
-			 .remove()
-			.end()
-			.after("<div class='ui-helper-reset ui-widget-content search_results' id='search_results'></div>")
-			.next()
-			.html(data)
-			.find("ul li, ul ul li")
-			  .click(function() {
-				window.location.href = $(this).attr("href");
-			 });
+		 .nextAll("div.search_results")
+		  .remove()
+		 .end()
+		 .after("<div class='ui-helper-reset ui-widget-content search_results' id='search_results'></div>")
+		 .next()
+		 .html(data)
+		 .find("ul li, ul ul li, ul ul ul li")
+		  .click(function() {
+			window.location.href = $(this).attr("href") || "#";
+		});
 	}
+
 })(jQuery);

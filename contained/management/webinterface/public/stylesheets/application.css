@@ -113,14 +113,14 @@ ul {
 	padding 		: 5px 2px 5px 2px;
 }
 
-#js_report_notice .result {
+.js_report.notice .result {
   border 			: dashed 1px #ff7900;
 }
-#js_report_success .result {
+.js_report.success .result {
   border 			: dashed 1px #6C6;
 }
 
-#js_report_error .result {
+.js_report.error .result {
   border 			: dashed 1px #C66;
 }
 
@@ -130,9 +130,12 @@ ul {
 	top 			: 65px;
 	width 			: 580px;
 	z-index			: 2001;
+	margin-top 		: 10px;
+	margin-bottom 	: 5px;	
+  	padding 		: 5px 8px;	
 }
 
-#close_report {
+.close_report {
 	float 			: right;
 	margin 			: 2px;
 	padding 		: 0;
@@ -143,22 +146,22 @@ ul {
 	height 			: 16px;
 }
 
-#flash_notice, #flash_error, #flash_alert, .js_report {
+#flash_notice, #flash_error, #flash_alert {
   padding 			: 5px 8px;
   margin 			: 10px 0;
 }
 
-#flash_alert, #js_report_notice {
+#flash_alert, .js_report.notice {
   background-color 	: #ffca59;
   border 			: 1px solid #ff7900;
 }
 
-#flash_notice, .flash_notice, #js_report_success {
+#flash_notice, .flash_notice, .js_report.success {
   background-color 	: #CFC;
   border 			: solid 1px #6C6;
 }
 
-#flash_error, .flash_error, #js_report_error {
+#flash_error, .flash_error, .js_report.error {
   background-color 	: #FCC;
   border 			: solid 1px #C66;
 }
@@ -195,7 +198,7 @@ ul {
 
 div.search_box {
 	width 							: 250px;
-	height 							: 24px;
+	height 							: 26px;
 }
 
 div.search_box input {
@@ -212,6 +215,10 @@ div.search_box input {
 	padding 						: 2px 18px 0 5px;
 	width							: 250px;
 	margin 							: -16px 0 0 0;
+	border-top 						: 1px solid #666;
+	border-left 					: 1px solid #666;
+	border-bottom 					: 1px solid #CCC;
+	border-right 					: 1px solid #CCC;			
 }
 
 .search_results {
@@ -232,13 +239,14 @@ div.search_box input {
 		cursor 			: pointer;
 	}
 	
-	.search_results ul ul li {
+	.search_results ul li.service {
 		font-weight 	: normal;
 		background 		: url(/images/service.png) no-repeat 10px 2px;
 		padding 		: 1px 0px 1px 32px;
 	}
 	
-	.search_results ul li:hover, .search_results ul li li:hover {
+	.search_results ul li:hover , .search_results ul li.service:hover,
+	.search_results ul li.active, .search_results ul li.service.active {
 		background-color: #333;
 		color 			: #fff;
 	}

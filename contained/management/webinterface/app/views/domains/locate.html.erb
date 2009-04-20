@@ -3,7 +3,7 @@
 	<li href="<%= "/domains/#{domain_name}" %>"><b><%= domain_name %></b></li>
 	<ul>
 	<% domain_hash.services[0].each do |service| %>
-		<li href="<%= "/domains/#{domain_name}/services/#{service}" %>"><%= service %></li>
+	 	<li class='service' href="<%= "/domains/#{domain_name}/services/#{service}" %>"><%= service %></li>
 	<%end%>
 	</ul>
 <% end %>
