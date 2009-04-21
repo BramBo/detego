@@ -23,7 +23,7 @@
 class ServiceManager
   attr_accessor :interval
   attr_reader :message_stack
-  exposed_methods :poll 
+  exposed_methods :poll, :supported_types
   
   def initialize 
      @message_stack = []  
@@ -47,5 +47,9 @@ class ServiceManager
     @message_stack = []
     @poller.poll
     return (@message_stack.size>0) ? @message_stack : "Nothing happend"
+  end
+  
+  def supported_types
+    ServiceUnPacker.supported_file_types
   end
 end

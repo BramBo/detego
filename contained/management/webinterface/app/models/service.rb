@@ -50,4 +50,8 @@ class Service
   def to_s
     @name    
   end
+  
+  def self.supported_file_types
+    $provider.on(:core, :deployer).supported_types()
+  end
 end

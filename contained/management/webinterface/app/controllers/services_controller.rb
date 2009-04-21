@@ -9,10 +9,10 @@ class ServicesController < ApplicationController
   end
   
   def create
+    @domain   = Domain.find(params[:domain_id])
     # upload and place the shiznit
-    file      =  params[:file].original_filename
-    
-#    if(file =~ /\.(tar\.gz|tar|zip)$/i)
+
+    @results = @domain.new_service(params)
 
     # create the file path
 

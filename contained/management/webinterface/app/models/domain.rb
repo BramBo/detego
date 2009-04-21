@@ -31,6 +31,21 @@ class Domain
     end
   end
   
+  def new_service(params)
+    file      =  params[:file].original_filename
+    
+    if(file =~ /\.(#{Service.supported_file_types})$/i)
+      path = "#{CONTAINER_PATH}/contained/#{@name}/#{file.gsub(/\/([^\/]+?$)/, '$1')}"
+      File.open(path, "wb") { |f| f.write(params['file'].read) }
+      
+      # Now tell the deployer to poll the filesystem and all is well !
+      $provider.on(:core, :deployer).poll()      
+      $provider.on(:core, :deployer).poll().to_s
+    else
+      false
+    end
+  end
+  
   def inspect
     @name
   end

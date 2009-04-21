@@ -1,0 +1,5 @@
+--- 
+:interval: "300"
+:message_stack: 
+- found test_deployment_example service(s)
+- found ok domain(s)

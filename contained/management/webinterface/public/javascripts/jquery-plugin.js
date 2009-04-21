@@ -103,7 +103,6 @@
 	}
 })(jQuery);
 
-// Will make a simple input an awesome ajax live search
 (function($){  // Live Search
  var limit_request_timer = null;
  var remove_result_timer = null;
@@ -111,9 +110,16 @@
 
   // Add some handlers to the given element
   $.fn.is_search_box = function(options) {
+	limit_request_timer = null;
+	remove_result_timer = null;
+	selected 			= null;	
+	
 	var self 	= $(this);
 	var options = $.extend( {
-		url			: location.href
+		url			: location.href,
+		min_length	: 1,
+		close_timer	: 750,
+		search_timer: 250
 	}, options);
 	
 	return self	 	
@@ -122,7 +128,7 @@
 			if(self.val()=="Search..") self.val("");		
 			if(remove_result_timer) window.clearTimeout(remove_result_timer);
 			
-			if(self.val().length>=1) {
+			if(self.val().length>=options.min_length) {
 				$.get(options.url+"", {query: self.val()}, function(data) { show_search_results(self, data); });		
 			}
 		})
@@ -132,7 +138,7 @@
 			
 			remove_result_timer = window.setTimeout(function(){
 				 self.nextAll("div.search_results").remove();
-			}, 750);
+			}, options.close_timer);
 		})
 		.keypress(function(e){
 			self 	= $(this);
@@ -144,11 +150,11 @@
 				if(limit_request_timer) window.clearTimeout(limit_request_timer);
 				limit_request_timer = window.setTimeout(function(){
 					$.get(options.url+"", {query: self.val()}, function(data) { show_search_results(self, data); });
-				}, 500);
+				}, options.search_timer);
 			} else {
 				remove_result_timer = window.setTimeout(function(){
 					 self.nextAll("div.search_results").remove();
-				}, 750);
+				}, options.close_timer);
 			}
 			if(e.keyCode == 38 || e.keyCode == 40) return false;	
 		});

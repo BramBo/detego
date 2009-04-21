@@ -68,7 +68,8 @@ class Domain
   # Remove a specific service, namely : s
   #  if s == nil All services will be removed!
   def remove(s=nil)
-    if s.nil?
+    puts s
+    if s == :all
       @services.each do |k, s|
         name = s.name
         s.shutdown() if s.started?

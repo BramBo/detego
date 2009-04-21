@@ -23,8 +23,12 @@
 
 # unarchive a given file
 class ServiceUnPacker
+  def self.supported_file_types
+    "(zip|tar|gz)"
+  end
+  
   def self.supported_file_type?(str)
-    (str =~ /\.(zip|tar|gz)$/i)
+    (str =~ /\.#{self.supported_file_types}$/i)
   end
 
   def initialize(path, domain, service=nil)

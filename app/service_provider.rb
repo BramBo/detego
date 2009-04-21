@@ -221,15 +221,15 @@ class ServiceProvider
       s = @container.add_domain(domain_name).add_service(service_name)
       s.install()
     rescue => ex
-      ContainerLogger.error "Error adding service #{domain_name}::#{service_name}!", 1                  
-      raise Exception.new("Error adding service #{domain_name}::#{service_name}!")
+      ContainerLogger.error "Error adding service #{domain_name}::#{service_name}!\n #{ex}", 1                  
+      return "error;#{ex.message}"
     end
     
     begin     
         s.start
     rescue => ex
       ContainerLogger.error "Error starting service after install #{domain_name}::#{service_name}!\n #{ex}", 1                  
-      raise Exception.new("Error starting service after install #{domain_name}::#{service_name}!\n #{ex}")
+      return "error;#{ex.message}"
     end
     true
   end

@@ -69,6 +69,7 @@ class Container
   end
   
   def shutdown!
+    puts "\nShutting down..."
     @domains.each do |n, domain|
       domain.find(:all).each do |s, service|
         begin
@@ -76,6 +77,7 @@ class Container
          rescue Exception => e;  next;
          rescue => e;            next;
         end
+        puts " - #{s} shutdown."
       end
     end
     exit

@@ -194,14 +194,70 @@ class Service
   # install
   # 
   def install()
-     r = @runtime.runScriptlet(%{
-       begin                
-         require 'install'
-       rescue LoadError => e;end       
-     })
+    # this must pass to be validates as a serice!
+    begin 
+     @runtime.runScriptlet(%{
+       CONTAINER_PATH  = "#{CONTAINER_PATH}"
+       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
+       $: << "#{CONTAINER_PATH}/lib/"
+       $: << LOAD_PATH
+       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
 
-    ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
-    true
+       trap('INT') {exit}
+       require "container_logger"
+       class ServiceManager
+         def self.all_paramater_methods; @@p ||= Hash.new; end
+         def all_methods; []; end
+         def self.exposed_methods(*meths)
+           if meths.class==Array
+             define_method("all_methods") { meths }
+           else
+             define_method("all_methods") { [meths] }
+           end
+         end
+         def self.has_paramaters(meth, *params)
+           all_paramater_methods[meth.to_s] = params.to_a
+         end        
+       end       
+       
+        begin                
+            require 'startup'
+        rescue LoadError 
+          begin
+            require 'service_manager'
+          rescue LoadError
+            raise Exception.new("Neither startup or ServiceManager could be loaded for #{@full_name}")
+          end
+        end
+      })
+      ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
+      @runtime    = nil    
+      @runtime    = JJRuby.newInstance()
+      
+      # No problem if this fails
+      @runtime.runScriptlet(%{
+         begin                
+           require 'install'
+         rescue LoadError => e;end       
+      })
+            
+      true
+    rescue Exception => e
+      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
+      @domain.remove(@name) unless @name.nil?
+      ContainerLogger.debug "Installation rolled back"
+      e      
+    rescue LoadError => e
+      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"            
+      @domain.remove(@name) unless @name.nil?
+      ContainerLogger.debug "Installation rolled back"      
+      e      
+    rescue => e
+      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
+      @domain.remove(@name) unless @name.nil?
+      ContainerLogger.debug "Installation rolled back"      
+      e
+    end
   end
 
   # Uninstall
