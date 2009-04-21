@@ -13,6 +13,11 @@ Found a bug ? Please post it on "lighthouse":lighthouse
 
 h2. Quickstart
 
+Getting started:
+
+|{background:#ddd}. git clone git://github.com/BramBo/detego.git|
+
+
 Startup is easy, just run the boot script:
 
 |{background:#ddd}. jruby -S run.rb|

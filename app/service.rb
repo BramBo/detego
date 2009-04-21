@@ -21,7 +21,6 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "service_meta_data"
-require "service_variables"
 
 class Service
   attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
@@ -231,7 +230,6 @@ class Service
 
   # Just here for code prettyness
   def started?
-    puts "Service Started? (#{@name}): #{@status =~ /!stopped/}"
     @status =~ /!stopped/
   end
   

@@ -237,14 +237,14 @@ div.search_box input {
 		cursor 			: pointer;
 	}
 	
-	.search_results ul li.service {
+	.search_results ul ul li {
 		font-weight 	: normal;
 		background 		: url(/images/service.png) no-repeat 10px 2px;
 		padding 		: 1px 0px 1px 32px;
 	}
 	
-	.search_results ul li:hover , .search_results ul li.service:hover,
-	.search_results ul li.active, .search_results ul li.service.active {
+	.search_results ul li:hover , .search_results ul ul li:hover,
+	.search_results ul li.active, .search_results ul ul li.active {
 		background-color: #333;
 		color 			: #fff;
 	}

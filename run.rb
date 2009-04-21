@@ -19,18 +19,13 @@
 # HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-# OTHER DEALINGS IN THE SOFTWARE.
+# OTHER DEALINGS IN THE SOFTWARE.=
+require "config/config.rb"
+require "container"
+require "service_provider"
+require 'drb'
+Thread.abort_on_exception = false
 
+@container     = Container.new
 
-##################################
-##        Should be server      ##
-##################################
-  require "config/config.rb"
-  require "container"
-  require "service_provider"
-  require 'drb'
-  Thread.abort_on_exception = false
-
-  container     = Container.new
-  
-  loop do;  trap("INT") { exit }; end
+loop do;  trap("INT") { @container.shutdown! }; end

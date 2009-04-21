@@ -46,7 +46,6 @@ function to_text(self) {
 	
 	window.setTimeout(function(){ 
 		value = $(self).children("input").val();
-		console.debug(value);
 
 		if(value=="") value ="-----";
 		$(self).html(value);	

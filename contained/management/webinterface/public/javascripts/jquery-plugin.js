@@ -53,11 +53,14 @@
 		self	= $(this);
 		ex 		= parseInt((new Date().getTime()))+options.show_for;
 		
-		// Y = top + (amount of flash messages)
+		// Calculate the position
 		var y = parseInt(js_report_styles.top);
 		if((cur_size = $(".js_report").size()) > 0) {
-			$e = $($(".js_report:first"));
-			y += parseInt(cur_size)*parseInt(parseInt($e.height()) + parseInt($e.css("margin-top")) + parseInt($e.css("margin-bottom")));
+			$e 	= $(".js_report:last");
+			top = (parseInt($e.css("top")) < 0) 
+							? ((Math.round(parseInt($e.css("top"))/y)+1)*y)
+							: parseInt($e.css("top"))		
+			y 	= top + parseInt(parseInt($e.height()) + parseInt($e.css("margin-top")) + parseInt($e.css("margin-bottom")));
 		}
 
 		self

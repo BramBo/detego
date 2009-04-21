@@ -68,8 +68,20 @@ class Container
     true
   end
   
-  private
+  def shutdown!
+    @domains.each do |n, domain|
+      domain.find(:all).each do |s, service|
+        begin
+          service.shutdown()  
+         rescue Exception => e;  next;
+         rescue => e;            next;
+        end
+      end
+    end
+    exit
+  end
   
+  private
    def initiate_installed_services()
      # find exisiting domains and services
      Dir.new(@path).each do |domain|

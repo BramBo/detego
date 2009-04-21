@@ -23,7 +23,7 @@
 
 #!/usr/bin/env ruby
 ARGV << "-p"; ARGV << "5005"
-$interface_version = "0.4.9"
+$interface_version = "0.4.10"
 require 'config/boot'
 
 class ServiceManager

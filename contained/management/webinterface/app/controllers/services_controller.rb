@@ -10,10 +10,12 @@ class ServicesController < ApplicationController
   
   def create
     # upload and place the shiznit
-    @results      =  params[:file].original_filename
+    file      =  params[:file].original_filename
+    
+#    if(file =~ /\.(tar\.gz|tar|zip)$/i)
 
     # create the file path
-#    path = File.join(directory, name)
+
     # write the file
  #   File.open(path, "wb") { |f| f.write(upload['datafile'].read) }    
     render :action => "create"
