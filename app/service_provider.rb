@@ -252,15 +252,9 @@ class ServiceProvider
   def remove_domain(domain_name)
     begin 
       domain = @container.find(domain_name.to_sym)
-      
-      domain.find(:all).each do |n, s|
-        s.shutdown()
-        s.remove(service_name)
-      end
-      
-      @container.remove(domain_name)
+      @container.remove(domain_name.to_sym)
     rescue => ex
-      ContainerLogger.error ex, 1                        
+      ContainerLogger.error ex, 1            
       ContainerLogger.error "Error removing domain #{domain_name}!", 1                        
       raise Exception.new("Error removing domain #{domain_name}!")
     end

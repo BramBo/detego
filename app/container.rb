@@ -53,14 +53,14 @@ class Container
     @domains[name]
   end
   
-  def remove(name=nil)
-    if name.nil?
+  def remove(name)
+    if name == :all
       @domains.each do |n, domain|
         domain.remove
-        @domains.delete(n)      
+        @domains.delete(n)
       end
     else
-      @domains[name].remove
+      @domains[name].remove(:all)
       @domains.delete(name)
     end
     

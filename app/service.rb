@@ -264,6 +264,7 @@ class Service
   # 
   def uninstall()
      shutdown() unless @status =~ /stopped/i
+     
      @status = "uninstalling"
      r = @runtime.runScriptlet(%{
        begin                
