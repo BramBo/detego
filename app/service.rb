@@ -65,7 +65,7 @@ class Service
       trap('INT') {exit}
       require "container_logger"
       ServiceLogger.service="#{@full_name.to_s}"
-      $stderr = File.open('#{CONTAINER_PATH}/#{@full_name}.log', 'w+')
+      $stderr = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
       def puts(str);  ServiceLogger.debug(str); end 
       def p(str);     ServiceLogger.debug(str); end       
 
