@@ -37,10 +37,6 @@ class ServiceMetaData
   # Figure out the available methods and variables for this service 
   # By creating a new service manager(to not interfere with the running DRB process)  
   def gather
-    @service.runtime.runScriptlet(%{       
-      $service_manager = ServiceManager.new      
-    })
-
     @exposed_variables = Marshal.load(@service.runtime.runScriptlet(%{
       vs = {:both => [], :read => [], :write => []}
       

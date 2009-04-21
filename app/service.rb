@@ -64,6 +64,10 @@ class Service
       
       trap('INT') {exit}
       require "container_logger"
+      ServiceLogger.service="#{@full_name.to_s}"
+      $stderr = File.open('#{CONTAINER_PATH}/#{@full_name}.log', 'w+')
+      def puts(str);  ServiceLogger.debug(str); end 
+      def p(str);     ServiceLogger.debug(str); end       
 
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end
@@ -94,18 +98,20 @@ class Service
       require 'drb'
       DRb.start_service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
-      DRb.start_service "druby://127.0.0.1:#{@port_out}", (s=ServiceManager.new)
+      DRb.start_service "druby://127.0.0.1:#{@port_out}", ($service_manager=ServiceManager.new)
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
-      
-      @starting_thread = Thread.new do
-        s.start()
-      end
     })
     
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
     
     # Gather Service meta-data
     @meta_data.gather()
+    
+    @runtime.runScriptlet(%{
+      @starting_thread = Thread.new do
+        $service_manager.start()
+      end      
+    })
     
     ContainerLogger.debug "#{@full_name} booted succesfully!".console_green
 

@@ -93,6 +93,7 @@ class Container
        Dir.new("#{@path}/#{domain}").each do |service|
          next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
           find(domain.to_sym).add_service(service.to_sym)
+          puts "Initialized #{service}"
        end
      end
 
@@ -100,6 +101,7 @@ class Container
      find(:all).each do |k,d| 
        d.find(:all).each do |k,s|
          s.start()
+          puts "Started #{s.name}"         
        end
      end
     end 
