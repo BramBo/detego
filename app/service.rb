@@ -53,7 +53,7 @@ class Service
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
     # @todo: Expand with org.jruby.RubyInstanceConfig    
-    
+
     # Boot it            
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
@@ -66,8 +66,7 @@ class Service
       require "container_logger"
       ServiceLogger.service="#{@full_name.to_s}"
       $stderr = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
-      def puts(str);  ServiceLogger.debug(str); end 
-      def p(str);     ServiceLogger.debug(str); end       
+      $stdout = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
 
       class ServiceManager
         def self.all_paramater_methods; @@p ||= Hash.new; end

@@ -33,7 +33,7 @@ class ServiceManager
   end
   
   def start()
-    ARGV << "-p"; ARGV << (@port || "5005")
+    ARGV << "-p"; ARGV << (@port || "5050")
     
     p @port
     require 'config/boot'        

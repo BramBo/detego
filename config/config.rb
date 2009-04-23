@@ -32,7 +32,7 @@ ENV["DETEGO_ENV"] = "development"
 
 
 # DRB Port management
-$port_start   = 15619
+$port_start   = 49800
 
 # Require the need helpers/libraries
 require "container_logger"

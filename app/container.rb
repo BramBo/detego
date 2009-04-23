@@ -77,7 +77,7 @@ class Container
          rescue Exception => e;  next;
          rescue => e;            next;
         end
-        puts " - #{s} shutdown."
+        puts " o #{s} shutdown."
       end
     end
     exit
@@ -90,19 +90,24 @@ class Container
        next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
        add_domain(domain.to_sym)
  
+      puts "Initializig services"
        Dir.new("#{@path}/#{domain}").each do |service|
          next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
           find(domain.to_sym).add_service(service.to_sym)
-          puts "Initialized #{service}"
+          puts " o #{service} done"
        end
      end
 
      # now start all the services
+     puts "Starting services"
      find(:all).each do |k,d| 
        d.find(:all).each do |k,s|
          s.start()
-          puts "Started #{s.name}"         
+          puts " o #{s.full_name} started"
        end
      end
-    end 
+     puts ""
+     puts "Server Ready".console_bold
+     puts ""
+  end 
 end
