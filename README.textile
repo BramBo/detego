@@ -1,73 +1,14 @@
-[jruby]http://jruby.codehaus.org/
-[lighthouse]http://app_container.lighthouseapp.com/projects/28317-detego/overview
-[server]http://wiki.github.com/BramBo/detego/server
-[your_server]http://127.0.0.1:5005/
+[home]http://wiki.github.com/BramBo/detego
+[ideas]http://wiki.github.com/BramBo/detego/ideas
 
+[lighthouse]http://app_container.lighthouseapp.com/projects/28317-detego/tickets
 
-h1. Detego
+h2. About
 
-Detego is a "JRuby":jruby application container... See "Server page":server page for more details.
+Detego is a JRuby application container(Calling it an application server would probably be an overstatement). The basic idea of Detego is to give (small) applications(_services_) an easy way to offer their functionalities to the outside world.  Let's say for instance you have a small application that schedules cronjobs, now you want to be able to simply access this "cronjob scheduler" from some other place(different computer/ruby instance/language). To achieve this you would have to write an interface for it, and also keep the service in the air. Basicly write a tiny server for the interface........ "More info.":home
 
-Found a bug ? Please post it on "lighthouse":lighthouse
+h2. Quick links
 
-
-h2. Quickstart
-
-Getting started:
-
-|{background:#ddd}. git clone git://github.com/BramBo/detego.git|
-
-
-Startup is easy, just run the boot script:
-
-|{background:#ddd}. jruby -S run.rb|
-
-After this 3 services will be available (tho no expose services have been made, so they're currently only available inside the container.).
-
-
-*Deployer*
-
-Will poll the filesystem every so often(default every 120sec.) to see if a new zip or directory has been placed. If so i will try to install it as a service.
-
-
-*Example*
-
-An example service to see how it all fits together, has some trivial methods. 
-
-
-*Webinterface*
-
-Well, go and see! Wait for WEBrick to boot and goto "your server interface":your_server
-
-
-
-h2. Dir. Structure
-
-* app
- the core of container
-* config
-* contained
- All the pre-installed services, include a management interface(rails), a deployer and an example to demostrate usage
-** core
-*** deployer
-*** example
-** management
-*** webinterface
- This is the rails web interface
-* doc
-* lib
-* log
-* test
-* spec
-
-
-h2. Rake tasks
-
-:lines
-Silly task, count amount of code lines
-
-:todo
-checks the container code-base on @todo and will report it
-
-:test
-nothing yet, will hold a task to run all the specs at once
+* Found a bug? "Please report it":lighthouse
+* Got a idea for Detego or curious about the current ideas? "The idea page":ideas
+* Anything else? Drop me a line bram@kabisa.nl
