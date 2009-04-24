@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -21,15 +21,25 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-##############################
-##       Boot example       ##
-##############################
+#!/usr/bin/env ruby
 
-# LOAD_PATH holds the absolute path to the service.
-# So just add the app directory to it, as the service is already in the ruby loadpath
-$: << "#{LOAD_PATH}/app"
-# Requires the service manager which is the facade for this service, the communication layer between service and server
-require "service_manager"
+$interface_version = "0.4.10"
 
-# just for examples reasons, see app/service_manager.rb
-$state = "booted"
+class ServiceManager
+  attr_accessor :port  
+  def initialize
+    @port ||= port  # Small hack to make it visible in the webinterface
+    super
+  end
+  
+  def start()
+    ARGV << "-p"; ARGV << (@port || "5050")
+    
+    p @port
+    require 'config/boot'        
+    Thread.new do
+      $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Running.."
+    end  
+    require 'commands/server'
+  end
+end

@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -75,7 +75,7 @@ class ServiceMetaData
       m = {:all => [], :exposed => []}
       $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_paramater_methods[e.to_s] || [] ]}
       
-      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop"]
+      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop", "status=", "status"]
       
       Marshal.dump(m)
     }))

@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -38,6 +38,7 @@ class Service
     @port_in    = $port_start+=1
     @port_out   = $port_start+=1
     @status     = "stopped"
+    # @todo: Expand with org.jruby.RubyInstanceConfig        
     @runtime    = JJRuby.newInstance()
         
     # Create the domain directory if not present
@@ -52,8 +53,6 @@ class Service
   # 
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
-    # @todo: Expand with org.jruby.RubyInstanceConfig    
-
     # Boot it            
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
@@ -61,7 +60,7 @@ class Service
       $: << "#{CONTAINER_PATH}/lib/"
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
-      
+
       trap('INT') {exit}
       require "container_logger"
       ServiceLogger.service="#{@full_name.to_s}"
@@ -69,6 +68,17 @@ class Service
       $stdout = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
 
       class ServiceManager
+        def status=(str)     
+          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
+        end
+        def status
+          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
+        end
+        
+        def start()
+          self.status="started" 
+        end        
+
         def self.all_paramater_methods; @@p ||= Hash.new; end
         def all_methods; []; end
         def self.exposed_methods(*meths)
@@ -84,13 +94,13 @@ class Service
       end
 
       begin                
-          require 'startup'
+          require 'initialize'
       rescue LoadError 
         begin
           require 'service_manager'
         rescue LoadError
-          ContainerLogger.error "Neither startup or ServiceManager could be loaded for #{@full_name}", 2          
-          raise Exception.new("Neither startup or ServiceManager could be loaded for #{@full_name}")
+          ContainerLogger.error "Neither initialize or ServiceManager could be loaded for #{@full_name}", 2
+          raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
         end
       end
 
@@ -105,7 +115,6 @@ class Service
     
     # Gather Service meta-data
     @meta_data.gather()
-    
     @runtime.runScriptlet(%{
       @starting_thread = Thread.new do
         $service_manager.start()
@@ -226,12 +235,12 @@ class Service
        end       
        
         begin                
-            require 'startup'
+            require 'initialize'
         rescue LoadError 
           begin
             require 'service_manager'
           rescue LoadError
-            raise Exception.new("Neither startup or ServiceManager could be loaded for #{@full_name}")
+            raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
           end
         end
       })

@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -26,7 +26,7 @@ PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH     = "#{PATH}/contained"
-DETEGO_VERSION    = "0.3.2"
+DETEGO_VERSION    = "0.3.3"
 CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
 

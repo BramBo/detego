@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -77,7 +77,7 @@ class Container
          rescue Exception => e;  next;
          rescue => e;            next;
         end
-        puts " o #{s} shutdown."
+        puts " v | #{s} shutdown."
       end
     end
     exit
@@ -86,24 +86,29 @@ class Container
   private
    def initiate_installed_services()
      # find exisiting domains and services
+     puts "Initializig services"     
      Dir.new(@path).each do |domain|
        next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
        add_domain(domain.to_sym)
  
-      puts "Initializig services"
        Dir.new("#{@path}/#{domain}").each do |service|
          next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
           find(domain.to_sym).add_service(service.to_sym)
-          puts " o #{service} done"
+          puts " v | #{service} done"
        end
      end
-
+     
+     puts " "
      # now start all the services
      puts "Starting services"
      find(:all).each do |k,d| 
        d.find(:all).each do |k,s|
-         s.start()
-          puts " o #{s.full_name} started"
+         begin 
+           s.start()
+           puts " v | #{s.full_name} started"           
+         rescue Exception => e
+           puts " x | #{s.full_name} failed".console_red
+          end 
        end
      end
      puts ""

@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands
+# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -42,25 +42,21 @@ class ServiceManager
     return "hello from #{$service[:full_name]}. Current status: #{$state}"
   end
 
-  # Another example function. See the management interface on port 5005
+  # Another example function. See the management interface on port 5050
   has_paramaters(:set_status, "str")
   def set_status(str)
-    $state = str
+    self.status=(str)
   end
   
   #.....
   def get_status
-    return "#{$service[:full_name]} status: #{$state}"
+    status="started statussing"
+    return "#{$service[:full_name]} status: #{status}"
   end
   
   # Another example, just here to show off some nice js ^^
   def sleep_test
     sleep(10)
     "slept for 10 sec!"
-  end
-  
-  # This method should always be present in the service manager, this can be empty but the server will invoke this to start the service
-  def start
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Started"     
   end
 end
