@@ -2,3 +2,4 @@
 log/*
 jruby_filedescr.rb
 *.log
+service_data.yml
