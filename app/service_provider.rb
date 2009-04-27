@@ -120,13 +120,14 @@ class ServiceProvider
     
       #
       # Get service meta-data {exposed_methods, exposed_variables }
-      #  callable like:  $provider.for(:domain_name, :service_name).get_meta_data()  
+      #  callable like:  $provider.for(:domain_name, :service_name).get_meta_data()   
       def get_meta_data()
         required_set?
 
         begin 
-          data = @container.find(@domain).find(@service).meta_data
-      
+          data = @container.find(@domain).find(@service).meta_data      
+          
+          #  BUG meta data doesnt sent values
           return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables}
         rescue => ex
           ContainerLogger.error "#{ex} for service: #{@providee.name}"

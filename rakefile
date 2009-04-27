@@ -26,28 +26,46 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'lib/container_logger'
 
+
 task :todo do
-  todos = 0
-  files = 0
+  # A probably controversial way of achieving different task effects
+  @task_captures = @legend =  ""
+  {:todo => :green, :fixme => :blue, :bug => "red blink"}.each do |task, eff|
+    @task_captures += "#{task}|"
+    
+    methods = eff.to_s.split(/[\.\s]/).map{|e| ".console_#{e}" }.join().to_a.map {|e| 
+      "def #{task}; self#{e}; end; "
+    }.join()
+    eval(%{class String; #{methods} end})
+    
+    @legend += eval(%{"#{task.to_s.upcase} ".#{task}})
+  end
+  @task_captures.gsub!(/(.)$/, "")
+  puts ("Legend:".console_bold)+" #{@legend}"
+  puts ""
+  
+  tasks = files = 0
   %w{. app config test lib}.each do |dir|
     Dir.entries(dir).each do |entry|
       next unless entry =~ /\.rb$/i
-      files += 1
-      f     = File.new("#{dir}/#{entry}")
-      m     = f.read().scan(/[\s\#]*(.+?$)\n.+?\@todo[\s\:]+(.+?$)(?m:.)[\s\#]*(.+?$)/i)
-      if m.size>0
-          puts "#{m.size} Todo's in #{dir}/#{entry}".console_green
-          m.size.times do |i|
-            puts " - #{m[i][1]}".console_dark_green
-            puts "   \e[1mline before: \e[0m#{m[i][0]}" if m[i][0].size > 2
-            puts "   \e[1mline after: \e[0m#{m[i][2]}"
-          end
-          todos += m.size
+      files   += 1
+      f_tasks  = 0
+      
+      (lines = IO.readlines("#{dir}/#{entry}")).each_with_index do |line, i|
+        next if i==0 || i==(lines.size-1) || line.empty?
+        
+        next unless line.match(/^[\s]*\#.*?(#{@task_captures})[\s\:]*?([^\s\:].+?)$/i)
+        
+        puts eval(%{'#{$2}'.#{$1.downcase}()}).to_s + " on line: #{i}"
+        puts "   \e[1mline before: \e[0m#{lines[i-1].chomp}" if (lines[i-1].gsub(/[\s\#]/, "") || "").size > 0
+        puts "   \e[1mline after: \e[0m#{lines[i+1].gsub!(/^[\s\#]*/, "")}"
+        tasks   += 1
+        f_tasks += 1
       end
-      f.close()
+      puts "#{f_tasks} task(s) in total for #{dir}/#{entry}\n".console_bold if f_tasks > 0
     end
   end
-  puts "#{todos} todo's over #{files} files".console_dark_yellow
+  puts "#{tasks} tasks over #{files} files".console_dark_yellow
 end
 
 task :lines do
@@ -70,4 +88,14 @@ task :test do
   
 end
 
+task :rdoc do
+  
+end
+
 task :default => :todo
+
+
+class String
+  def todo;   self.console_green;   end
+  def fixme;  self.console_blue;  end
+end

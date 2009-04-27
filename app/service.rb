@@ -59,7 +59,7 @@ class Service
       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
       $: << "#{CONTAINER_PATH}/lib/"
       $: << LOAD_PATH
-      $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
+      $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}" }
 
       trap('INT') {exit}
       require "container_logger"
@@ -74,7 +74,6 @@ class Service
         def status
           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
         end
-        
         def start()
           self.status="started" 
         end        
@@ -136,6 +135,7 @@ class Service
 
     if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green
+      # FIXME should be able to be done otherwise
       begin
         if !args.nil? && !args.first.nil?
           if block
