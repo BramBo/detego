@@ -92,9 +92,15 @@ class Domain
     #  Instantiate a new runtime
     #  Start a new DRB server so this service can access it's ServiceProvider
     def new_service(service)
-      @services[service.name]         = service      
-      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, @services[service.name])
-      
+      @services[service.name]         = service
+      DRb.install_acl(ACL.new( %w[
+        deny all
+         allow localhost 
+         allow 127.0.0.1
+         allow 192.168.*.*
+         allow 10.0.*.*        
+        ]))
+      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, service.name)
       return @services[service.name]
     end
 end

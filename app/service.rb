@@ -21,6 +21,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "service_meta_data"
+require 'drb'    
+require 'drb/acl'
 
 class Service
   attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
@@ -46,13 +48,14 @@ class Service
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
-    ContainerLogger.debug "Service added #{domain.name}::#{name}"    
+    ContainerLogger.debug "Service added #{domain.name}::#{name}"
   end
 
   # Start/boot the service 
   # 
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
+    
     # Boot it            
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
@@ -61,11 +64,10 @@ class Service
       $: << LOAD_PATH
       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}" }
 
-      trap('INT') {exit}
       require "container_logger"
-      ServiceLogger.service="#{@full_name.to_s}"
-      $stderr = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
-      $stdout = File.open('#{CONTAINER_PATH}/log/#{@full_name}.log', 'w+')
+      ServiceLogger.service="#{@domain.name}_#{@name}"
+      $stderr = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
+      $stdout = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
 
       class ServiceManager
         def status=(str)     
@@ -103,13 +105,15 @@ class Service
         end
       end
 
-      require 'drb'
-      DRb.start_service
-      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
-      DRb.start_service "druby://127.0.0.1:#{@port_out}", ($service_manager=ServiceManager.new)
+      require 'drb'    
+      require 'drb/acl'
+      DRb.install_acl(ACL.new( %w[deny all
+        allow localhost 
+        allow 127.0.0.1] ))
+      @serv = DRb.start_service "druby://127.0.0.1:#{@port_out}", ($service_manager=ServiceManager.new)
+      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')      
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
-    
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
     
     # Gather Service meta-data
@@ -130,7 +134,7 @@ class Service
   # @todo: include blocks for invocation
   def invoke(method_name, *args, &block)
     raise Exception.new("Service #{@name} not started!") if @status =~ /stopped/i 
-    arg   = Marshal.dump(args)
+    arg   = Marshal.dump(args)  
     blck  = Marshal.dump(block)
 
     if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
@@ -185,13 +189,15 @@ class Service
 
     begin
       @runtime.runScriptlet(%{
-        DRb.stop_service 
-        begin                
+        begin; $service_manager.shutdown(); rescue => e; puts "NOT CALLEEEEED" end;
+
+        @serv.stop_service
+        begin
           require 'shutdown'
         rescue LoadError => e
           ContainerLogger.warn "Skipping shutdown script for #{@full_name}..."
         end
-        @starting_thread.exit      
+        @starting_thread.exit
       })
     rescue => e
       ContainerLogger.warn "#{@full_name} error shutting down: #{e}"

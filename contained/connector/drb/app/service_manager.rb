@@ -23,19 +23,23 @@
 require "drb"
 
 class ServiceManager
-  attr_accessor :port
-  
-  # Gets run by the server when start() is invoked on it. This will happen right after the installation, or can be invoked through the management interface
+  attr_accessor :port, :running_on
+
   def initialize
-     @port      = instance_variable_get("@port").to_i < 1000 ? 5060 : instance_Variable_get("@port")
+     @srv         = nil
+     @port        = instance_variable_get("@port").to_i < 1000 ? 5060 : instance_Variable_get("@port")
+     @running_on  = instance_variable_get("@running_on") ? instance_Variable_get("@running_on") :  Socket.getaddrinfo(Socket.gethostname(), nil)[0][2]
   end
 
   def start
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Running"
+    DRb.install_acl(ACL.new( %w[allow all] ))      
+    @srv = DRb.start_service "druby://#{@running_on}:#{instance_variable_get("@port").to_i}", $provider
 
-     DRb.start_service "druby://127.0.0.1:#{@port}", ($exposer=Exposer.new)
-     DRb.thread.join
-
-     $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Stopped"
+    self.status="Started !"
+    DRb.thread.join    
+  end
+  
+  def shutdown()
+    @srv.stop_service 
   end
 end

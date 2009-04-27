@@ -27,6 +27,9 @@
 # $provider contains the DRB connection
 # @todo: Change error reporting !
 class ServiceProvider
+require "drb"  
+  include DRb::DRbUndumped;
+  
   def initialize(container, service) #:nodoc:
     @container = container
     @providee = service
@@ -158,10 +161,10 @@ class ServiceProvider
           @container.find(@domain).find(@service).start()
         rescue Exception => ex
           ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
-          "error;#{ex}"                    
+          return "error;#{ex}"                    
         rescue => ex
           ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
-          "error;Error starting service #{@domain}::#{@service}!"
+          return "error;Error starting service #{@domain}::#{@service}!"
         end
         "#{@service} started!"
       end

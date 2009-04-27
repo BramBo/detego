@@ -32,7 +32,7 @@ class FileSystemPoller
     get_current_structure
   end
   
-  # Differential between structures
+  # Differences between structures
   # old - new may result in the installation/deletion of a new service/domain
   def poll
     begin
