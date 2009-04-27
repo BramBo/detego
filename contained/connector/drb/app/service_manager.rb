@@ -33,7 +33,7 @@ class ServiceManager
 
   def start
     DRb.install_acl(ACL.new( %w[allow all] ))      
-    @srv = DRb.start_service "druby://#{@running_on}:#{instance_variable_get("@port").to_i}", $provider
+    @srv = DRb.start_service "druby://#{@running_on}:#{instance_variable_get("@port").to_i}", ProviderProxy.new
 
     self.status="Started !"
     DRb.thread.join    
@@ -41,5 +41,19 @@ class ServiceManager
   
   def shutdown()
     @srv.stop_service 
+  end
+  
+  class ProviderProxy
+  include DRb::DRbUndumped
+        
+    def on(domain, service)
+      @domain  = domain
+      @service = service
+      self
+    end
+    
+    def status
+      $provider.on(@domain, @service).status
+    end
   end
 end
