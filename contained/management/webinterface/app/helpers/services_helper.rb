@@ -4,7 +4,7 @@ module ServicesHelper
       r ="<ul class='var_list_helper'>"
       collection.each do |e|
         r += "<li><span class='ui-triangle'></span><span>#{e[0].to_s}</span>"
-        value = (e[1] || "-----").to_s
+        value = (e[1].to_s.size>0) ? e[1].to_s : "-----"
         
         if mode == "r"
           r += "<span class='value'>#{value}</span>"

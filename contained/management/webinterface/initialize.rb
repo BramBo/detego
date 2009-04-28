@@ -20,22 +20,15 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
-
-#!/usr/bin/env ruby
-
 $interface_version = "0.4.10"
 
 class ServiceManager
   attr_accessor :port  
-  def initialize
-    @port ||= port  # Small hack to make it visible in the webinterface
-    super
-  end
-  
+
   def start()
-    ARGV << "-p"; ARGV << (@port || "5050")
-    
-    p @port
+    # this doesnt take an int as a port nr ?!
+    ARGV << "-p"; ARGV << (@port = ((@port.to_i||5050)>1024) ? @port : 5050).to_s
+
     require 'config/boot'        
     Thread.new do
       $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Running.."

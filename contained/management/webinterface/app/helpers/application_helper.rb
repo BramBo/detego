@@ -9,7 +9,7 @@ module ApplicationHelper
           r += "<li class='ui-helper-reset ui-corner-bottom''>#{e.to_s}</li>"
         else
           if e.public_methods.include?("parent_route")
-            r += "<li class='ui-corner-bottom'>"+link_to("#{e.to_s}", eval("#{link_path}(e.parent_route, e)"))+"</li>"            
+            r += "<li class='ui-corner-bottom'>"+link_to("#{(e).to_s}", eval("#{link_path}(e.parent_route, e)"))+"</li>"            
           else
             r += "<li class='ui-corner-bottom'>"+link_to("#{e.to_s}", eval("#{link_path}(e)"))+"</li>"            
           end

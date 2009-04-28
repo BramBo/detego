@@ -116,6 +116,7 @@ class Service
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
+    puts "Service started! ServiceManager: #{@port_out}. Provider for Manager: #{@port_in}"
     
     # Gather Service meta-data
     @meta_data.gather()
