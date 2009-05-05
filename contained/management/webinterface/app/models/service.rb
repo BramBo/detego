@@ -20,7 +20,7 @@ class Service
                @variables[k][vv] = "-----"
               elsif (k== :both)
                 next unless vv =~ /\=/
-                @variables[k][vv] = eval("$provider.for(domain.name, name).#{vv.gsub(/\=/, "")}()")   
+                @variables[k][vv]  = eval("$provider.for(domain.name, name).#{vv.gsub(/\=/, "")}()")           
               else
                 @variables[k][vv] = eval("$provider.for(domain.name, name).#{vv}()")
               end 

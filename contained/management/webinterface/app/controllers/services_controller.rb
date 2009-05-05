@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   def show
     @domain   = Domain.find(params[:domain_id])
-    @service  = @domain.service(params[:id])
+    @service  =   @domain.service(params[:id])
   end
   
   def new
@@ -21,6 +21,8 @@ class ServicesController < ApplicationController
     render :action => "create"
   end
   
+  
+  ## RPC Methods
   def invoke 
     @domain           = params[:domain_id]
     @service          = params[:id]    

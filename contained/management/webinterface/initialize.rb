@@ -29,6 +29,9 @@ class ServiceManager
     # this doesnt take an int as a port nr ?!
     ARGV << "-p"; ARGV << (@port = ((@port.to_i||5050)>1024) ? @port : 5050).to_s
 
+    # Mongrel needs to be started in the project root dir
+    Dir.chdir(LOAD_PATH) if CONTAINER_PATH == Dir.getwd
+
     require 'config/boot'        
     Thread.new do
       $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Running.."

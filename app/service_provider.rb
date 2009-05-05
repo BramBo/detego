@@ -26,8 +26,8 @@
 # The provider is available in every service once it got started by the server
 # $provider contains the DRB connection
 # @todo: Change error reporting !
-class ServiceProvider
 require "drb"  
+class ServiceProvider
   include DRb::DRbUndumped;
   
   def initialize(container, service) #:nodoc:
@@ -129,9 +129,7 @@ require "drb"
 
         begin 
           data = @container.find(@domain).find(@service).meta_data      
-          
-          #  BUG meta data doesnt sent values
-          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables}
+          return {:service_methods => data.service_methods, :exposed_variables => data.exposed_variables, :readable_var_values => data.readable_var_values}
         rescue => ex
           ContainerLogger.error "#{ex} for service: #{@providee.name}"
         ensure

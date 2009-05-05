@@ -1,5 +1,4 @@
 require 'drb'
-# OMG it's a replica !
 class ServiceProviderProxy
   include DRb::DRbUndumped  
       
@@ -9,20 +8,43 @@ class ServiceProviderProxy
     self
   end
   
+  def for(domain, service=nil)
+    @domain  = (domain)   ? domain.to_sym   : nil
+    @service = (service)  ? service.to_sym  : nil
+    self
+  end  
+  
   def method_missing(method_name, *args, &block)
-    required_set?
+    raise Exception.new("Method(#{method_name}) not allowed from remote host!") if black_list.include?(method_name.to_s)
 
-    instance_eval(%{$provider.on(:#{@domain}, :#{@service}).#{method_name.to_s}()})
+    if !@domain.nil? && !@service.nil?
+      puts %{$provider.on(:#{@domain}, :#{@service}).#{build_invoke_str(method_name, *args, &block)}} 
+      r =  instance_eval(%{$provider.on(:#{@domain}, :#{@service}).#{build_invoke_str(method_name, *args, &block)}})
+    elsif !@domain.nil?
+      r = instance_eval(%{$provider.for(:#{@domain}).#{build_invoke_str(method_name, *args, &block)}})      
+    else
+      r = instance_eval(%{$provider.#{build_invoke_str(method_name, *args, &block)}})
+    end
+    @domain = @service = nil
+    return r
   end
   
   private 
-   def required_set?
-     raise Exception.new("Domain and ot Service not set!") if (@service.nil? || @domain.nil?)
-   end
    
-   # We can't allow methods as add_service or remove_service to be called from anywhere
-   # If you would, write your own
+   # We can't allow methods as add_service or remove_service to be called from anywhere !
    def black_list
-    %w{add_service add_domain remove_service remove_domain start_service stop_service restart_service}
+    %w{add_service add_domain remove_service remove_domain start_service stop_service restart_service status=}
    end 
+   
+   def build_invoke_str(method_name, *args, &block)     
+     if args && block
+       return "#{method_name.to_s}(*#{args}, #{block})"
+     elsif args
+       return "#{method_name.to_s}(#{args})"
+     elsif block
+       return "#{method_name.to_s}(#{block})"
+     else
+       return "#{method_name.to_s}()"
+     end
+   end
 end

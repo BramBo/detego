@@ -22,8 +22,6 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 include_class('org.jruby.Ruby') {|pkg, name| "JJRuby" }
 
-# @todo: fork to make processes asynch. Servers cant run synch. 
-#         Probably best to do this using fork and drb to get the return value
 class JJRuby
   def runScriptlet(code)  
     result = eval_scriptlet(%{

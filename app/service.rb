@@ -54,6 +54,18 @@ class Service
 
   # Start/boot the service 
   # 
+  # This method injects alot of code inside the Service runtime.
+  # Basicly what it does:
+  #  * Sets Paths(and inserting them in $:) 
+  #  * Makes basic info avaliable (Service path/name/domain/full_name)
+  #  * Sets up the logging(Making ServiceLogger available) STDERR+STDOUT get mapped on ROOT/log/domain_service.log
+  #  * Creates a ServiceManager class making methods available to set(&get) meta-data
+  #  * Gets the initialize script ready if it isnt avaialble it will try to load service_manager.rb
+  #  * Finally setsup the bidirectional communication for this service.
+  #
+  # After this 'code injection' the drb comm. channel gets made available in this class.
+  # And the start() method is invoke on the newly setup runtime
+  #
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
     
@@ -67,8 +79,10 @@ class Service
 
       require "container_logger"
       ServiceLogger.service="#{@domain.name}_#{@name}"
-      $stderr = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
-      $stdout = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
+      Object.send(:remove_const, :STDERR)
+      Object.send(:remove_const, :STDOUT)
+      $stderr = STDERR = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
+      $stdout = STDOUT = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
 
       class ServiceManager
         def status=(str)     
@@ -116,7 +130,6 @@ class Service
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
-    puts "Service started! ServiceManager: #{@port_out}. Provider for Manager: #{@port_in}"
     
     # Gather Service meta-data
     @meta_data.gather()
@@ -191,7 +204,7 @@ class Service
 
     begin
       @runtime.runScriptlet(%{
-        begin; $service_manager.shutdown(); rescue => e; puts "NOT CALLEEEEED" end;
+        begin; $service_manager.shutdown(); rescue => e; end
 
         @serv.stop_service
         begin
