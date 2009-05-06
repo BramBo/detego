@@ -21,7 +21,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-SERVICE_VERSION = "0.0.2a"
+SERVICE_VERSION = "0.1"
 $: << "#{LOAD_PATH}/app"
 $: << "#{LOAD_PATH}/app/formats"
 require "service_manager"

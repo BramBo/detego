@@ -17,12 +17,12 @@ class XMLFormat
         ""
     end
     
-    key     = (hsh[:list_open]) ? "<#{xf(hsh[:list_open])}>" : (hsh[:list_close]) ? "</#{xf(hsh[:list_close])}>" : "<#{xf(hsh[:key])} #{options} />"
+    key     = (hsh[:list_open]) ? "<#{xf(hsh[:list_open])} #{options}>" : (hsh[:list_close]) ? "</#{xf(hsh[:list_close])} #{options}>" : "<#{xf(hsh[:key])} #{options} />"
     @content += key
   end
 
   def out
-     return %{<?xml version='1.0' encoding='ISO-8859-1'?>\n#{@content}}
+     return %{<?xml version='1.0' encoding='UTF-8'?>\n#{@content}}
   end
 
   def inspect

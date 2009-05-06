@@ -21,13 +21,13 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-
+require "yaml"
 # The communication layer between this service and the server
 class ServiceManager
   attr_accessor :hello
   attr_reader   :read_only
   attr_writer   :write_only  
-  exposed_methods :say_hello, :set_status, :get_status, :sleep_test
+  exposed_methods :say_hello, :set_status, :get_status, :sleep_test, :get_random_array, :get_rand_dimension_hash
   
   # Gets run by the server when start() is invoked on it. This will happen right after the installation, or can be invoked through the management interface
   def initialize
@@ -54,7 +54,26 @@ class ServiceManager
     return "#{$service[:full_name]} status: #{status}"
   end
   
-  # Another example, just here to show off some nice js ^^
+  # Proxy test  
+  def get_random_array
+    (rand(5)..(rand(10)+5)).to_a
+  end  
+
+  # Proxy test  
+  def get_rand_dimension_hash
+    dimensions      = rand(5)+2
+    dimension_size  = rand(5)+1    
+    h = { :name     => "#{dimensions} Dimensions Hash"}
+    
+    dimension_size.times do |i|
+      dimensions.times do |j|
+        instance_eval(%{h#{"[:dimension]"*j} = {:name => "#{j}th dimension"}})
+      end
+    end
+    h
+  end
+  
+  # Javascript test (Ajax get, shouldn't raise a timeout and it should be visual that the request is processing)
   def sleep_test
     sleep(10)
     "slept for 10 sec!"

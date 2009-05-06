@@ -30,8 +30,8 @@ class ServiceMetaData
   
   def reset
     @readable_var_values  = {}
-    @service_methods      = {:all => [] , :exposed => []}
-    @exposed_variables    = {:both => [], :read => []   , :write => []}
+    @service_methods      = {:all  => [], :exposed => []}
+    @exposed_variables    = {:both => [], :read    => [], :write => []}
   end
   
   # Figure out the available methods and variables for this service 

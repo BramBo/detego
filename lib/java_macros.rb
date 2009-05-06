@@ -28,13 +28,15 @@ class JJRuby
         begin
           #{code}
         rescue Exception => e
+          puts "Execution error: " + e.message
           "Execution error: " + e.message            
         rescue => e
+          puts "Execution error: " + e.message
           "Execution error: " + e.messagea
         end
       })
         
-    if result.class.to_s.downcase =~ /string/ && !result.to_s.gsub!(/^execution.+?error\:/i, "").nil?
+    if result.class.to_s.downcase =~ /string/ && !result.to_s.gsub!(/^execution\serror\:/i, "").nil?
       ContainerLogger.warn "#{result}", 2
       raise Exception.new("#{@full_name} #{result}")
     end

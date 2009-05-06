@@ -25,7 +25,6 @@ require 'drb'
 require 'drb/acl'
 
 class Service
-  include DRb::DRbUndumped;  
   attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
   attr_accessor :runtime, :status
     
