@@ -1,10 +1,4 @@
-class XMLFormat
-  attr_reader :content
-  
-  def initialize()
-    @content = ""
-  end
-
+class XMLFormat < BASEFormat
   def <<(hsh)
     options = 
       if hsh[:options]
@@ -23,14 +17,6 @@ class XMLFormat
 
   def out
      return %{<?xml version='1.0' encoding='UTF-8'?>\n#{@content}}
-  end
-
-  def inspect
-    out
-  end 
-  
-  def to_s
-    out
   end
   
   def xf(str)      # illegal characters allowed in method names !

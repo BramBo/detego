@@ -27,7 +27,7 @@ $: << "#{LOAD_PATH}/app/formats"
 require "service_manager"
 require "rest_listener"
 
-AVAILABLE_FORMATS = %w{xml xhtml json}.each do |format|
+AVAILABLE_FORMATS = %w{base xml xhtml json}.each do |format|
   require "#{format}_format"
 end
 

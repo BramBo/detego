@@ -1,8 +1,8 @@
-class XHTMLFormat
-  attr_reader :content, :last_open  
+class XHTMLFormat < BASEFormat
+  attr_reader :last_open  
   
   def initialize()
-    @content    = ""
+    super
     @last_open  = 0
   end
 
@@ -34,9 +34,6 @@ class XHTMLFormat
      </html>
      }
   end
-
-  def inspect; out; end 
-  def to_s;    out; end
   
   def header(hsh)
     @last_open +=  1 if (hsh[:list_open] || hsh[:key])    

@@ -1,10 +1,4 @@
-class JSONFormat
-  attr_reader :content
-  
-  def initialize()
-    @content = ""
-  end
-
+class JSONFormat < BASEFormat
   def <<(hsh)
     options = 
       if hsh[:options]
@@ -21,17 +15,6 @@ class JSONFormat
     @content += key
   end
 
-  def out
-     return %{<?xml version='1.0' encoding='ISO-8859-1'?>\n#{@content}}
-  end
-
-  def inspect
-    out
-  end 
-  
-  def to_s
-    out
-  end
   
   def xf(str)      # illegal characters allowed in method names !
    return str.gsub(/\=/, "")
