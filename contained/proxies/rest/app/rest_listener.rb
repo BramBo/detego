@@ -34,7 +34,7 @@ class RESTListener
      @params      = @params.gsub(/^\/([^\s]*?)\s.+?$/, "\\1")
      @params.gsub!(/\?[a-z]+\=([a-z]+?)$/i, "")
      
-     format_str   = $1 || "xml"          
+     format_str   = $1                  || "xml"          
      list         = @params.split(/\//) || []
      @format      =  eval("#{format_str.upcase}Format").new()
 
@@ -68,7 +68,7 @@ class RESTListener
      @format << {:list_open => "services"}
 
      $provider.for(list[0].to_sym).get_services().each do |s|
-         @format << {:key => "service", :options => {:full_name => "#{list[0]}::#{s}", :name => "#{s}"}}
+         @format << {:key => "service", :options => {:name => "#{s}",:full_name => "#{list[0]}::#{s}"}}
      end
      @format << {:list_close => "services"}
      @format 

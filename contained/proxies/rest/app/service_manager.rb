@@ -25,7 +25,7 @@ class ServiceManager
 
   def initialize
      @srv         = nil
-     @port        = instance_variable_get("@port").to_i < 1000 ? 5055 : instance_Variable_get("@port")
+     @port        = instance_variable_get("@port").to_i < 1024 ? 5055 : instance_Variable_get("@port")
      @running_on  = instance_variable_get("@running_on") ? instance_variable_get("@running_on") :  Socket.getaddrinfo(Socket.gethostname(), nil)[0][2]
   end
 

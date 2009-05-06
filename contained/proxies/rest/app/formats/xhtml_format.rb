@@ -18,8 +18,7 @@ class XHTMLFormat < BASEFormat
         ""
     end
     
-    key     = (hsh[:options]) ? "#{header(hsh)} #{options}"  : "#{header(hsh)}"
-
+    key       = (hsh[:options]) ? "#{header(hsh)} #{options}"  : "#{header(hsh)}"
     @content += key
   end
 

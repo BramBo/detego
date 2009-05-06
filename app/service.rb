@@ -188,7 +188,7 @@ class Service
   
   # shutdown the service
   # 
-  # @todo: Look into rails to figure out how to force exit WEBrick..
+  # @todo: Look into rails to figure out how to force exit WEBrick/proxies::rest/Mongrel and alike..
   def shutdown()
     return if @status=~/stopped/i
 
