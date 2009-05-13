@@ -97,8 +97,6 @@ class Domain
         deny all
          allow localhost 
          allow 127.0.0.1
-         allow 192.168.*.*
-         allow 10.0.*.*        
         ]))
       DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, service.name)
       return @services[service.name]

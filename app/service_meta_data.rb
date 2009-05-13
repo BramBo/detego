@@ -20,15 +20,17 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
-require 'yaml'
+require "yaml"
+
 class ServiceMetaData
-  attr_reader :service_methods, :exposed_variables, :readable_var_values
+  attr_reader :service_methods, :exposed_variables, :readable_var_values, :limit_expose_to
   
   def initialize(service)
     @service = service
   end
   
   def reset
+    @expose               = []
     @readable_var_values  = {}
     @service_methods      = {:all  => [], :exposed => []}
     @exposed_variables    = {:both => [], :read    => [], :write => []}
@@ -57,8 +59,10 @@ class ServiceMetaData
       
       Marshal.dump(vs)
     }))
-    
 
+
+    @expose = Marshal.load(@service.runtime.runScriptlet(%{Marshal.dump($service_manager.limits.map{|e| e = e.to_s.downcase.to_sym})}))
+    
     get_readable_var_values()
     if(File.exists?("#{@service.path}/service_data.yml"))
       data = YAML::load( File.open( "#{@service.path}/service_data.yml" ) )
@@ -73,9 +77,9 @@ class ServiceMetaData
     
     @service_methods = Marshal.load(@service.runtime.runScriptlet(%{
       m = {:all => [], :exposed => []}
-      $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_paramater_methods[e.to_s] || [] ]}
+      $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_parameter_methods[e.to_s] || [] ]}
       
-      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop", "status=", "status"]
+      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop", "status=", "status", "limits", "limit_expose_to"]
       
       Marshal.dump(m)
     }))

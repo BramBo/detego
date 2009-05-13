@@ -1,8 +1,9 @@
 require 'socket'
 
 class RESTListener
-  def initialize(port=5055)
-      @port = port    
+  def initialize(port = 5055, loc = "localhost")
+      @port       = port
+      @location   = "http://#{loc}"
   end
   
   def start
@@ -12,13 +13,18 @@ class RESTListener
       puts e
       return false
     end    
-    puts "#{self.class} started on port: #{@port}"    
+    puts "#{self.class} started on port: #{@port}"
     while true
       @t = Thread.new(@serv.accept) do |session|
         prot  = session.addr[0]
         cmd   = session.gets.chomp
 
-        query_print(session, cmd)
+        begin
+          query_print(session, cmd)
+        rescue => e
+          puts e
+        end
+        session.shutdown( how=1 )        
         session.close
       end
     end
@@ -33,25 +39,38 @@ class RESTListener
      @params      = gets.gsub(/^(GET|POST)[\s]*(?=\/)/i, "")
      @params      = @params.gsub(/^\/([^\s]*?)\s.+?$/, "\\1")
      @params.gsub!(/\?[a-z]+\=([a-z]+?)$/i, "")
-     
+  
      format_str   = $1                  || "xml"          
      list         = @params.split(/\//) || []
      @format      =  eval("#{format_str.upcase}Format").new()
-
+     response     = ""
+     
      case list.size 
       when 0        # /
-       session.print(domain_list(list))
+       response = (domain_list(list))
        
       when 1         # /domain_name    
-       session.print(domain_services(list))
+       response = (domain_services(list))
 
       when 2         # /domain_name/service_name
-       session.print(service_methods(list))       
+       response = (service_methods(list))       
 
      else
-       session.print(method_invocation(list))              
+       puts "Method invocation: #{list}"
+       response = (method_invocation(list))              
      end
-          
+      
+      session.send r = %[HTTP/1.1 200 OK
+Location: #{@location}
+Cache-Control: private
+Content-Type: text/xml; charset=UTF-8
+Date: #{Time.now}
+Server: Detego
+Content-Length: #{response.content.size()+1}
+
+
+#{response.content}
+    ], 0
    end
    
    def domain_list(list)
@@ -79,6 +98,8 @@ class RESTListener
      @format << {:list_open => "meta_data"}
 
      begin 
+       service_limited?(list[0], list[1])
+       
        $provider.for(list[0].to_sym, list[1].to_sym).get_meta_data().each do |key, meta|
        # service_methods/exposed_variables/readable_var_values
         @format << {:list_open => "#{key}"}       
@@ -127,9 +148,14 @@ class RESTListener
    end   
    
    def method_invocation(list)
+     return if list.nil? || list.size < 3
+     
+     service_limited?(list[0], list[1])
+     
      @format << {:list_open => "results"}
 
-     result = eval("$provider.for(:#{list[0]}, :#{list[1]}).#{list[2]}")
+     query_string = list[3, list.size].map{|e| e = %{"#{e}"} }.join(", ")
+     result       = eval("$provider.for(:#{list[0]}, :#{list[1]}).#{list[2]}(#{query_string})")
      begin
        recursive_format("result", result)
      rescue => e
@@ -157,5 +183,17 @@ class RESTListener
      else
         @format << {:key => "#{key}", :options => {:value => "#{data}"}}
      end   
+   end
+
+
+   def service_limited?(d, s)
+     l = []
+     begin 
+       l = $provider.for(d.to_sym, s.to_sym).expose_limit() || []
+      rescue => e
+        puts e
+      end
+      
+     raise Exception.new("Can't reach over REST !") if (l.size() > 0 && !l.include?("rest"))      
    end
 end

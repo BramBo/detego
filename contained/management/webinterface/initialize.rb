@@ -34,7 +34,7 @@ class ServiceManager
 
     require 'config/boot'        
     Thread.new do
-      $provider.for($service[:domain].to_sym, $service[:name].to_sym).status= "Running.."
+      self.status= "Running.."
     end  
     require 'commands/server'
   end

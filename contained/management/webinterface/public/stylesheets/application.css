@@ -411,6 +411,36 @@ div.search_box input {
 		font-size 		: 10px;
 	}
 
+
+	#mask {
+	  	position 			: absolute;
+	  	left 				: 0;
+	  	top 				: 0;
+	  	z-index 			: 2002;
+	  	background-color 	: #000;
+	  	display 			: none;
+	}
+
+	.window {
+		position 			: fixed;
+		left 				: 0;
+		top	  				: 0;
+		width 				: 440px;
+		height 				: 200px;
+		display 			: none;
+		z-index 			: 9999;
+		padding 			: 20px;
+	}
+
+	#dialog {
+		width 				: 375px; 
+	  	height 				: 200px; 
+	  	padding 			: 10px;
+	  	background-color 	: #ffffff;
+	  	overflow-x 			: hidden;
+	  	overflow-y 			: auto;	
+	}
+
 #footer {
 	width 		: 400px;
 	margin 		: 20px auto 0 auto;

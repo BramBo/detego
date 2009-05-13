@@ -33,11 +33,12 @@ class ServiceManager
   
   def start  
     begin  
-      $provider.for($service[:domain].to_sym, $service[:name].to_sym).status = "Running.."
+      self.status = "Running.."
       while poll do
         sleep(interval.to_s.to_i) # Sleep by default five minutes before polling again
       end  
     rescue => e
+      
       ContainerLogger.debug e, 1
       raise e
     end

@@ -31,7 +31,7 @@ class ServiceManager
 
   def start
     self.status = "Running"
-    @srv = RESTListener.new(@port).start()
+    @srv = RESTListener.new(@port, @running_on).start()
   end
   
   def shutdown()

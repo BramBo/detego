@@ -21,17 +21,24 @@ module ServicesHelper
     end
   end  
   
+  # Nasty method, "abuses" e[1] for two purposes
   def method_list(collection, type="elements", use="for show", handler="def")
     if collection.size>0
       r ="<ul class='meth_list_helper'>"
       collection.each do |e|
         click_handler = (e.class==Array && handler != "def") ? "click=\"#{e[1]}\"" : ""
-        n             = (e.class==Array) ? e[0] : e
-          
+        n             = (e.class==Array) ? e[0]       : e
+        parameters    = (e.class==Array) ? e[1].to_a  : []
+        
         r += "<li><span class='ui-triangle'></span><span>#{n.to_s}</span>"
         
-        if  use=="runnable"
-          r+= "<span class='value'><img src='/images/invoke.png' class='runnable_method' #{click_handler}  alt='Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}' /></span>"
+        if use=="runnable"
+          # Rb_Arr: ["a", "b"] ::to js func call => w_parameters(["a", "b"])
+          str           = parameters.map{|e|e = %{'#{e}'}}.join(", ")
+          click_handler = %{click="w_parameters(this, [#{str}])"} if parameters.size > 0
+          name          = (parameters.size > 0) ? " name='modal' href='#dialog'" : ""
+          
+          r += "<span class='value'><img src='/images/invoke.png' #{click_handler} class='runnable_method' alt='Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}' /></span>"
         end
         
         r += "</li>"

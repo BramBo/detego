@@ -18,9 +18,11 @@ class ServiceProviderProxy
     raise Exception.new("Method(#{method_name}) not allowed from remote host!") if black_list.include?(method_name.to_s)
 
     if !@domain.nil? && !@service.nil?
+      service_limited?(@domain, @service)
+      
       puts %{$provider.on(:#{@domain}, :#{@service}).#{build_invoke_str(method_name, *args, &block)}} 
       r =  instance_eval(%{$provider.on(:#{@domain}, :#{@service}).#{build_invoke_str(method_name, *args, &block)}})
-    elsif !@domain.nil?
+    elsif !@domain.nil?    
       r = instance_eval(%{$provider.for(:#{@domain}).#{build_invoke_str(method_name, *args, &block)}})      
     else
       r = instance_eval(%{$provider.#{build_invoke_str(method_name, *args, &block)}})
@@ -46,5 +48,17 @@ class ServiceProviderProxy
      else
        return "#{method_name.to_s}()"
      end
+   end
+   
+   
+   def service_limited?(d, s)
+     l = []
+     begin 
+       l = $provider.for(d.to_sym, s.to_sym).expose_limit() || []
+      rescue => e
+        puts e
+      end
+      
+     raise Exception.new("Can't reach over REST !") if (l.size() > 0 && !l.include?("rest"))      
    end
 end

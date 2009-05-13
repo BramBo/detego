@@ -28,6 +28,7 @@ class ServiceManager
   attr_reader   :read_only
   attr_writer   :write_only  
   exposed_methods :say_hello, :set_status, :get_status, :sleep_test, :get_random_array, :get_rand_dimension_hash
+  limit_expose_to :drb
   
   # Gets run by the server when start() is invoked on it. This will happen right after the installation, or can be invoked through the management interface
   def initialize
@@ -43,7 +44,7 @@ class ServiceManager
   end
 
   # Another example function. See the management interface on port 5050
-  has_paramaters(:set_status, "str")
+  has_parameters(:set_status, "str")
   def set_status(str)
     self.status=(str)
   end

@@ -1,4 +1,4 @@
-// Copyright (c) 2009 Bram Wijnands
+	// Copyright (c) 2009 Bram Wijnands
 //                                                                     
 // Permission is hereby granted, free of charge, to any person         
 // obtaining a copy of this software and associated documentation      
@@ -167,6 +167,7 @@
 			.blur()
 			.nextAll("div.search_results").remove();
 		
+		selected = null;
 		return false;
 	}	
 	// Navigate with the arrow keys
@@ -207,5 +208,20 @@
 			window.location.href = $(this).attr("href") || "#";
 		});
 	}
+})(jQuery);
 
+(function($){
+	$(function(){
+		$('.window .close').click(function(){ hide_mondal(); });
+		$('#mask').click(function(){ hide_mondal(); });
+		
+		$(window).keydown(function(e){
+			if(e.keyCode==27) hide_mondal();
+		});
+	});
+	
+	function hide_mondal() {
+		$('#mask').fadeOut("fast");
+		$('.window').hide();
+	}
 })(jQuery);

@@ -19,7 +19,7 @@ $(function() {
 function method_request(url, paramaters, on_success, on_complete, on_error) {
 	$.ajax({
 	  type				: "GET",
-	  url				: url,
+	  url				: url.replace(/\#[^\/]*?(?=\/|$)/i, ""),
 	  data 				: (paramaters),
 	  dataType			: "html",
 	  success			: function(data, status) {	

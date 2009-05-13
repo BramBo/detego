@@ -12,7 +12,9 @@ function kickoff_services() {
 
 	$(".runnable_method").each(function() { 
 		if($(this).attr("click")) {
-			$(this).click(eval($(this).attr("click")));
+			$(this).click(function() {
+				eval($(this).attr("click"))
+			});
 		} else {
 			$(this).click(invoke_handler);
 		}
@@ -106,16 +108,40 @@ function invoke_method_w_parameters() {
 
 // Gets a new service status.
 function update_status() {
-	$.get(window.location.href+"/status", {}, function(data) {
+	$.get(window.location.href.replace(/\#.*?$/i, "")+"/status", {}, function(data) {
 		$("#service_status").html(data);
 	}, "text");
 }
 
 // Easy ajax get and replace
 function update_details() {
-	$.get(window.location.href+"/update_details", function(data) {
+	$.get(window.location.href.replace(/\#.*?$/i, "")+"/update_details", function(data) {
 		$("#service_details").html(data);
 	});
+}
+
+// Execute method with (a) parameter(s)
+function w_parameters(element, params) {
+	if(($e = $(element)).hasClass("runnable_method")) {
+		
+		dialog_html_string = "";	
+		$.each(params, function(i,e){
+			dialog_html_string += "<label>"+e+"</label><input type='text' class='param' id='param"+i+"' /><br />";
+		});
+
+		$('#mask')
+			.css({'width': $(document).width(),'height': $(document).height()})
+			.fadeIn(750)	
+			.fadeTo("fast",0.8);	
+              
+		($d = $("#dialog"))
+			.css('top',  $(window).height()/2 - $d.height()/2)
+			.css('left', $(window).width() /2 - $d.width()/2)
+			.fadeIn(2000)
+			.find("form")
+				.html(dialog_html_string);
+	} 
+	return false;
 }
 
 // When an accordion header gets clicked set the array to the current active one, Really should be easily fetchable through 'option', 'active' !

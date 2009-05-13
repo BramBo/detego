@@ -203,6 +203,22 @@ class ServiceProvider
         "#{@service} restarted!"
       end
       
+      # Limit the service by only the selected/set expose services
+      #  if nothing is set it's available over all the expose services
+      def expose_limit()
+        required_set?
+
+        begin
+          return @container.find(@domain).find(@service).meta_data.limit_expose_to()
+        rescue Exception => ex
+          ContainerLogger.error "Error grabbing expose limit for service #{@domain}::#{@service}!".console_yellow, 1
+          return "error;#{ex}"
+        rescue => ex
+          ContainerLogger.error "Error grabbing expose limit for service #{@domain}::#{@service}!".console_yellow, 1
+          return "Error grabbing expose limit for service #{@domain}::#{@service}!"
+        end
+      end
+      
   # Adds a domain (Basicly just create a dir.)
   #  Added for the management interface
   def add_domain(domain_name)

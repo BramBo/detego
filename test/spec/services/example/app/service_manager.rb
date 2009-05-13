@@ -43,7 +43,7 @@ class ServiceManager
   end
 
   # Another example function. See the management interface on port 5005
-  has_paramaters(:set_status, "str")
+  has_parameters(:set_status, "str")
   def set_status(str)
     $state = str
   end

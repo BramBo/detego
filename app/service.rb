@@ -94,7 +94,7 @@ class Service
           self.status="started" 
         end        
 
-        def self.all_paramater_methods; @@p ||= Hash.new; end
+        def self.all_parameter_methods; @@p ||= Hash.new; end
         def all_methods; []; end
         def self.exposed_methods(*meths)
           if meths.class==Array
@@ -103,9 +103,14 @@ class Service
             define_method("all_methods") { [meths] }
           end
         end
-        def self.has_paramaters(meth, *params)
-          all_paramater_methods[meth.to_s] = params.to_a
-        end        
+        def self.has_parameters(meth, *params)
+          all_parameter_methods[meth.to_s] = params.to_a
+        end
+        
+        def self.limit_expose_to(pr = [])
+          @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
+        end
+        def limits; @@l ||= []; end
       end
 
       begin                
@@ -152,7 +157,8 @@ class Service
     blck  = Marshal.dump(block)
 
     if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
-      ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green
+      ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green  
+
       # FIXME should be able to be done otherwise
       begin
         if !args.nil? && !args.first.nil?
@@ -162,9 +168,9 @@ class Service
               $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
             })          
           else 
+            query = args.map{|e| e = %{"#{e}"} }.join(", ")
             return @runtime.runScriptlet(%{
-              arg = Marshal.load('#{arg}')
-              $service_manager.#{method_name}(arg)
+              eval(%[$service_manager.#{method_name}(#{query})])
             })
           end
         else
@@ -231,16 +237,26 @@ class Service
     # this must pass to be validates as a serice!
     begin 
      @runtime.runScriptlet(%{
+       Object.send(:remove_const, :CONTAINER_PATH) if Object.const_defined? :CONTAINER_PATH
+       Object.send(:remove_const, :LOAD_PATH)      if Object.const_defined? :LOAD_PATH 
        CONTAINER_PATH  = "#{CONTAINER_PATH}"
        LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
        $: << "#{CONTAINER_PATH}/lib/"
        $: << LOAD_PATH
        $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
 
-       trap('INT') {exit}
-       require "container_logger"
        class ServiceManager
-         def self.all_paramater_methods; @@p ||= Hash.new; end
+         def status=(str)     
+           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
+         end
+         def status
+           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
+         end
+         def start()
+           self.status="started" 
+         end        
+
+         def self.all_parameter_methods; @@p ||= Hash.new; end
          def all_methods; []; end
          def self.exposed_methods(*meths)
            if meths.class==Array
@@ -249,10 +265,15 @@ class Service
              define_method("all_methods") { [meths] }
            end
          end
-         def self.has_paramaters(meth, *params)
-           all_paramater_methods[meth.to_s] = params.to_a
-         end        
-       end       
+         def self.has_parameters(meth, *params)
+           all_parameter_methods[meth.to_s] = params.to_a
+         end
+
+         def self.limit_expose_to(pr = [])
+           @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
+         end
+         def limits; @@l ||= []; end
+       end
        
         begin                
             require 'initialize'

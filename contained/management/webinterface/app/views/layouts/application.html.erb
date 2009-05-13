@@ -8,15 +8,14 @@
 <%= yield(:head) %>
 <script type="text/javascript" charset="utf-8">
 <!--
-	$(function() {
-		$("#navigation ul li, #navigation ul ul li").each(function() {
-			if($(this).children("a").html().length>20) {
-				$(this).children("a").html($(this).children("a").html().substr(0, 20)+"..");
-			}
-		});	
-	});
-	
-	<%= yield(:javascript) %>
+$(function() {
+	$("#navigation ul li, #navigation ul ul li").each(function() {
+		if($(this).children("a").html().length>20) {
+			$(this).children("a").html($(this).children("a").html().substr(0, 20)+"..");
+		}
+	});	
+});
+<%= yield(:javascript) %>
 -->	
 </script>
 </head>
@@ -54,6 +53,17 @@
  <%= render :partial => "/layouts/navigation" %>
  <%= render :partial => "/layouts/links" %>
 </div>
+
+
+<div id="dialog" class="window">
+ <fieldset>
+	<legend>Invoke method w/ parameter</legend>
+	<form></form>
+	<input type='button' value=' Invoke ! '>
+ </fieldset>
+</div>
+<div id="mask"></div>
+
 
  <div id='footer'>
   <p>

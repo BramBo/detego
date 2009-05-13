@@ -10,7 +10,7 @@ class BASEFormat
         if hsh[:options]
           str = ""
           hsh[:options].each do |k,v|
-            str += %{#{k}="#{v}" }  
+            str += %{#{k}=#{v} }  
           end 
           str
         else
