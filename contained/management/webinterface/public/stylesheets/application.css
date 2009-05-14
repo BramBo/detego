@@ -440,6 +440,32 @@ div.search_box input {
 	  	overflow-x 			: hidden;
 	  	overflow-y 			: auto;	
 	}
+	
+	#dialog fieldset {
+		border 				: 1px solid #000;
+		padding 			: 5px;
+	}
+	
+	#dialog fieldset legend {
+		font-weight			: bold;
+	}
+
+	#dialog fieldset form label {
+		clear 				: left;
+		display				: block;
+		width				: 125px;
+		float 				: left;
+	}	
+	
+	#dialog fieldset form input {
+		display				: block;
+		width				: 125px;
+		float 				: left;
+	}
+	
+	.submit {
+		clear 				: both;
+	}
 
 #footer {
 	width 		: 400px;

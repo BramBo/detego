@@ -26,10 +26,18 @@ class ServicesController < ApplicationController
   def invoke 
     @domain           = params[:domain_id]
     @service          = params[:id]    
-    @method           = params[:method].to_s        
+    @method           = params[:method].to_s
+    if params[:param0] 
+      @parameters       = params.reject{|k,v| !(k =~ /^param.+?$/) }.map{|k,v| v = %{"#{v}"}}.join(", ")
+    end
 
     begin
-      @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}")
+      if @parameters
+        puts "Invoking ! $provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}(#{@parameters})"
+        @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}(#{@parameters})")
+      else
+        @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}")        
+      end
       ContainerLogger.debug @value
       @value = @value.join("<br />") if @value.class == Array
     rescue Exception => e

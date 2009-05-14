@@ -27,7 +27,7 @@ class ServiceManager
   attr_accessor :hello
   attr_reader   :read_only
   attr_writer   :write_only  
-  exposed_methods :say_hello, :set_status, :get_status, :sleep_test, :get_random_array, :get_rand_dimension_hash
+  exposed_methods :say_hello, :set_status, :get_status, :sleep_test, :get_random_array, :get_rand_dimension_hash, :concat
   limit_expose_to :drb
   
   # Gets run by the server when start() is invoked on it. This will happen right after the installation, or can be invoked through the management interface
@@ -78,5 +78,11 @@ class ServiceManager
   def sleep_test
     sleep(10)
     "slept for 10 sec!"
+  end
+  
+  # Lots of params
+  has_parameters(:concat, "conc_a", "conc_b", "conc_c", "conc_d", "conc_e")
+  def concat(a,b,c,d,e)
+    "#{e}_#{d}_#{c}_#{b}_#{a}"
   end
 end

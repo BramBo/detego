@@ -124,9 +124,10 @@ function update_details() {
 function w_parameters(element, params) {
 	if(($e = $(element)).hasClass("runnable_method")) {
 		
-		dialog_html_string = "";	
+		in_method			=  $e.parent().parent().children("span").next().html();
+		dialog_html_string 	= "<input type='hidden' name='method' value='"+in_method+"' />";	
 		$.each(params, function(i,e){
-			dialog_html_string += "<label>"+e+"</label><input type='text' class='param' id='param"+i+"' /><br />";
+			dialog_html_string += "<label for='param"+i+"'>"+e+"</label><input type='text' class='param' id='param"+i+"' name='param"+i+"' /><br />";
 		});
 
 		$('#mask')
@@ -139,6 +140,7 @@ function w_parameters(element, params) {
 			.css('left', $(window).width() /2 - $d.width()/2)
 			.fadeIn(2000)
 			.find("form")
+				.empty()
 				.html(dialog_html_string);
 	} 
 	return false;

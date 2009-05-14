@@ -4,7 +4,7 @@ class ServiceManager
     self.status = "Started !"
   end
   
-  has_parameters [:from, :to, :amount]
+  has_parameters(:convert, :from, :to, :amount)
   def convert(from,to,amount)
     Valutas.calc(from,to,amount)
   end

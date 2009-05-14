@@ -213,15 +213,37 @@
 (function($){
 	$(function(){
 		$('.window .close').click(function(){ hide_mondal(); });
-		$('#mask').click(function(){ hide_mondal(); });
+		$('#mask').click(function() 		{ hide_mondal(); });
 		
-		$(window).keydown(function(e){
-			if(e.keyCode==27) hide_mondal();
+		$(window).keydown(function(e)		{ if(e.keyCode==27) hide_mondal(); });
+		
+		$("#dialog .submit").click(function(e)	{
+			$f 		= $("#dialog form");
+
+			// when the user is not notified about empty fields, do so
+			if($f.attr("notified")==null && $f.find("input[value=]").size() > 0) {
+							
+				$f.find("input[value=]")
+					.css("background", "red")
+					.effect("pulsate", { times:2 }, 500, function(){ $(this).css("background", "white"); });
+					
+				$f.attr("notified", "true");
+
+				return false;
+			} else {
+				$f.removeAttr("notified");
+			
+				method_request(location.href+"/invoke", $f.serialize(), function() {
+					update_status();
+					update_details();
+					hide_mondal();					
+				}, null, null);
+			}
 		});
 	});
-	
-	function hide_mondal() {
-		$('#mask').fadeOut("fast");
-		$('.window').hide();
-	}
 })(jQuery);
+
+function hide_mondal() {
+	jQuery('.window').hide();
+	jQuery('#mask').fadeOut("fast");		
+}
