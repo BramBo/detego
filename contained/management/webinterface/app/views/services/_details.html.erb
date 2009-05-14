@@ -1,6 +1,6 @@
 <div id='operations'>
 	<h3>Service Operations</h3>
-	 <%= method_list(['start_service', 'stop_service', 'restart_service', ["remove_service('#{@domain.name}', '#{@service.name}')", "remove_service"]], "methods", "runnable", "js")%>		
+	  <%= method_list(['start_service', 'stop_service', 'restart_service', ["remove_service('#{@domain.name}', '#{@service.name}')", "remove_service(this)"]], "methods", "runnable", "js")%>		
 </div>
 <br />
  <h2>Available methods</h2>

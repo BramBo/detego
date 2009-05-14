@@ -35,10 +35,10 @@ module ServicesHelper
         if use=="runnable"
           # Rb_Arr: ["a", "b"] ::to js func call => w_parameters(["a", "b"])
           str           = parameters.map{|e|e = %{'#{e}'}}.join(", ")
-          click_handler = %{click="w_parameters(this, [#{str}])"} if parameters.size > 0
+          click_handler = %{click="w_parameters(this, [#{str}])"} if parameters.size > 0 && handler == "def"
           name          = (parameters.size > 0) ? " name='modal' href='#dialog'" : ""
           
-          r += "<span class='value'><img src='/images/invoke.png' #{click_handler} class='runnable_method' alt='Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}' /></span>"
+          r += "<span class='value'><img src='/images/invoke.png' #{click_handler} class='runnable_method' alt=\"Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}\" /></span>"
         end
         
         r += "</li>"

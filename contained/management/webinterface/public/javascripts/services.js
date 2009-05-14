@@ -13,7 +13,7 @@ function kickoff_services() {
 	$(".runnable_method").each(function() { 
 		if($(this).attr("click")) {
 			$(this).click(function() {
-				eval($(this).attr("click"))
+				eval($(this).attr("click"));
 			});
 		} else {
 			$(this).click(invoke_handler);
@@ -75,11 +75,14 @@ function invoke_handler() {
 }
 
 // Wrapper for method_request: special case: Remove a service from the server
-function remove_service(){
+function remove_service(el){
 	if (window.confirm("Are you sure you want to delete this service?")) {
-		self 		= $(this);
+		self 		= $(el);
 		// <span><span></span><span>method_name</span><span><img !clicked! /></span></span>
 		in_method	=  self.parent().parent().children("span").next().html();
+	
+		console.log("Element: " + self);
+		console.log("Executing: " + in_method);
 	
 		self.show("pulsate", { times:100 }, 500);
 		method_request(location.href+"/invoke", {method: in_method}, function() {
