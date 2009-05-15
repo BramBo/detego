@@ -30,3 +30,5 @@
 $: << "#{LOAD_PATH}/app"
 # Requires the service manager which is the facade for this service, the communication layer between service and server
 require "service_manager"
+
+@depends_on = ["core::deployer", "core::example"]

@@ -27,6 +27,7 @@ $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH     = "#{PATH}/contained"
 DETEGO_VERSION    = "0.3.8"
+LOGGING_LEVEL     = 0
 CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
 

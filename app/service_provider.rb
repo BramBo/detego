@@ -62,7 +62,8 @@ class ServiceProvider
           raise Exception.new(ex)
         ensure
           @domain = @service = nil
-        end
+        __END__
+        
       end
   
   #
@@ -75,11 +76,7 @@ class ServiceProvider
   # Get all the domains on the container callable like:  $provider.get_domains()
   def get_domains()
     begin
-      domains = [] 
-      @container.find(:all).each do |k,v|
-        domains << k
-      end
-      return domains
+      return @container.find(:all).keys
     rescue => ex
       ContainerLogger.error "#{ex} for service: #{@providee.name}"
     ensure
@@ -95,9 +92,7 @@ class ServiceProvider
       end
       
       begin 
-        names = []
-        @container.find(@domain).find(:all).each {|k,v| names << k }
-        return names
+        return @container.find(@domain).find(:all).keys
       rescue => ex
         ContainerLogger.error "#{ex} for service: #{@providee.name}"
         return ex
@@ -267,7 +262,19 @@ class ServiceProvider
   
   # Adds a service to the container
   #  Added for the deployservice
-  def remove_domain(domain_name)   
+  def remove_domain(domain_name)
+    begin 
+      domain = @container.find(domain_name.to_sym)
+      @container.remove(domain_name.to_sym)
+    rescue => ex
+      ContainerLogger.error ex, 1            
+      ContainerLogger.error "Error removing domain #{domain_name}!", 1                        
+      raise Exception.new("Error removing domain #{domain_name}!")
+    end
+
+    true
+  end    
+      
       
   def server_version()
     return DETEGO_VERSION

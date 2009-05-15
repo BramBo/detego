@@ -22,6 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 class ServiceManager
   attr_accessor :port, :running_on
+  limit_expose_to :none
 
   def initialize
      @srv         = nil

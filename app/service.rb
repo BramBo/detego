@@ -45,30 +45,6 @@ class Service
         
     # Create the domain directory if not present
     FileUtils.mkdir_p(@path, :mode => 0755)
-    
-    # And finally set the meta-data for the service
-    @meta_data  = ServiceMetaData.new(self)
-    ContainerLogger.debug "Service added #{domain.name}::#{name}"
-  end
-
-  # Start/boot the service 
-  # 
-  # This method injects alot of code inside the Service runtime.
-  # Basicly what it does:
-  #  * Sets Paths(and inserting them in $:) 
-  #  * Makes basic info avaliable (Service path/name/domain/full_name)
-  #  * Sets up the logging(Making ServiceLogger available) STDERR+STDOUT get mapped on ROOT/log/domain_service.log
-  #  * Creates a ServiceManager class making methods available to set(&get) meta-data
-  #  * Gets the initialize script ready if it isnt avaialble it will try to load service_manager.rb
-  #  * Finally setsup the bidirectional communication for this service.
-  #
-  # After this 'code injection' the drb comm. channel gets made available in this class.
-  # And the start() method is invoke on the newly setup runtime
-  #
-  def start
-    raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
-    
-    # Boot it            
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
@@ -82,7 +58,9 @@ class Service
       Object.send(:remove_const, :STDOUT)
       $stderr = STDERR = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
       $stdout = STDOUT = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
-
+      require 'drb'    
+      require 'drb/acl'      
+      
       class ServiceManager
         def status=(str)     
           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
@@ -112,20 +90,42 @@ class Service
         end
         def limits; @@l ||= []; end
       end
-
+      
       begin                
           require 'initialize'
       rescue LoadError 
         begin
           require 'service_manager'
         rescue LoadError
-          ContainerLogger.error "Neither initialize or ServiceManager could be loaded for #{@full_name}", 2
           raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
         end
-      end
+      end  
+    })
+    
+    # And finally set the meta-data for the service
+    @meta_data  = ServiceMetaData.new(self)
+    ContainerLogger.debug "Service added #{domain.name}::#{name}"
+  end
 
-      require 'drb'    
-      require 'drb/acl'
+  # Start/boot the service 
+  # 
+  # This method injects alot of code inside the Service runtime.
+  # Basicly what it does:
+  #  * Sets Paths(and inserting them in $:) 
+  #  * Makes basic info avaliable (Service path/name/domain/full_name)
+  #  * Sets up the logging(Making ServiceLogger available) STDERR+STDOUT get mapped on ROOT/log/domain_service.log
+  #  * Creates a ServiceManager class making methods available to set(&get) meta-data
+  #  * Gets the initialize script ready if it isnt avaialble it will try to load service_manager.rb
+  #  * Finally setsup the bidirectional communication for this service.
+  #
+  # After this 'code injection' the drb comm. channel gets made available in this class.
+  # And the start() method is invoke on the newly setup runtime
+  #
+  def start
+    raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
+    
+    # Boot it            
+    @runtime.runScriptlet(%{            
       DRb.install_acl(ACL.new( %w[deny all
         allow localhost 
         allow 127.0.0.1] ))
@@ -133,6 +133,7 @@ class Service
       $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')      
       $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
+    
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
     
     # Gather Service meta-data

@@ -84,7 +84,9 @@ class Container
   end
   
   private
+  
    def initiate_installed_services()
+     services = {}
      # find exisiting domains and services
      puts "Initializig services"     
      Dir.new(@path).each do |domain|
@@ -93,26 +95,74 @@ class Container
  
        Dir.new("#{@path}/#{domain}").each do |service|
          next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
-          find(domain.to_sym).add_service(service.to_sym)
-          puts " v | #{service} done"
+         
+          begin
+            s  = find(domain.to_sym).add_service(service.to_sym)
+            services["#{domain}::#{service}"] = s.meta_data.depends_on
+
+            puts " v | #{domain}::#{service} done"
+          rescue Exception => e
+            puts " x | #{domain}::#{service} failed on init".console_red
+            puts "   |e> #{e}".console_dark_red
+           end
        end
      end
+     
+     services = dependency_sort(services)
      
      puts " "
      # now start all the services
      puts "Starting services"
-     find(:all).each do |k,d| 
-       d.find(:all).each do |k,s|
+     services[:sorted].each do |k, v|
+         s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
+         
          begin 
            s.start()
-           puts " v | #{s.full_name} started"           
+           puts " v | #{s.full_name} started"
          rescue Exception => e
            puts " x | #{s.full_name} failed".console_red
+           puts "   |e> #{e}".console_dark_red
           end 
-       end
+
      end
+     
+     if services[:circular_reference].size > 0
+       puts ("="*50).console_red
+       puts ("|      ").console_red  + "Warning circular_reference detected !".console_red().console_blink() + " "*5 + "|".console_red()
+       
+       services[:circular_reference].each do|k,v|
+         puts "#{("|").console_red()} #{k} #{" "*(45-k.size())} #{("|").console_red()}"
+         puts "#{("|").console_red()} - #{v} #{" "*(30-v.size())} #{("|").console_red()}"
+       end
+       puts ("="*50).console_red
+     end
+     
      puts ""
      puts "Server Ready".console_bold
      puts ""
   end 
+
+  def dependency_sort(inc)
+    dep_hash                  = inc.dup
+    sorted, max_cycles, i, j  = [], 10**3, 0, 0
+
+    while sorted.size < inc.size && i < max_cycles
+      dep_hash.each do |k,v|
+        flag, j = true, (j+1)
+
+        if v.size() > 0
+          v.each do |e|      
+            flag = false if !sorted.include?(e) || (dep_hash[e] && dep_hash[e].include?(k))
+          end
+        end
+
+        if flag == true
+          sorted << k 
+          dep_hash.delete(k)
+        end
+      end
+      i, j = (i+1), 0
+    end
+    {:sorted => sorted, :circular_reference => dep_hash}
+  end
 end

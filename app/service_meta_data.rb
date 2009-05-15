@@ -23,10 +23,12 @@
 require "yaml"
 
 class ServiceMetaData
-  attr_reader :service_methods, :exposed_variables, :readable_var_values, :limit_expose_to
+  attr_reader :service_methods, :exposed_variables, :readable_var_values, :limit_expose_to, :depends_on
+  
   
   def initialize(service)
-    @service = service
+    @service    = service  
+    @depends_on = @service.runtime.runScriptlet(%{ @depends_on ||= [] })
   end
   
   def reset

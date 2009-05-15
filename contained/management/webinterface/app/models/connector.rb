@@ -22,10 +22,10 @@ class Connector
   # find a domain or service matching te search query
   def self.locate(query)
     # add some search matching:
-    query.gsub!(/[\s]+/   , ".+?")        # instead of (a) space(s) we insert a wildcard    
-    query.gsub!(/[\_\-]/  , "[\_\s\-]*")  # '_' '=' or ' ' it doesn't mather
-    query.gsub!(/[\:]+/   , "[\:]+")      # : == :: || :: == : etc.
-    query.gsub!(/\.(?!\{})/      , "\.{1}")      # : == :: || :: == : etc.    
+    query.gsub!(/[\s]+/     , ".+?")        # instead of (a) space(s) we insert a wildcard    
+    query.gsub!(/[\_\-]/    , "[\_\s\-]*")  # '_' '=' or ' ' it doesn't mather
+    query.gsub!(/[\:]+/     , "[\:]+")      # : == :: || :: == : etc.
+    query.gsub!(/\.(?!\{})/ , "\.{1}")      # : == :: || :: == : etc.    
     
     results  = {}
     $provider.get_domains().each do |d|

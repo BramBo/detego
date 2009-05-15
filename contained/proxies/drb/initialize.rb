@@ -26,3 +26,4 @@ SERVICE_VERSION = "0.2.2"
 $: << "#{LOAD_PATH}/app"
 require "service_manager"
 require "service_provider_proxy"
+
