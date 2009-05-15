@@ -59,6 +59,6 @@ class ServiceProviderProxy
         puts e
       end
       
-     raise Exception.new("Can't reach over REST !") if (l.size() > 0 && !l.include?("rest"))      
+     raise Exception.new("Can't reach over DRB !") if (l.size() > 0 && (!l.include?(:drb) || !l.include?(:none)))      
    end
 end

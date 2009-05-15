@@ -45,7 +45,7 @@ module Kernel
 end
 
 class ContainerLogger
-  COLORS = {:debug => :console_def, :error => :console_dark_red, :warn => :console_dark_yellow}
+  COLORS = {:debug => :console_def, :notify => :console_bold, :error => :console_dark_red, :warn => :console_dark_yellow}
   def self.method_missing(method_name, *args, &block)
     str = args[0].to_s
     lvl = args[1].to_i || 0
@@ -66,7 +66,7 @@ class ServiceLogger
     @@service=service
   end
   
-  COLORS = {:debug => :console_def, :error => :console_dark_red, :warn => :console_dark_yellow}
+  COLORS = {:debug => :console_def, :notify => :console_bold,  :error => :console_dark_red, :warn => :console_dark_yellow}
   def self.method_missing(method_name, *args, &block)
     str = args[0].to_s
     lvl = args[1].to_i || 0

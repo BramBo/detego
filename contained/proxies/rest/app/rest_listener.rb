@@ -194,6 +194,6 @@ Content-Length: #{response.content.size()+1}
         puts e
       end
       
-     raise Exception.new("Can't reach over REST !") if (l.size() > 0 && !l.include?("rest"))      
+     raise Exception.new("Can't reach over REST !") if (l.size() > 0 && (!l.include?(:rest) || !l.include?(:none)))      
    end
 end

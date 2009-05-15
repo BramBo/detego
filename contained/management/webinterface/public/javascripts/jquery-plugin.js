@@ -213,7 +213,7 @@
 (function($){
 	$(function(){
 		$('.window .close').click(function(){ hide_mondal(); });
-		$('#mask').click(function() 		{ hide_mondal(); });
+		$('#mask')		   .click(function(){ hide_mondal(); });
 		
 		$(window).keydown(function(e)		{ if(e.keyCode==27) hide_mondal(); });
 		
@@ -225,7 +225,9 @@
 							
 				$f.find("input[value=]")
 					.css("background", "red")
-					.effect("pulsate", { times:2 }, 500, function(){ $(this).css("background", "white"); });
+					.effect("pulsate", { times:2 }, 500, function(){ $(this).css("background", "white"); })
+					.eq(0)
+						.focus();
 					
 				$f.attr("notified", "true");
 
@@ -246,4 +248,5 @@
 function hide_mondal() {
 	jQuery('.window').hide();
 	jQuery('#mask').fadeOut("fast");		
+	jQuery("#dialog form").removeAttr("notified");
 }

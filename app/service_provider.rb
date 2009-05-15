@@ -28,7 +28,7 @@
 # @todo: Change error reporting !
 require "drb"  
 class ServiceProvider
-  include DRb::DRbUndumped;
+  include DRb::DRbUndumped
   
   def initialize(container, service) #:nodoc:
     @container = container
@@ -267,19 +267,7 @@ class ServiceProvider
   
   # Adds a service to the container
   #  Added for the deployservice
-  def remove_domain(domain_name)
-    begin 
-      domain = @container.find(domain_name.to_sym)
-      @container.remove(domain_name.to_sym)
-    rescue => ex
-      ContainerLogger.error ex, 1            
-      ContainerLogger.error "Error removing domain #{domain_name}!", 1                        
-      raise Exception.new("Error removing domain #{domain_name}!")
-    end
-
-    true
-  end    
-      
+  def remove_domain(domain_name)   
       
   def server_version()
     return DETEGO_VERSION

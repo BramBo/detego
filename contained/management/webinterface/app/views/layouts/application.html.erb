@@ -4,7 +4,8 @@
 <title><%= h(yield(:title) || "Detego Management interface") %></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%= stylesheet_link_tag 'reset', 'application', 'jquery-ui' %>
-<%= javascript_include_tag "jquery", 'jquery-ui', 'jquery-plugin', 'application', 'search' %>
+<script src="http://jquery.com/src/jquery-latest.js"></script>
+<%= javascript_include_tag 'jquery-ui', 'jquery-plugin', 'application', 'search' %>
 <%= yield(:head) %>
 <script type="text/javascript" charset="utf-8">
 <!--
@@ -59,10 +60,9 @@ $(function() {
  <fieldset>
 	<legend>Invoke method w/ parameter</legend>
 	<form></form>
-	<br />
-	<a href='#' onclick='javascript:void(hide_mondal());'>Close</a><br />
-	<input type='button' value=' Invoke ! ' class='submit'>
  </fieldset>
+<input type='button' value=' Invoke ! ' class='submit'><br />
+<a href='#' onclick='javascript:void(hide_mondal());'>Close</a>
 </div>
 <div id="mask"></div>
 
