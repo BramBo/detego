@@ -47,7 +47,20 @@
 		  duration_modifier	: 0.5,			// Effect duration modifer (duration*modifier). close effect onClick
 		  duration 			: 1000
 		},options);
-	
+
+		$(document).keydown(function(e) { 
+			var e = (e) ? e : window.event;
+			if(e.keyCode==27) {
+				 $('.js_report')
+					.hide(options.effect, 
+				  		  {direction: options.direction}, 
+				  		  options.duration*options.duration_modifier, 
+				  		  function() {
+							$(this).remove();
+				  		  }
+					);
+				}
+		});	
 		cleaner(options);
 		suffix 	= (suffix) ? suffix.toLowerCase() : "notice";
 		self	= $(this);

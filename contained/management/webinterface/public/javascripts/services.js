@@ -86,7 +86,7 @@ function remove_service(el){
 	
 		self.show("pulsate", { times:100 }, 500);
 		method_request(location.href+"/invoke", {method: in_method}, function() {
-			window.location.href=window.location.href.replace(/(^.+?)\/[^\/]+\/[^\/]+?$/, "$1");
+			window.location.href = window.location.href.replace(/(^.+?)\/[^\/]+\/[^\/]+?$/, "$1");
 		});
 	}
 }
@@ -175,3 +175,96 @@ function set_open_accordion(event, ui) {
 		}
 	}
 }
+
+
+// Hot Keys (Meta) + G to search and so on
+
+$(function() {
+ $(window)
+	.keyup(function(){ remove_hot_keys();})	
+	.keydown(function(e) {
+		remove_hot_keys();
+		
+		var e = (e) ? e : window.event;
+		if(!e.metaKey) return;
+		show_hot_keys();
+
+		switch(e.keyCode) {
+		 case 83:
+			e.preventDefault();
+			e.stopPropagation();
+	
+			hot_key_elements.e83.func();
+		 break;
+		 case 69:
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e69.func();
+		 break;
+		 case 70:
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e70.func();
+		 break;
+		 case 66:
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e66.func();
+		 break;		
+		 case 87:
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e87.func();
+		 break;	
+		 case 75: 
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e75.func();
+		 break;	
+		 case 71: 	
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.e71.func();
+		 break;	
+		}
+ 	})
+});
+
+var hot_key_elements = {
+	e83 : { element: "#operations h3:eq(0)"		, func : function() { open_accordion(this.element); } },
+	e69 : { element: "#methods_section h3:eq(0)", func : function() { open_accordion(this.element); } },
+	e70 : { element: "#methods_section h3:eq(1)", func : function() { open_accordion(this.element); } },
+	e66 : { element: "#var_section h3:eq(0)"	, func : function() { open_accordion(this.element); } },
+	e87 : { element: "#var_section h3:eq(1)"	, func : function() { open_accordion(this.element); } },
+	e75 : { element: "#var_section h3:eq(2)"	, func : function() { open_accordion(this.element); } },
+	e71 : { element: "#search_tip"				, func : function() { $(this.element).next().find("input").focus(); } }
+};
+
+var hot_key_timer = null;
+function show_hot_keys() {
+	hot_key_timer = window.setTimeout(function() {
+		$.each(hot_key_elements, function(i, f) {
+			html = $(f.element).html();	
+			
+			if(!html.match(/tiny\_tip/i))
+				$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html);
+		});
+	}, 500);
+}
+
+function remove_hot_keys() {
+	window.clearTimeout(hot_key_timer);
+	hot_key_timer = null;
+		
+	$.each(hot_key_elements, function(i, f) {
+		$(f.element).find(".tiny_tip").remove();
+	});	
+}
+
+function open_accordion(element) { $(element).click(); }

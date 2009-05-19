@@ -1,4 +1,4 @@
-// Add corners to the navigation (jQuery U)
+// Add corners to the navigation (jQuery UI)
 $(function() {
 	$("#navigation ul ul").each(function() {
 		$(this).children("li:last").addClass("ui-corner-bottom");

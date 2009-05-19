@@ -47,62 +47,7 @@ class Service
     FileUtils.mkdir_p(@path, :mode => 0755)
     
     # 
-    @runtime.runScriptlet(%{
-      CONTAINER_PATH  = "#{CONTAINER_PATH}"
-      LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
-      $: << "#{CONTAINER_PATH}/lib/"
-      $: << LOAD_PATH
-      $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}" }
-
-      require "container_logger"
-      ServiceLogger.service="#{@domain.name}_#{@name}"
-      Object.send(:remove_const, :STDERR)
-      Object.send(:remove_const, :STDOUT)
-      $stderr = STDERR = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
-      $stdout = STDOUT = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
-      require 'drb'    
-      require 'drb/acl'      
-      
-      class ServiceManager
-        def status=(str)     
-          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
-        end
-        def status
-          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
-        end
-        def start()
-          self.status="started" 
-        end        
-
-        def self.all_parameter_methods; @@p ||= Hash.new; end
-        def all_methods; []; end
-        def self.exposed_methods(*meths)
-          if meths.class==Array
-            define_method("all_methods") { meths }
-          else
-            define_method("all_methods") { [meths] }
-          end
-        end
-        def self.has_parameters(meth, *params)
-          all_parameter_methods[meth.to_s] = params.to_a
-        end
-        
-        def self.limit_expose_to(pr = [])
-          @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
-        end
-        def limits; @@l ||= []; end
-      end
-      
-      begin                
-          require 'initialize'
-      rescue LoadError 
-        begin
-          require 'service_manager'
-        rescue LoadError
-          raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
-        end
-      end  
-    })
+    init_code_base()
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
@@ -228,6 +173,7 @@ class Service
     
     @runtime    = nil    
     @runtime    = JJRuby.newInstance()        
+    init_code_base()
     @status     = "stopped"
     @meta_data.reset
     ContainerLogger.debug "#{@full_name} shutdown"
@@ -354,5 +300,65 @@ class Service
    raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
    
    @runtime.runScriptlet(str)
+  end
+
+  private 
+  def init_code_base
+    @runtime.runScriptlet(%{
+      CONTAINER_PATH  = "#{CONTAINER_PATH}"
+      LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
+      $: << "#{CONTAINER_PATH}/lib/"
+      $: << LOAD_PATH
+      $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}" }
+
+      require "container_logger"
+      ServiceLogger.service="#{@domain.name}_#{@name}"
+      Object.send(:remove_const, :STDERR)
+      Object.send(:remove_const, :STDOUT)
+      $stderr = STDERR = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
+      $stdout = STDOUT = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
+      require 'drb'    
+      require 'drb/acl'      
+      
+      class ServiceManager
+        def status=(str)     
+          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
+        end
+        def status
+          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
+        end
+        def start()
+          self.status="started" 
+        end        
+
+        def self.all_parameter_methods; @@p ||= Hash.new; end
+        def all_methods; []; end
+        def self.exposed_methods(*meths)
+          if meths.class==Array
+            define_method("all_methods") { meths }
+          else
+            define_method("all_methods") { [meths] }
+          end
+        end
+        def self.has_parameters(meth, *params)
+          all_parameter_methods[meth.to_s] = params.to_a
+        end
+        
+        def self.limit_expose_to(pr = [])
+          @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
+        end
+        def limits; @@l ||= []; end
+      end
+      
+      begin                
+          require 'initialize'
+      rescue LoadError 
+        begin
+          require 'service_manager'
+        rescue LoadError
+          raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
+        end
+      end  
+    })
   end
 end

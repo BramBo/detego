@@ -47,9 +47,8 @@ end
 class ContainerLogger
   COLORS = {:debug => :console_def, :notify => :console_bold, :error => :console_dark_red, :warn => :console_dark_yellow}
   def self.method_missing(method_name, *args, &block)
-    str = args[0].to_s
-    lvl = args[1].to_i || 0
-    str = eval("str.#{COLORS[method_name]}")
+    str, lvl = eval("args[0].to_s.#{COLORS[method_name]}"), (args[1].to_i || 0)
+
     log_file = File.new("#{CONTAINER_PATH}/log/debug.log", "a+")
     if method_name.to_s =~ /error|warn/i
       log_file.puts("(#{method_name}): ".console_bold+" #{str} in #{calling_method(lvl)}")
@@ -68,9 +67,8 @@ class ServiceLogger
   
   COLORS = {:debug => :console_def, :notify => :console_bold,  :error => :console_dark_red, :warn => :console_dark_yellow}
   def self.method_missing(method_name, *args, &block)
-    str = args[0].to_s
-    lvl = args[1].to_i || 0
-    str = eval("str.#{COLORS[method_name]}")
+    str, lvl = eval("args[0].to_s.#{COLORS[method_name]}"), (args[1].to_i || 0)
+    
     log_file = File.new("#{CONTAINER_PATH}/log/#{@@service}.log", "a+")
     if method_name.to_s =~ /error|warn/i
       log_file.puts("(#{method_name}): ".console_bold+" #{str} in #{calling_method(lvl)}")
