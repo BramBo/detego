@@ -26,7 +26,8 @@
 # The provider is available in every service once it got started by the server
 # $provider contains the DRB connection
 # @todo: Change error reporting !
-require "drb"  
+require "drb"
+
 class ServiceProvider
   include DRb::DRbUndumped
   
@@ -62,7 +63,7 @@ class ServiceProvider
           raise Exception.new(ex)
         ensure
           @domain = @service = nil
-        __END__
+        end
         
       end
   

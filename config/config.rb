@@ -26,7 +26,7 @@ PATH            = "."
 $: << "#{PATH}/app"
 $: << "#{PATH}/lib"
 SERVICES_PATH     = "#{PATH}/contained"
-DETEGO_VERSION    = "0.3.8"
+DETEGO_VERSION    = "0.3.10"
 LOGGING_LEVEL     = 0
 CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
@@ -38,3 +38,4 @@ $port_start   = 49800
 # Require the need helpers/libraries
 require "container_logger"
 require "application_helper"
+require "gem_dependency"

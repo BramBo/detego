@@ -84,11 +84,14 @@ class Container
   end
   
   private
-  
-   def initiate_installed_services()
+  # Initiate and start the services already present in the contained folder.
+  # Scans the contained folder, tries to figure an order of startup and invokes start() on the set
+  #
+  # Note: The services are not tagged installed/not installed and so services placed while the server was running and need a installation won't Work!  
+    def initiate_installed_services
      services = {}
      # find exisiting domains and services
-     puts "Initializig services"     
+     puts "Initializing services"     
      Dir.new(@path).each do |domain|
        next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
        add_domain(domain.to_sym)
@@ -123,18 +126,18 @@ class Container
            puts " x | #{s.full_name} failed".console_red
            puts "   |e> #{e}".console_dark_red
           end 
-
      end
      
      if services[:circular_reference].size > 0
-       puts ("="*50).console_red
-       puts ("|      ").console_red  + "Warning circular_reference detected !".console_red().console_blink() + " "*5 + "|".console_red()
+       puts ("="*75).console_red
+       puts ("|          ").console_red  + "Warning Depedency missing / circular_reference found !".console_red().console_blink() + " "*9 + "|".console_red()
        
        services[:circular_reference].each do|k,v|
-         puts "#{("|").console_red()} #{k} #{" "*(45-k.size())} #{("|").console_red()}"
-         puts "#{("|").console_red()} - #{v} #{" "*(30-v.size())} #{("|").console_red()}"
+         puts "#{("|").console_red()} #{k} #{" "*(70-k.size())} #{("|").console_red()}"
+         value = v.join(" | ")
+         puts "#{("|").console_red()} - #{value} #{" "*(68-(value.size()))} #{("|").console_red()}"
        end
-       puts ("="*50).console_red
+       puts ("="*75).console_red
      end
      
      puts ""

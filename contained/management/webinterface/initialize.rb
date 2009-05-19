@@ -20,22 +20,24 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
-$interface_version = "0.5"
+$interface_version = "0.5.1"
 
 class ServiceManager
-  attr_accessor :port  
+  attr_accessor :port
+
+  def initialize()
+     @port        = (instance_variable_get("@port") || 0).to_i < 1024 ? 5050 : instance_variable_get("@port")    
+  end
 
   def start()
     # this doesnt take an int as a port nr ?!
-    ARGV << "-p"; ARGV << (@port = ((@port.to_i||5050)>1024) ? @port : 5050).to_s
+    ARGV << "-p"; ARGV << @port
 
     # Mongrel needs to be started in the project root dir
     Dir.chdir(LOAD_PATH) if CONTAINER_PATH == Dir.getwd
 
-    require 'config/boot'        
-    Thread.new do
-      self.status= "Running.."
-    end  
+    self.status= "Running.."
+    require 'config/boot'
     require 'commands/server'
   end
 end

@@ -45,6 +45,8 @@ class Service
         
     # Create the domain directory if not present
     FileUtils.mkdir_p(@path, :mode => 0755)
+    
+    # 
     @runtime.runScriptlet(%{
       CONTAINER_PATH  = "#{CONTAINER_PATH}"
       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
@@ -116,7 +118,7 @@ class Service
   #  * Sets up the logging(Making ServiceLogger available) STDERR+STDOUT get mapped on ROOT/log/domain_service.log
   #  * Creates a ServiceManager class making methods available to set(&get) meta-data
   #  * Gets the initialize script ready if it isnt avaialble it will try to load service_manager.rb
-  #  * Finally setsup the bidirectional communication for this service.
+  #  * Finally sets up the bidirectional communication for this service.
   #
   # After this 'code injection' the drb comm. channel gets made available in this class.
   # And the start() method is invoke on the newly setup runtime
