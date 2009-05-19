@@ -495,7 +495,7 @@ div.search_box input {
 	position 			: absolute;	
 	left 				: -100px;
 	top 				: 0;
-	z-index 			: 2009;
+	z-index 			: 2001;
 	width 				: 100px;
 	border 				: 1px solid #000;
 	padding 			: 2px;

@@ -223,26 +223,26 @@
 	}
 })(jQuery);
 
-(function($){
+(function($){  // Mondal
 	$(function(){
 		$('.window .close').click(function(){ hide_mondal(); });
 		$('#mask')		   .click(function(){ hide_mondal(); });
 		
 		$(window).keydown(function(e)		{ if(e.keyCode==27) hide_mondal(); });
 		
-		$("#dialog .submit").click(function(e)	{ dialog_form_submit(this); });
-		$("#dialog form").submit(function(e)	{ dialog_form_submit($("#dialog .submit")); return false; });		
+		$("#dialog .submit").click(function(e)	{ dialog_form_submit(); });
+		$("#dialog form").submit(function(e)	{ dialog_form_submit(); return false; });		
 	});
 	
-	function dialog_form_submit(btn) {
+	function dialog_form_submit() {
 		$f 		= $("#dialog form");
 
 		// when the user is not notified about empty fields, do so
 		if($f.attr("notified")==null && $f.find("input[value=]").size() > 0) {
 						
 			$f.find("input[value=]")
-				.css("background", "red")
-				.effect("pulsate", { times:2 }, 500, function(){ $(btn).css("background", "white"); })
+				.css("background-color", "red")
+				.effect("pulsate", { times:2 }, 500, function(){ $(this).css("background-color", "white"); })
 				.eq(0)
 					.focus();
 				
