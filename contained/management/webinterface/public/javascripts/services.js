@@ -177,12 +177,13 @@ function set_open_accordion(event, ui) {
 }
 
 
-// Hot Keys (Meta) + G to search and so on
-
-$(function() {
- $(window)
-	.keyup(function(){ remove_hot_keys();})	
-	.keydown(function(e) {
+// Hot Keys (Meta) + G to search See var hot_key_elements for bindings (line: 239)
+(function($) {
+ $(function() {
+  $(window)
+	.keyup(function(){ remove_hot_keys();})
+	.blur(function(){  remove_hot_keys();})
+	.keydown(function(e) {		// Nasty switch! Just here not to use eval()...
 		remove_hot_keys();
 		
 		var e = (e) ? e : window.event;
@@ -234,20 +235,21 @@ $(function() {
 		 break;	
 		}
  	})
-});
+ });
 
-var hot_key_elements = {
+ var hot_key_elements = {
 	e83 : { element: "#operations h3:eq(0)"		, func : function() { open_accordion(this.element); } },
 	e69 : { element: "#methods_section h3:eq(0)", func : function() { open_accordion(this.element); } },
 	e70 : { element: "#methods_section h3:eq(1)", func : function() { open_accordion(this.element); } },
 	e66 : { element: "#var_section h3:eq(0)"	, func : function() { open_accordion(this.element); } },
 	e87 : { element: "#var_section h3:eq(1)"	, func : function() { open_accordion(this.element); } },
 	e75 : { element: "#var_section h3:eq(2)"	, func : function() { open_accordion(this.element); } },
-	e71 : { element: "#search_tip"				, func : function() { $(this.element).next().find("input").focus(); } }
-};
+	e71 : { element: "#search_tip"				, func : function() { $(".search_box:eq(0)").find("input").focus(); } }
+ };
 
-var hot_key_timer = null;
-function show_hot_keys() {
+ // Display small tooltips to show the keys and the related elements in place
+ var hot_key_timer = null;
+ function show_hot_keys() {
 	hot_key_timer = window.setTimeout(function() {
 		$.each(hot_key_elements, function(i, f) {
 			html = $(f.element).html();	
@@ -256,15 +258,16 @@ function show_hot_keys() {
 				$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html);
 		});
 	}, 500);
-}
+ }
 
-function remove_hot_keys() {
+ function remove_hot_keys() {
 	window.clearTimeout(hot_key_timer);
 	hot_key_timer = null;
 		
 	$.each(hot_key_elements, function(i, f) {
 		$(f.element).find(".tiny_tip").remove();
 	});	
-}
+ }
 
-function open_accordion(element) { $(element).click(); }
+ function open_accordion(element) { $(element).click(); }
+})(jQuery);

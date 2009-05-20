@@ -93,7 +93,7 @@ Content-Length: #{response.content.size()+1}
      @format 
    end
    
-   # better format, because of the lack of data structure in meta-data
+   # better format, because of the lack of data structure in meta-data this isnt working as intended
    def service_methods(list)
      @format << {:list_open => "meta_data"}
 
@@ -111,7 +111,7 @@ Content-Length: #{response.content.size()+1}
             @format << {:list_open => "#{m_k}"}          
           
             m_v.each do |a,b|
-                options = {:parameters => "#{b}"} if b
+                options = {:parameters => "#{b.join(", ")}"} if b
                 @format << {:key => "#{a}", :options => options}
             end
             @format << {:list_close => "#{m_k}"}

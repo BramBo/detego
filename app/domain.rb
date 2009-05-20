@@ -27,6 +27,7 @@ require "service"
 require "service_provider"
 
 class Domain
+  include Observable  
   attr_accessor :name
   
   # Initialize a new domain

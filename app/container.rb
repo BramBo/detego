@@ -21,8 +21,11 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "domain"
+require "observer"
 
 class Container
+  include Observable
+  
   def initialize
     @domains    = Hash.new
     @path       = SERVICES_PATH
@@ -107,6 +110,7 @@ class Container
           rescue Exception => e
             puts " x | #{domain}::#{service} failed on init".console_red
             puts "   |e> #{e}".console_dark_red
+            ContainerLogger.error $!, 2
            end
        end
      end

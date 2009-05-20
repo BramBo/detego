@@ -23,9 +23,11 @@
 require "service_meta_data"
 require 'drb'    
 require 'drb/acl'
+require "observer"
 
 class Service
-  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain
+  include Observable
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
@@ -91,8 +93,9 @@ class Service
       end      
     })
     
+    changed
+    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED, {:service => @name})
     ContainerLogger.debug "#{@full_name} booted succesfully!".console_green
-
     return self
   end
 
@@ -111,12 +114,18 @@ class Service
       begin
         if !args.nil? && !args.first.nil?
           if block
+            changed
+            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED)
+                        
             return @runtime.runScriptlet(%{
               arg = Marshal.load('#{arg}')
               $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
             })          
           else 
             query = args.map{|e| e = %{"#{e}"} }.join(", ")
+            changed
+            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED)
+            
             return @runtime.runScriptlet(%{
               eval(%[$service_manager.#{method_name}(#{query})])
             })
@@ -185,55 +194,7 @@ class Service
   def install()
     # this must pass to be validates as a serice!
     begin 
-     @runtime.runScriptlet(%{
-       Object.send(:remove_const, :CONTAINER_PATH) if Object.const_defined? :CONTAINER_PATH
-       Object.send(:remove_const, :LOAD_PATH)      if Object.const_defined? :LOAD_PATH 
-       CONTAINER_PATH  = "#{CONTAINER_PATH}"
-       LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
-       $: << "#{CONTAINER_PATH}/lib/"
-       $: << LOAD_PATH
-       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}" }
-
-       class ServiceManager
-         def status=(str)     
-           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
-         end
-         def status
-           $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
-         end
-         def start()
-           self.status="started" 
-         end        
-
-         def self.all_parameter_methods; @@p ||= Hash.new; end
-         def all_methods; []; end
-         def self.exposed_methods(*meths)
-           if meths.class==Array
-             define_method("all_methods") { meths }
-           else
-             define_method("all_methods") { [meths] }
-           end
-         end
-         def self.has_parameters(meth, *params)
-           all_parameter_methods[meth.to_s] = params.to_a
-         end
-
-         def self.limit_expose_to(pr = [])
-           @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
-         end
-         def limits; @@l ||= []; end
-       end
-       
-        begin                
-            require 'initialize'
-        rescue LoadError 
-          begin
-            require 'service_manager'
-          rescue LoadError
-            raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
-          end
-        end
-      })
+      init_code_base()
       ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"
       @runtime    = nil    
       @runtime    = JJRuby.newInstance()
@@ -330,6 +291,7 @@ class Service
         def start()
           self.status="started" 
         end        
+        def update(group, event, params={}); end
 
         def self.all_parameter_methods; @@p ||= Hash.new; end
         def all_methods; []; end

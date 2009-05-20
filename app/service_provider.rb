@@ -27,13 +27,22 @@
 # $provider contains the DRB connection
 # @todo: Change error reporting !
 require "drb"
+require "service_provider_notifier"
 
 class ServiceProvider
-  include DRb::DRbUndumped
+  include ServiceProviderNotifier
   
   def initialize(container, service) #:nodoc:
-    @container = container
-    @providee = service
+    @container  = container
+    @providee   = service
+    
+    @container.add_observer(self)
+    @container.find(:all).each do |k, d|
+      d.add_observer(self)
+      d.find(:all).each do |k2, s|
+        s.add_observer(self)
+      end
+    end
   end
 
   # Used for method_missing so that the provider may invoke the "missing method"
@@ -275,7 +284,6 @@ class ServiceProvider
 
     true
   end    
-      
       
   def server_version()
     return DETEGO_VERSION
