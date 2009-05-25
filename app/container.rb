@@ -53,6 +53,7 @@ class Container
       @domains[k] = v
     end
       
+    notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_ADDED, {:domain => name})
     @domains[name]
   end
   
@@ -65,6 +66,8 @@ class Container
     else
       @domains[name].remove(:all)
       @domains.delete(name)
+      
+      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_REMOVED, {:domain => name})
     end
     
     ContainerLogger.warn "Deleted domain #{name} (#{name.class})"

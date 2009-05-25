@@ -36,6 +36,9 @@ class ServiceManager
     @invisible  = "Yarrr..."
     @write_only = "For your eyes only"
     @read_only  = "Can't be overwritten"
+    
+    # Pretty stupid but; Subscribe to self
+    $provider.subscribe($provider.const_get(:SERVICE), :all, {:object => "core::example"})
   end
 
   # Example function
@@ -51,7 +54,8 @@ class ServiceManager
   
   #.....
   def get_status
-    status="started statussing"
+    puts "status"    
+    self.status="started statussing"
     return "#{$service[:full_name]} status: #{status}"
   end
   
@@ -84,5 +88,13 @@ class ServiceManager
   has_parameters(:concat, "conc_a", "conc_b", "conc_c", "conc_d", "conc_e")
   def concat(a,b,c,d,e)
     "#{e}_#{d}_#{c}_#{b}_#{a}"
+  end
+  
+  def update(group, event, params)
+    ServiceLogger.debug "Updating !:: #{group} #{event}".console_blue
+    params.each do |k,v|
+      ServiceLogger.debug  "[ #{k} |=> #{v} ]".console_purple
+    end
+    @read_only = "#{group}, #{event}, #{params}"
   end
 end

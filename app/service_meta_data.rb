@@ -81,7 +81,7 @@ class ServiceMetaData
       m = {:all => [], :exposed => []}
       $service_manager.all_methods.each {|e| m[:exposed] << [e.to_s, $service_manager.class.all_parameter_methods[e.to_s] || [] ]}
       
-      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop", "status=", "status", "limits", "limit_expose_to"]
+      m[:all] = ($service_manager.public_methods-Object.public_instance_methods) - $service_manager.all_methods.map{|e| e.to_s } - ["start", "all_methods", "stop", "status=", "status", "limits", "limit_expose_to", "update"]
       
       Marshal.dump(m)
     }))

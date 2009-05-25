@@ -83,6 +83,9 @@ class Domain
       service.shutdown() if service.started?
       service.uninstall
       @services.delete(s)
+      
+      changed
+      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::SERVICE_REMOVED, {:domain => @name, :service => service.name})
     end
     
     true
@@ -99,7 +102,9 @@ class Domain
          allow localhost 
          allow 127.0.0.1
         ]))
-      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, service.name)
+      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, service)
+      changed
+      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::SERVICE_ADDED, {:domain => @name, :service => service.name})      
       return @services[service.name]
     end
 end

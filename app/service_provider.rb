@@ -44,7 +44,7 @@ class ServiceProvider
       end
     end
   end
-
+  
   # Used for method_missing so that the provider may invoke the "missing method"
   # on the service class. 
   # 

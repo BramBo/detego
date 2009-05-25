@@ -78,9 +78,9 @@ class Service
       DRb.install_acl(ACL.new( %w[deny all
         allow localhost 
         allow 127.0.0.1] ))
+      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
+      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."  
       @serv = DRb.start_service "druby://127.0.0.1:#{@port_out}", ($service_manager=ServiceManager.new)
-      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')      
-      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."
     })
     
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
@@ -94,14 +94,14 @@ class Service
     })
     
     changed
-    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED, {:service => @name})
+    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED, {:domain => @domain.name, :service => @name})
     ContainerLogger.debug "#{@full_name} booted succesfully!".console_green
     return self
   end
 
-  # Invoke an certain method inside the service codebase
+  # Invoke a certain method inside the service codebase
   #  
-  # @todo: include blocks for invocation
+  # FIXME make it possible to use blocks with invocations
   def invoke(method_name, *args, &block)
     raise Exception.new("Service #{@name} not started!") if @status =~ /stopped/i 
     arg   = Marshal.dump(args)  
@@ -115,7 +115,7 @@ class Service
         if !args.nil? && !args.first.nil?
           if block
             changed
-            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED)
+            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
                         
             return @runtime.runScriptlet(%{
               arg = Marshal.load('#{arg}')
@@ -124,14 +124,17 @@ class Service
           else 
             query = args.map{|e| e = %{"#{e}"} }.join(", ")
             changed
-            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED)
+            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query})
             
             return @runtime.runScriptlet(%{
               eval(%[$service_manager.#{method_name}(#{query})])
             })
           end
         else
-          @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
+          changed
+          notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})          
+          
+          return @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
         end
       rescue Exception => e
         return nil
@@ -179,6 +182,8 @@ class Service
     rescue => e
       ContainerLogger.warn "#{@full_name} error shutting down: #{e}"
     end
+    changed
+    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STOPPED, {:domain => @domain.name, :service => @name})
     
     @runtime    = nil    
     @runtime    = JJRuby.newInstance()        
@@ -205,6 +210,7 @@ class Service
            require 'install'
          rescue LoadError => e;end       
       })
+      
             
       true
     rescue Exception => e
