@@ -179,18 +179,25 @@ function set_open_accordion(event, ui) {
 }
 
 
-// Hot Keys (Meta) + G to search See var hot_key_elements for bindings (line: 239)
+// Hot Keys (Meta) + G to search See var hot_key_elements for bindings (line: ~264)
 var acc_opened = null;
 $(function(){
 	$("#methods_section h3, #operations h3, #var_section h3").click(function() {
-		if(acc_opened == "#"+this.parentNode.id + " h3")	{ acc_opened = null; }
-		else 												{ acc_opened = "#"+this.parentNode.id + " h3"; }
+		var clicked	= this; 
+		var ind 	= 0;
+		$(this.parentNode).find("h3").each(function(i){
+			if(this==clicked) ind = i;
+		});
+		
+		if(acc_opened == "#"+this.parentNode.id + " h3:eq("+ind+")")	{ acc_opened = null; }
+		else 														 	{ acc_opened = "#"+this.parentNode.id + " h3:eq("+ind+")"; }
 	});
 });
 
+// Bind document key listener, shot HotKeys, remove Hoykeys and the hotkeys it self
 (function($) {
  $(function() {
-  $(window)
+  $(document)
 	.keyup(function(){ remove_hot_keys();})
 	.blur(function(){  remove_hot_keys();})
 	.keydown(function(e) {		// Nasty switch! Just here not to use eval()...
@@ -262,7 +269,7 @@ $(function(){
 	e87 	: { element: "#var_section h3:eq(1)"	, func : function() { open_accordion(this.element); } },
 	e75 	: { element: "#var_section h3:eq(2)"	, func : function() { open_accordion(this.element); } },
 	e71 	: { element: "#search_tip"				, func : function() { $(".search_box:eq(0)").find("input").focus(); } },
-	number  : { func : function(nr) { execute_func(nr); } }	
+	number  : { element: null						, func : function(nr) { execute_func(nr); } }	
  };
 
 function execute_func(nr) {
