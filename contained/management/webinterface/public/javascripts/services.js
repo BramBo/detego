@@ -29,7 +29,13 @@ function to_input() {
 	value = $(this).html();
 
 	if(value =="-----") value = ""; 
-	$(this).html("<input type='text' value='"+value+"' \>");
+	$(this)
+		.html("<input type='text' value='"+value+"' \>")
+		.find("input:first")
+		 .keydown(function(e) { 
+			if(e.keyCode==13) { $(this.parentNode).next().trigger("click"); } 
+			else if(e.keyCode==27) {$(this).trigger("blur"); }
+		});
 	
 	$(group)
 		.unbind("click", to_input)
@@ -272,6 +278,7 @@ $(function(){
 	number  : { element: null						, func : function(nr) { execute_func(nr); } }	
  };
 
+ // When a number is entered (Meta+[0..9]) execute the proper action related to this element i.e. invoke a getter
 function execute_func(nr) {
 	$(acc_opened)
 	 .next()
@@ -285,10 +292,12 @@ function execute_func(nr) {
  function show_hot_keys() {
 	hot_key_timer = window.setTimeout(function() {
 		$.each(hot_key_elements, function(i, f) {
-			html = $(f.element).html();	
+			if(f.element != null) {
+				html = $(f.element).html();	
 			
-			if(!html.match(/tiny\_tip/i))
-			 {	$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html); }
+				if(!html.match(/tiny\_tip/i))
+			 	{	$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html); }
+			}
 		});
 	}, 500);
  }

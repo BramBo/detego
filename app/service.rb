@@ -110,7 +110,7 @@ class Service
     if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green  
 
-      # FIXME should be able to be done otherwise
+      # FIXME Nasty! should be able to be done otherwise
       begin
         if !args.nil? && !args.first.nil?
           if block
@@ -140,7 +140,7 @@ class Service
         return nil
       end
     else
-      ContainerLogger.warn "Invoking #{method_name} #{@full_name} but is a no(n/t) (exposed) method"
+      ContainerLogger.warn "Invoking #{method_name} #{@full_name} but is not a(n) (exposed) method"
       raise Exception.new("#{method_name} not available on #{@domain.name}::#{@name}")
     end    
   end
@@ -197,7 +197,7 @@ class Service
   # install
   # 
   def install()
-    # this must pass to be validates as a serice!
+    # this must pass to be validated as a service!
     begin 
       init_code_base()
       ContainerLogger.debug "#{@domain.name}::#{@name} installed succesfully"

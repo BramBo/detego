@@ -71,7 +71,7 @@ end
 task :lines do
   lines = 0
   files = 0
-  %w{. app config lib contained/core/deployer/app contained/management/webinterface/app/controllers contained/management/webinterface/app/models}.each do |dir|
+  %w{. app config lib contained/proxies/drb/app contained/proxies/rest/app contained/core/deployer/app contained/core/history/app contained/management/webinterface/app/controllers contained/management/webinterface/app/models}.each do |dir|
     Dir.entries(dir).each do |entry|
       next unless entry =~ /\.rb$/i
       files += 1

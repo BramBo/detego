@@ -45,20 +45,28 @@ module ServiceProviderNotifier
     true
   end
   
-
+  # add_observer-ish method...
   def subscribe(group, event = :all, filter = :none)
     @observers ||= []
     @observers << [group, event, filter]
   end
 
+  # remove_observer-ish method...
   def unsubscribe(group, event = :all)
     @observers.reject{|v| v[0..1] == [group, event]}
   end
   
+  # Just a forward method to enable: $provider.const_get(:SERVICE)
   def const_get(const)
     self.class.const_get(const)
   end
   
+  # Filter certain events, depending on the sending obj/service
+  #  The filter is defined in a service implemention/code-base (through subscribe)
+  #  the filter may contain anything that is available with the parmas passed by the events, :domain/:service/:full_name
+  #  even methods defined on the sender(obj) may be set as filter, 
+  #     f.e. a service sent an invoked event, the filter may contain :full_name
+  #     because #<Service: xxx>.full_name is a defined method !
   def filter(set_filter, sender, params)
     results = []
     (set_filter.class==Hash ? set_filter : {}).each do |key, val|

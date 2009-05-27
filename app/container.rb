@@ -135,6 +135,7 @@ class Container
           end 
      end
      
+     # errors ?
      if services[:circular_reference].size > 0
        puts ("="*75).console_red
        puts ("|          ").console_red  + "Warning Depedency missing / circular_reference found !".console_red().console_blink() + " "*9 + "|".console_red()
