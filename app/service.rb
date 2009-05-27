@@ -68,7 +68,7 @@ class Service
   #  * Finally sets up the bidirectional communication for this service.
   #
   # After this 'code injection' the drb comm. channel gets made available in this class.
-  # And the start() method is invoke on the newly setup runtime
+  # And the start() method is invoke on the newly set up runtime
   #
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
@@ -255,7 +255,6 @@ class Service
     true
   end
 
-
   # Just here for code prettyness
   def started?
     @status =~ /!stopped/
@@ -268,6 +267,9 @@ class Service
    
    @runtime.runScriptlet(str)
   end
+
+  def to_s;    @name; end
+  def inspect; @name; end  
 
   private 
   def init_code_base

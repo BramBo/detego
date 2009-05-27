@@ -144,7 +144,9 @@ function w_parameters(element, params) {
 			.fadeIn(2000)
 			.find("form")
 				.empty()
-				.html(dialog_html_string);
+				.html(dialog_html_string)
+					.find("input[type=text]:first")
+					 .focus();
 	} 
 	return false;
 }
@@ -178,6 +180,14 @@ function set_open_accordion(event, ui) {
 
 
 // Hot Keys (Meta) + G to search See var hot_key_elements for bindings (line: 239)
+var acc_opened = null;
+$(function(){
+	$("#methods_section h3, #operations h3, #var_section h3").click(function() {
+		if(acc_opened == "#"+this.parentNode.id + " h3")	{ acc_opened = null; }
+		else 												{ acc_opened = "#"+this.parentNode.id + " h3"; }
+	});
+});
+
 (function($) {
  $(function() {
   $(window)
@@ -232,20 +242,36 @@ function set_open_accordion(event, ui) {
 			e.stopPropagation();
 			
 			hot_key_elements.e71.func();
+		 break;
+		 case 48: case 49: case 50: case 51: case 52: 
+		 case 53: case 54: case 55: case 56: case 57:
+			e.preventDefault();	
+			e.stopPropagation();
+			
+			hot_key_elements.number.func(e.keyCode);
 		 break;	
 		}
  	})
  });
 
  var hot_key_elements = {
-	e83 : { element: "#operations h3:eq(0)"		, func : function() { open_accordion(this.element); } },
-	e69 : { element: "#methods_section h3:eq(0)", func : function() { open_accordion(this.element); } },
-	e70 : { element: "#methods_section h3:eq(1)", func : function() { open_accordion(this.element); } },
-	e66 : { element: "#var_section h3:eq(0)"	, func : function() { open_accordion(this.element); } },
-	e87 : { element: "#var_section h3:eq(1)"	, func : function() { open_accordion(this.element); } },
-	e75 : { element: "#var_section h3:eq(2)"	, func : function() { open_accordion(this.element); } },
-	e71 : { element: "#search_tip"				, func : function() { $(".search_box:eq(0)").find("input").focus(); } }
+	e83 	: { element: "#operations h3:eq(0)"		, func : function() { open_accordion(this.element); } },
+	e69 	: { element: "#methods_section h3:eq(0)", func : function() { open_accordion(this.element); } },
+	e70 	: { element: "#methods_section h3:eq(1)", func : function() { open_accordion(this.element); } },
+	e66 	: { element: "#var_section h3:eq(0)"	, func : function() { open_accordion(this.element); } },
+	e87 	: { element: "#var_section h3:eq(1)"	, func : function() { open_accordion(this.element); } },
+	e75 	: { element: "#var_section h3:eq(2)"	, func : function() { open_accordion(this.element); } },
+	e71 	: { element: "#search_tip"				, func : function() { $(".search_box:eq(0)").find("input").focus(); } },
+	number  : { func : function(nr) { execute_func(nr); } }	
  };
+
+function execute_func(nr) {
+	$(acc_opened)
+	 .next()
+	  .children("li:eq("+(nr-49)+")")
+		.find(".runnable_method, .variable_value span")
+			.trigger("click");
+}
 
  // Display small tooltips to show the keys and the related elements in place
  var hot_key_timer = null;
@@ -255,7 +281,7 @@ function set_open_accordion(event, ui) {
 			html = $(f.element).html();	
 			
 			if(!html.match(/tiny\_tip/i))
-				$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html);
+			 {	$(f.element).html("<div class='tiny_tip'> Hotkey: "+String.fromCharCode(i.replace(/\w/i, ""))+"</div>" + html); }
 		});
 	}, 500);
  }
@@ -269,5 +295,5 @@ function set_open_accordion(event, ui) {
 	});	
  }
 
- function open_accordion(element) { $(element).click(); }
+ function open_accordion(element) { $(element).trigger("click"); }
 })(jQuery);

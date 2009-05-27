@@ -30,24 +30,22 @@ module ServiceProviderNotifier
   def update(sender, group, event, params)
     (@observers ||= []).each do |g, e, f|
       next unless g == group && (e==event || e == :all)
+
       begin
-        
         if f.nil? || f == :none || filter(f, sender, params)        
           @providee.service_manager.update(group, event, params)          
                     
         else
-          ContainerLogger.debug "FILTERED: Address:#{@providee} Sender:#{sender} -=>> #{group}  #{event}  #{params}"  
+          ContainerLogger.debug "FILTERED: Address:#{@providee} Sender:#{sender} -=>> [#{group}, #{event}]"  
         end
       rescue
         ContainerLogger.debug $!, 2
       end
-    end
-    
+    end    
     true
   end
   
-  # Current filter capabilities
-  #  filter {:object => "domain_name[::service_name]"}   [] == optional
+
   def subscribe(group, event = :all, filter = :none)
     @observers ||= []
     @observers << [group, event, filter]
@@ -61,11 +59,17 @@ module ServiceProviderNotifier
     self.class.const_get(const)
   end
   
-  
-  def filter(set_filter, sender, params)    
-    (set_filter.class==Hash ? set_filter : {}).each do ||
-      
-      
+  def filter(set_filter, sender, params)
+    results = []
+    (set_filter.class==Hash ? set_filter : {}).each do |key, val|
+      if sender.respond_to?(key.to_s) && (sender.__send__(key.to_s).to_s == val.to_s)
+        results << key
+      elsif (params[key.to_s] || params[key.to_sym] || "") == val.to_s
+        results << key        
+      end
     end
+    
+    return true if results.size >= set_filter.keys.size
+    false  
   end
 end

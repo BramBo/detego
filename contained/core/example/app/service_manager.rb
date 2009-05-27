@@ -38,7 +38,7 @@ class ServiceManager
     @read_only  = "Can't be overwritten"
     
     # Pretty stupid but; Subscribe to self
-    $provider.subscribe($provider.const_get(:SERVICE), :all, {:object => "core::example"})
+    $provider.subscribe($provider.const_get(:SERVICE), :all, {:full_name => "core::example"})
   end
 
   # Example function
