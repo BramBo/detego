@@ -195,8 +195,10 @@ $(function(){
 			if(this==clicked) ind = i;
 		});
 		
-		if(acc_opened == "#"+this.parentNode.id + " h3:eq("+ind+")")	{ acc_opened = null; }
-		else 														 	{ acc_opened = "#"+this.parentNode.id + " h3:eq("+ind+")"; }
+		if(acc_opened == "#"+this.parentNode.id + " h3:eq("+ind+")")
+			{ acc_opened = null; }
+		else 														 
+			{ acc_opened = "#"+this.parentNode.id + " h3:eq("+ind+")"; }
 	});
 });
 
