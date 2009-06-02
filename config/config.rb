@@ -22,19 +22,21 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 # Set application path and load paths
-PATH            = "."
-$: << "#{PATH}/app"
-$: << "#{PATH}/lib"
-SERVICES_PATH     = "#{PATH}/contained"
+CONTAINER_PATH    = "#{Dir.getwd}"
+$: << "#{CONTAINER_PATH}/app"
+$: << "#{CONTAINER_PATH}/lib"
+SERVICES_PATH     = "#{CONTAINER_PATH}/contained"
 DETEGO_VERSION    = "0.4"
 LOGGING_LEVEL     = 0
-CONTAINER_PATH    = "#{Dir.getwd}"
 ENV["DETEGO_ENV"] = "development"
 
+# First startup
+ require 'fileutils'
+ FileUtils.mkdir_p("#{CONTAINER_PATH}/lib", :mode => 0755)
 
 # DRB Port management
-$port_start   = 49800
+ $port_start   = 49800
 
-# Require the need helpers/libraries
-require "container_logger"
-require "application_helper"
+# Require the need helpers
+ require "container_logger"
+ require "application_helper"
