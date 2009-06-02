@@ -38,4 +38,3 @@ $port_start   = 49800
 # Require the need helpers/libraries
 require "container_logger"
 require "application_helper"
-require "gem_dependency"
