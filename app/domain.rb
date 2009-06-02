@@ -22,7 +22,6 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 require 'java'
 require 'java_macros'
-require 'fileutils'
 require "service"
 require "service_provider"
 
