@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>locate (Connector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File contained/management/webinterface/app/models/connector.rb, line 23</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">locate</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-comment cmt"># add some search matching:</span>
+    <span class="ruby-identifier">query</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/[\s]+/</span>     , <span class="ruby-value str">&quot;.+?&quot;</span>)        <span class="ruby-comment cmt"># instead of (a) space(s) we insert a wildcard    </span>
+    <span class="ruby-identifier">query</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/[\_\-]/</span>    , <span class="ruby-value str">&quot;[\_\s\-]*&quot;</span>)  <span class="ruby-comment cmt"># '_' '=' or ' ' it doesn't mather</span>
+    <span class="ruby-identifier">query</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/[\:]+/</span>     , <span class="ruby-value str">&quot;[\:]+&quot;</span>)      <span class="ruby-comment cmt"># : == :: || :: == : etc.</span>
+    <span class="ruby-identifier">query</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\.(?!\{})/</span> , <span class="ruby-value str">&quot;\.{1}&quot;</span>)      <span class="ruby-comment cmt"># : == :: || :: == : etc.    </span>
+    
+    <span class="ruby-identifier">results</span>  = {}
+    <span class="ruby-identifier">$provider</span>.<span class="ruby-identifier">get_domains</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">domain_name</span>                 = (<span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">downcase</span>
+      <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>]             = {}     
+      <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>][<span class="ruby-identifier">:matches</span>]   = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>][<span class="ruby-identifier">:services</span>]  = []
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">domain_name</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^.*?#{query}.*?$/i</span>
+        <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>][<span class="ruby-identifier">:matches</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">$provider</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">d</span>).<span class="ruby-identifier">get_services</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">service_name</span>          = (<span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">downcase</span>
+        <span class="ruby-identifier">full_name</span>             = <span class="ruby-node">&quot;#{domain_name}::#{service_name}&quot;</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">service_name</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^.*?#{query}.*?$/i</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">full_name</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^.*?#{query}.*?$/i</span>
+          <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>][<span class="ruby-identifier">:services</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">service_name</span>
+          <span class="ruby-identifier">results</span>[<span class="ruby-identifier">d</span>][<span class="ruby-identifier">:matches</span>]  <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>          
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># finaly clear the non matches</span>
+    <span class="ruby-identifier">results</span>.<span class="ruby-identifier">reject!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>[<span class="ruby-identifier">:matches</span>] <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>}
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">results</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>install (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 199</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>()
+    <span class="ruby-comment cmt"># this must pass to be validated as a service!</span>
+    <span class="ruby-keyword kw">begin</span> 
+      <span class="ruby-identifier">init_code_base</span>()
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;#{@domain.name}::#{@name} installed succesfully&quot;</span>
+      <span class="ruby-ivar">@runtime</span>    = <span class="ruby-keyword kw">nil</span>    
+      <span class="ruby-ivar">@runtime</span>    = <span class="ruby-constant">JJRuby</span>.<span class="ruby-identifier">newInstance</span>()
+      
+      <span class="ruby-comment cmt"># No problem if this fails</span>
+      <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{
+         begin                
+           require 'install'
+         rescue LoadError =&gt; e;end       
+      }</span>)
+      
+            
+      <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{@domain.name}::#{@name} rescued, before installing: #{e}&quot;</span>      
+      <span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Installation rolled back&quot;</span>
+      <span class="ruby-identifier">e</span>      
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{@domain.name}::#{@name} rescued, before installing: #{e}&quot;</span>            
+      <span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Installation rolled back&quot;</span>      
+      <span class="ruby-identifier">e</span>      
+    <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{@domain.name}::#{@name} rescued, before installing: #{e}&quot;</span>      
+      <span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Installation rolled back&quot;</span>      
+      <span class="ruby-identifier">e</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

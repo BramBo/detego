@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_readable_var_values (ServiceMetaData)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service_meta_data.rb, line 92</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_readable_var_values</span>
+    <span class="ruby-ivar">@readable_var_values</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-ivar">@service</span>.<span class="ruby-identifier">runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{
+      vs = {}
+      
+      $service_manager.instance_variables.each do |m|
+        r_meth = m.gsub(/\@/, &quot;&quot;).to_sym
+        vs[r_meth] = instance_eval(&quot;$service_manager.&quot;+r_meth.to_s+&quot;()&quot;) if $service_manager.respond_to?(r_meth)
+      end
+      
+      Marshal.dump(vs)
+    }</span>))
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

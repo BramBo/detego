@@ -43,7 +43,7 @@ $(function() {
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>
 	<%- end -%>
 	<%= yield %>
-	<div class='clear'></div>
+  <div class='clear'></div>
  </div>
  <div id="crumb_bottom" class='ui-helper-reset ui-corner-top ui-corner-bottom'>
 	<ul>
@@ -56,25 +56,25 @@ $(function() {
  <%= render :partial => "/layouts/links" %>
 </div>
 
-
 <div id="dialog" class="window">
- <fieldset>
-	<legend>Invoke method w/ parameter</legend>
-	<form></form>
- </fieldset>
-<input type='button' value=' Invoke ! ' class='submit'><br />
-<a href='#' onclick='javascript:void(hide_mondal());'>Close</a>
+  <fieldset>
+    <legend>Invoke method w/ parameter</legend>
+    <form></form>
+  </fieldset>
+  <input type='button' value=' Invoke ! ' class='submit'><br />
+  <a href='#' onclick='javascript:void(hide_mondal());'>Close</a>
 </div>
 <div id="mask"></div>
 
-
- <div id='footer'>
-  <p>
-	<b>Server version:</b> &nbsp;&nbsp;&nbsp;&nbsp;<%= $provider.server_version %><br />
-	<b>Interface version:</b> <%= $interface_version %><br />
-	<br />	
-	Copyright &copy; 2009 Bram Wijnands
-  </p>
- </div>
+<div id='footer'>
+  <a href="http://www.kabisa.nl/" title="Goto Kabisa ICT website">
+    <p>
+      <b>Server version:</b> &nbsp;&nbsp;&nbsp;&nbsp;<%= $provider.server_version %><br />
+      <b>Interface version:</b> <%= $interface_version %><br />
+      <br />	
+      Copyright &copy; 2009 Bram Wijnands
+    </p>
+  </a>
+</div>
 </body>
 </html>

@@ -143,14 +143,14 @@ class ServiceProvider
       end
   
       #
-      # Set a simple status string, so we can see how out service is doing
+      # Set a simple status string, so we can see how our service is doing
       def status=(str)
         begin
           service = @container.find(@domain).find(@service)
           service.status = str
         rescue => ex
-          ContainerLogger.error "Error starting service #{domain_name}::#{service_name}!".console_yellow, 1
-          raise Exception.new("Error starting service #{domain_name}::#{service_name}!")
+          ContainerLogger.error "Error starting service #{@domain}::#{@service}!".console_yellow, 1
+          raise Exception.new("Error starting service #{@domain}::#{@service}!")
         end
         "#{@service} status set: #{str}"
       end

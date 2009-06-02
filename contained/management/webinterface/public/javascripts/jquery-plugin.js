@@ -224,6 +224,7 @@
 })(jQuery);
 
 (function($){  // Mondal
+	var $f = null;
 	$(function(){
 		$('.window .close').click(function(){ hide_mondal(); });
 		$('#mask')		   .click(function(){ hide_mondal(); });
@@ -232,11 +233,12 @@
 		
 		$("#dialog .submit").click(function(e)	{ dialog_form_submit(); });
 		$("#dialog form").submit(function(e)	{ dialog_form_submit(); return false; });		
+		
+		// Should look this up in the jQuery source, does jQuery cache elements or does it traverse the DOM on every selector?
+		$f 		= $("#dialog form");
 	});
 	
 	function dialog_form_submit() {
-		$f 		= $("#dialog form");
-
 		// when the user is not notified about empty fields, do so
 		if($f.attr("notified")==null && $f.find("input[value=]").size() > 0) {
 						
@@ -244,7 +246,7 @@
 				.css("background-color", "red")
 				.effect("pulsate", { times:2 }, 500, function(){ $(this).css("background-color", "white"); })
 				.eq(0)
-					.focus();
+				 .focus();
 				
 			$f.attr("notified", "true");
 

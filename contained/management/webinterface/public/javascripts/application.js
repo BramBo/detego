@@ -5,13 +5,19 @@ $(function() {
 	});
 });
 
-// Hide the links easily, and add a target.
+// Hide the unordered link list(s), make the li's links and add a target to the A (XHTML..).
 $(function() {
 	$("#links")
 	.click(function() {
 		$(this).children("ul").toggle();
-	})	
+	})
+	.find("li")
+	 .click(function(e) { 
+		e.stopPropagation();
+		window.open($(this).find("a:first").attr("href"));
+	 })
 	.find("a")
+	 .click(function(e) { e.stopPropagation(); })
 	 .attr("target", "_blank");
 });
 

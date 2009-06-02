@@ -1,19 +1,18 @@
 <div id='navigation' class='ui-helper-reset ui-widget-content ui-corner-top ui-corner-bottom'>
 	<h3>Quick nav.</h3>
-	<ul>
-	<% Connector.domains.each_with_index do |domain, d| %>
+	<ul><% Connector.domains.each_with_index do |domain, d| %>
 	 <li class='ui-corner-all'><%= link_to("#{domain.to_s}", domain_url(domain), :title => "#{domain.to_s}")  %></li>
 		<ul>
-			<% domain.services().each_with_index do |service, s| %>
-	 			<li><%= link_to("#{service.to_s}", domain_service_url(domain, service), :title => "#{domain.to_s}::#{service.to_s}") %></li>
+		  <% domain.services().each_with_index do |service, s| %>
+				<li><%= link_to("#{service.to_s}", domain_service_url(domain, service), :title => "#{domain.to_s}::#{service.to_s}") %></li>
 				<% if s>=4 %>
-					 <li><%= link_to("More Services...", domain_service_url(domain, service), :class => "shy_nav") %></li>				
-				<% break; end %>	
+				  <li><%= link_to("More Services...", domain_service_url(domain, service), :class => "shy_nav") %></li>				
+        <% break; end %>	
 			<% end %>
 		</ul>
 		<% if d>4 %>
-			 <li><%= link_to("More domains...", domains_url, :class => "shy_nav") %></li>				
-		<% break; end %>		
-	<% end %>
+			 <li><%= link_to("More domains...", domains_url, :class => "shy_nav") %></li><%
+		break; end
+	end %>
 	</ul>	
  </div>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ServiceUnPacker)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File contained/core/deployer/app/service_unpacker.rb, line 34</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">domain</span>, <span class="ruby-identifier">service</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">begin</span> 
+      <span class="ruby-ivar">@filename</span> = (<span class="ruby-identifier">service</span>) <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{path}/#{domain}/#{service}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{path}/#{domain}&quot;</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;un#{@filename.gsub(/^.+?\.([a-z]+)$/i, &quot;\\1&quot;)}&quot;</span>)
+        <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;rm -f #{@filename}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-identifier">e</span>, <span class="ruby-value">1</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-node">&quot;Unpacked #{@filename.gsub(/^.+?\.([a-z]+)$/i, &quot;\\1&quot;).to_s} succesfully for #{domain.to_s}&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

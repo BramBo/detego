@@ -1,6 +1,7 @@
 var group 		= "span.variable_value span, span.variable_value span input";
 var accordions	= [["#methods_section", -1], ["#var_section", -1], ["#operations", -1]]
-// Function to bind all the needed handlers, and effects.
+
+// function to bind all the needed handlers, and effects for the service page
 function kickoff_services() {
 	$("span.variable_value span").click(to_input);
 	
@@ -12,12 +13,9 @@ function kickoff_services() {
 
 	$(".runnable_method").each(function() { 
 		if($(this).attr("click")) {
-			$(this).click(function() {
-				eval($(this).attr("click"));
-			});
-		} else {
-			$(this).click(invoke_handler);
-		}
+			$(this).click(function() { eval($(this).attr("click")); });
+			
+		} else { $(this).click(invoke_handler); }
 	});
 	
 	$("img.var_control").click(invoke_method_w_parameters);		
@@ -126,6 +124,7 @@ function update_status() {
 function update_details() {
 	$.get(window.location.href.replace(/\#.*?$/i, "")+"/update_details", function(data) {
 		$("#service_details").html(data);
+		bind_hotkey_handlers();		
 	});
 }
 
@@ -157,7 +156,7 @@ function w_parameters(element, params) {
 	return false;
 }
 
-// When an accordion header gets clicked set the array to the current active one, Really should be easily fetchable through 'option', 'active' !
+// When an accordion header gets clicked set the array to the current active one, Really should be easily fetchable through 'option', 'active' in jQueryUI !
 function set_open_accordion(event, ui) {
 	i=0;
 
@@ -187,7 +186,7 @@ function set_open_accordion(event, ui) {
 
 // Hot Keys (Meta) + G to search See var hot_key_elements for bindings (line: ~264)
 var acc_opened = null;
-$(function(){
+function bind_hotkey_handlers() {	
 	$("#methods_section h3, #operations h3, #var_section h3").click(function() {
 		var clicked	= this; 
 		var ind 	= 0;
@@ -200,17 +199,19 @@ $(function(){
 		else 														 
 			{ acc_opened = "#"+this.parentNode.id + " h3:eq("+ind+")"; }
 	});
-});
+}
 
 // Bind document key listener, shot HotKeys, remove Hoykeys and the hotkeys it self
 (function($) {
  $(function() {
+  bind_hotkey_handlers();
+
   $(document)
 	.keyup(function(){ remove_hot_keys();})
 	.blur(function(){  remove_hot_keys();})
 	.keydown(function(e) {		// Nasty switch! Just here not to use eval()...
 		remove_hot_keys();
-		
+
 		var e = (e) ? e : window.event;
 		if(!e.metaKey) return;
 		show_hot_keys();

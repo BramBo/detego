@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File contained/management/webinterface/app/models/service.rb, line 3</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">domain</span>)
+    <span class="ruby-ivar">@name</span>         = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@domain</span>       = <span class="ruby-identifier">domain</span>
+    <span class="ruby-ivar">@parent_route</span> = <span class="ruby-ivar">@domain</span>
+    
+    <span class="ruby-identifier">meta_data</span>     = <span class="ruby-identifier">$provider</span>.<span class="ruby-identifier">for</span>(<span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">name</span>, <span class="ruby-ivar">@name</span>).<span class="ruby-identifier">get_meta_data</span>()
+    
+    <span class="ruby-ivar">@methods</span>      = <span class="ruby-identifier">meta_data</span>[<span class="ruby-identifier">:service_methods</span>]
+    <span class="ruby-ivar">@variables</span>    = {}
+    <span class="ruby-ivar">@status</span>       = <span class="ruby-identifier">$provider</span>.<span class="ruby-identifier">for</span>(<span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">to_sym</span>).<span class="ruby-identifier">status</span>();
+    
+    <span class="ruby-identifier">meta_data</span>[<span class="ruby-identifier">:exposed_variables</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">begin</span>       
+          <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">||=</span> {}          
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">==</span><span class="ruby-constant">Array</span>
+            <span class="ruby-identifier">v</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vv</span><span class="ruby-operator">|</span> 
+              <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">k</span><span class="ruby-operator">==</span> <span class="ruby-identifier">:write</span>)
+               <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">vv</span>] = <span class="ruby-value str">&quot;-----&quot;</span>
+              <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">k</span><span class="ruby-operator">==</span> <span class="ruby-identifier">:both</span>)
+                <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">vv</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\=/</span>
+                <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">vv</span>]  = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;$provider.for(domain.name, name).#{vv.gsub(/\=/, &quot;&quot;)}()&quot;</span>)           
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">vv</span>] = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;$provider.for(domain.name, name).#{vv}()&quot;</span>)
+              <span class="ruby-keyword kw">end</span> 
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">k</span><span class="ruby-operator">==</span> <span class="ruby-identifier">:write</span>)
+             <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">v</span>]   = <span class="ruby-value str">&quot;-----&quot;</span>
+            <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">k</span><span class="ruby-operator">==</span> <span class="ruby-identifier">:both</span>)
+              <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">vv</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\=/</span>              
+              <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">v</span>]  = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;$provider.for(domain.name, name).#{v.gsub(/\=/, &quot;&quot;)}()&quot;</span>)           
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-ivar">@variables</span>[<span class="ruby-identifier">k</span>][<span class="ruby-identifier">v</span>] = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;$provider.for(domain.name, name).#{v}()&quot;</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>            
+          
+       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>; <span class="ruby-keyword kw">next</span>
+       <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>;           <span class="ruby-keyword kw">next</span>
+      <span class="ruby-keyword kw">end</span>          
+    <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">meta_data</span>[<span class="ruby-identifier">:exposed_variables</span>].<span class="ruby-identifier">nil?</span>
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
