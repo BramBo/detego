@@ -34,8 +34,6 @@ ENV["DETEGO_ENV"] = "development"
  require 'fileutils'
  FileUtils.mkdir_p("#{CONTAINER_PATH}/log", :mode => 0777)
 
-puts CONTAINER_PATH
-
 # DRB Port management
  $port_start   = 49800
 
