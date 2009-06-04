@@ -44,7 +44,8 @@ class Service
     @status     = "stopped"
     # @todo: Expand with org.jruby.RubyInstanceConfig        
     @runtime    = JJRuby.newInstance()
-        
+    
+    
     # Create the domain directory if not present
     FileUtils.mkdir_p(@path, :mode => 0755)
     
@@ -74,7 +75,10 @@ class Service
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
     
     # Boot it            
-    @runtime.runScriptlet(%{            
+    @runtime.runScriptlet(%{
+      require 'drb'    
+      require 'drb/acl'
+
       DRb.install_acl(ACL.new( %w[deny all
         allow localhost 
         allow 127.0.0.1] ))
@@ -211,7 +215,7 @@ class Service
          rescue LoadError => e;end       
       })
       
-            
+      init_code_base()
       true
     rescue Exception => e
       ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"      

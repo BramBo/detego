@@ -54,7 +54,7 @@ class ServiceUnPacker
     system("nice -n 5 tar -C #{@filename.gsub(/^(.+?)\..+?$/, "\\1")} -zxvf #{@filename}") && $?.exitstatus == 0
    end  
     
-   alias :ungz :unzip
+   alias :ungz :untar
    # def ungz
    #  system("nice -n 5 gunzip -f #{@filename}") && $?.exitstatus == 0
    # end
