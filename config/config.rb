@@ -24,7 +24,7 @@
 # Set application path and load paths
 CONTAINER_PATH    = "#{Dir.getwd}"
 SERVICES_PATH     = "#{CONTAINER_PATH}/contained"
-DETEGO_VERSION    = "0.4.2"
+DETEGO_VERSION    = "0.4.4"
 LOGGING_LEVEL     = 0
 ENV["DETEGO_ENV"] = "development"
 
