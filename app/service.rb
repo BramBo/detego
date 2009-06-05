@@ -259,6 +259,7 @@ class Service
   def __inject(str)
    raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
    
+   # notice the different method on the JRuby object (this is the original!)
    @runtime.evalScriptlet(str)
   end  
 
@@ -278,7 +279,7 @@ class Service
       # Default service information, available troughout the service
        $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}", :port_in => #{@port_in}, :port_out => #{@port_out} } 
       
-      # Bit of procedural/imperative programming.. (Nasty, but beats having a giant string here!)
+      # Bit of procedural/imperative programming.. Nasty, but beats having a giant string here!
        require "service_code_base.methods"
              
        rewire_standard_streams()

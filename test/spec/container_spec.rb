@@ -1,4 +1,4 @@
-require 'config/spec_config'
+require "#{Dir.getwd}/test/spec/config/spec_config"
 
 describe Container do
   before(:all) do

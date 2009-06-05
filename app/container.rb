@@ -26,6 +26,7 @@ require "observer"
 class Container
   include Observable
   
+  # invoke initiate_installed_services() unless we're testing !
   def initialize
     @domains    = Hash.new
     @path       = SERVICES_PATH
@@ -44,6 +45,8 @@ class Container
     nil
   end
   
+  # Add a domain to the container and resort the collection
+  # Notify all the observer that something has changed !
   def add_domain(name)
     @domains[name] = @domains[name] || Domain.new(name, self)
     
@@ -52,11 +55,14 @@ class Container
     domains.each do |k,v|
       @domains[k] = v
     end
-      
+    
+    changed
     notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_ADDED, {:domain => name})
     @domains[name]
   end
-  
+
+  # Remove's the domain from the domain collection
+  # after this notify all the observers(ServiceProviders)
   def remove(name)
     if name == :all
       @domains.each do |n, domain|
@@ -67,6 +73,7 @@ class Container
       @domains[name].remove(:all)
       @domains.delete(name)
       
+      changed
       notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_REMOVED, {:domain => name})
     end
     
@@ -74,6 +81,8 @@ class Container
     true
   end
   
+  # Iterate over all the service and invoke the shutdown() method
+  # after this Kernel.exit()
   def shutdown!
     puts "\nShutting down..."
     @domains.each do |n, domain|
@@ -93,66 +102,69 @@ class Container
   # Initiate and start the services already present in the contained folder.
   # Scans the contained folder, tries to figure an order of startup and invokes start() on the set
   #
-  # Note: The services are not tagged installed/not installed and so services placed while the server was running and need a installation won't Work!  
-    def initiate_installed_services
-     services = {}
-     # find exisiting domains and services
-     puts "Initializing services"     
-     Dir.new(@path).each do |domain|
-       next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
-       add_domain(domain.to_sym)
- 
-       Dir.new("#{@path}/#{domain}").each do |service|
-         next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
-         
-          begin
-            s  = find(domain.to_sym).add_service(service.to_sym)
-            services["#{domain}::#{service}"] = s.meta_data.depends_on
+  # Note: The services are not tagged installed/not installed and so services placed while the server was running and need a installation won't Work!
+  def initiate_installed_services
+   services = {}
+   # find exisiting domains and services
+   puts "Initializing services"     
+   Dir.new(@path).each do |domain|
+     next if domain =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/") 
+     add_domain(domain.to_sym)
 
-            puts " v | #{domain}::#{service} done"
-          rescue Exception => e
-            puts " x | #{domain}::#{service} failed on init".console_red
-            puts "   |e> #{e}".console_dark_red
-            ContainerLogger.error $!, 2
-           end
-       end
+     Dir.new("#{@path}/#{domain}").each do |service|
+       next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
+ 
+        begin
+          s  = find(domain.to_sym).add_service(service.to_sym)
+          services["#{domain}::#{service}"] = s.meta_data.depends_on
+
+          puts " v | #{domain}::#{service} done"
+        rescue Exception => e
+          puts " x | #{domain}::#{service} failed on init".console_red
+          puts "   |e> #{e}".console_dark_red
+          ContainerLogger.error $!, 2
+         end
      end
-     
-     services = dependency_sort(services)
-     
-     puts " "
-     # now start all the services
-     puts "Starting services"
-     services[:sorted].each do |k, v|
-         s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
-         
-         begin 
-           s.start()
-           puts " v | #{s.full_name} started"
-         rescue Exception => e
-           puts " x | #{s.full_name} failed".console_red
-           puts "   |e> #{e}".console_dark_red
-          end 
+   end
+
+   services = dependency_sort(services)
+
+   puts " "
+   # now start all the services
+   puts "Starting services"
+   services[:sorted].each do |k, v|
+       s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
+ 
+       begin 
+         s.start()
+         puts " v | #{s.full_name} started"
+       rescue Exception => e
+         puts " x | #{s.full_name} failed".console_red
+         puts "   |e> #{e}".console_dark_red
+        end 
+   end
+
+   # errors ?
+   if services[:circular_reference].size > 0
+     puts ("="*75).console_red
+     puts ("|          ").console_red  + "Warning Depedency missing / circular_reference found !".console_red().console_blink() + " "*9 + "|".console_red()
+
+     services[:circular_reference].each do|k,v|
+       puts "#{("|").console_red()} #{k} #{" "*(70-k.size())} #{("|").console_red()}"
+       value = v.join(" | ")
+       puts "#{("|").console_red()} - #{value} #{" "*(68-(value.size()))} #{("|").console_red()}"
      end
-     
-     # errors ?
-     if services[:circular_reference].size > 0
-       puts ("="*75).console_red
-       puts ("|          ").console_red  + "Warning Depedency missing / circular_reference found !".console_red().console_blink() + " "*9 + "|".console_red()
-       
-       services[:circular_reference].each do|k,v|
-         puts "#{("|").console_red()} #{k} #{" "*(70-k.size())} #{("|").console_red()}"
-         value = v.join(" | ")
-         puts "#{("|").console_red()} - #{value} #{" "*(68-(value.size()))} #{("|").console_red()}"
-       end
-       puts ("="*75).console_red
-     end
-     
-     puts ""
-     puts "Server Ready".console_bold
-     puts ""
+     puts ("="*75).console_red
+   end
+
+   puts ""
+   puts "Server Ready".console_bold
+   puts ""
   end 
 
+  # Takes a Hash with that has an Array defined as dependencies
+  #  e.g. {"core::example" => ["core::deployer"]}
+  #  no core example is depend on the deployer service and will be started after the deployer
   def dependency_sort(inc)
     dep_hash                  = inc.dup
     sorted, max_cycles, i, j  = [], 10**3, 0, 0

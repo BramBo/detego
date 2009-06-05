@@ -90,11 +90,11 @@ class ServiceManager
     "#{e}_#{d}_#{c}_#{b}_#{a}"
   end
   
-  def update(group, event, params)
-    ServiceLogger.debug "Updating !:: #{group} #{event}".console_blue
-    params.each do |k,v|
-      ServiceLogger.debug  "[ #{k} |=> #{v} ]".console_purple
-    end
-    @read_only = "#{group}, #{event}, #{params}"
-  end
+  # def update(group, event, params)
+  #   ServiceLogger.debug "Updating !:: #{group} #{event}".console_blue
+  #   params.each do |k,v|
+  #     ServiceLogger.debug  "[ #{k} |=> #{v} ]".console_purple
+  #   end
+  #   @read_only = "#{group}, #{event}, #{params}"
+  # end
 end
