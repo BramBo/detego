@@ -44,17 +44,13 @@ class Service
     @status     = "stopped"
     # @todo: Expand with org.jruby.RubyInstanceConfig        
     @runtime    = JJRuby.newInstance()
-    
-    
-    # Create the domain directory if not present
-    FileUtils.mkdir_p(@path, :mode => 0755)
-    
+        
     # 
     init_code_base()
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
-    ContainerLogger.debug "Service added #{domain.name}::#{name}"
+    ContainerLogger.debug "Service added #{@full_name}"
   end
 
   # Start/boot the service 
@@ -75,27 +71,15 @@ class Service
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
     
     # Boot it            
-    @runtime.runScriptlet(%{
-      require 'drb'    
-      require 'drb/acl'
-
-      DRb.install_acl(ACL.new( %w[deny all
-        allow localhost 
-        allow 127.0.0.1] ))
-      $provider = DRbObject.new(nil, 'druby://127.0.0.1:#{@port_in}')
-      $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = "Booting.."  
-      @serv = DRb.start_service "druby://127.0.0.1:#{@port_out}", ($service_manager=ServiceManager.new)
+    @runtime.runScriptlet(%{            
+      setup_DRb_services
     })
     
     @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
     
     # Gather Service meta-data
     @meta_data.gather()
-    @runtime.runScriptlet(%{
-      @starting_thread = Thread.new do
-        $service_manager.start()
-      end      
-    })
+    @runtime.runScriptlet(%[ @starting_thread = Thread.new { $service_manager.start() } ])
     
     changed
     notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED, {:domain => @domain.name, :service => @name})
@@ -214,7 +198,7 @@ class Service
            require 'install'
          rescue LoadError => e;end       
       })
-      
+
       init_code_base()
       true
     rescue Exception => e
@@ -266,11 +250,17 @@ class Service
   
   # Inject code into the service: Remove ?!
   #
-  def __inject(str)
+  def inject(str)
    raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
    
    @runtime.runScriptlet(str)
   end
+  
+  def __inject(str)
+   raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
+   
+   @runtime.evalScriptlet(str)
+  end  
 
   def to_s;    @name; end
   def inspect; @name; end  
@@ -278,61 +268,28 @@ class Service
   private 
   def init_code_base
     @runtime.runScriptlet(%{
-      CONTAINER_PATH  = "#{CONTAINER_PATH}"
-      LOAD_PATH       = "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
-      $: << "#{CONTAINER_PATH}/lib/"
-      $: << LOAD_PATH
-      $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}" }
-
-      require "container_logger"
-      ServiceLogger.service="#{@domain.name}_#{@name}"
-      Object.send(:remove_const, :STDERR)
-      Object.send(:remove_const, :STDOUT)
-      $stderr = STDERR = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
-      $stdout = STDOUT = File.open('#{CONTAINER_PATH}/log/#{@domain.name}_#{@name}.log', 'w+')
       require 'drb'    
-      require 'drb/acl'      
-      
-      class ServiceManager
-        def status=(str)     
-          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status = str
-        end
-        def status
-          $provider.for("#{@domain.name}".to_sym, "#{@name.to_sym}".to_sym).status
-        end
-        def start()
-          self.status="started" 
-        end        
-        def update(group, event, params={}); end
+      require 'drb/acl'
+            
+      # Set up the load paths
+       CONTAINER_PATH, LOAD_PATH = "#{CONTAINER_PATH}", "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
+       $: << "#{CONTAINER_PATH}/lib/" << "#{CONTAINER_PATH}/lib/service" << LOAD_PATH
 
-        def self.all_parameter_methods; @@p ||= Hash.new; end
-        def all_methods; []; end
-        def self.exposed_methods(*meths)
-          if meths.class==Array
-            define_method("all_methods") { meths }
-          else
-            define_method("all_methods") { [meths] }
-          end
-        end
-        def self.has_parameters(meth, *params)
-          all_parameter_methods[meth.to_s] = params.to_a
-        end
-        
-        def self.limit_expose_to(pr = [])
-          @@l = (pr.class==Array) ? pr :  [pr] unless pr.nil?
-        end
-        def limits; @@l ||= []; end
-      end
+      # Default service information, available troughout the service
+       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}", :port_in => #{@port_in}, :port_out => #{@port_out} } 
       
-      begin                
-          require 'initialize'
-      rescue LoadError 
-        begin
-          require 'service_manager'
-        rescue LoadError
-          raise Exception.new("Neither initialize or ServiceManager could be loaded for #{@full_name}")
-        end
-      end  
+      # Bit of procedural/imperative programming.. (Nasty, but beats having a giant string here!)
+       require "service_code_base.methods"
+             
+       rewire_standard_streams()
+       setup_logging()
+      
+      # initialize a default implementation of the ServiceManager
+       require "service_manager.class.rb"
+
+      # Try to load initialize or (if it fails) service_manager
+      # |> If both fail, the service doesn't meet the requirements
+       load_codebase_initialize()
     })
   end
 end

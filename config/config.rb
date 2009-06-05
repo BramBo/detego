@@ -23,16 +23,16 @@
 
 # Set application path and load paths
 CONTAINER_PATH    = "#{Dir.getwd}"
-$: << "#{CONTAINER_PATH}/app"
-$: << "#{CONTAINER_PATH}/lib"
 SERVICES_PATH     = "#{CONTAINER_PATH}/contained"
-DETEGO_VERSION    = "0.4"
+DETEGO_VERSION    = "0.4.2"
 LOGGING_LEVEL     = 0
 ENV["DETEGO_ENV"] = "development"
 
+$: << "#{CONTAINER_PATH}/app" << "#{CONTAINER_PATH}/lib" << "#{CONTAINER_PATH}/lib/container"
+
 # First startup
  require 'fileutils'
- FileUtils.mkdir_p("#{CONTAINER_PATH}/log", :mode => 0777)
+ FileUtils.mkdir_p("#{CONTAINER_PATH}/log", :mode => 0755)
 
 # DRB Port management
  $port_start   = 49800

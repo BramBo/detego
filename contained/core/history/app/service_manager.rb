@@ -61,7 +61,7 @@ class ServiceManager
   
   # Proxy test  
   def get_random_array
-    (rand(5)..(rand(10)+5)).to_a
+    (rand(4)..(rand(10)+5)).to_a
   end  
 
   # Proxy test  
