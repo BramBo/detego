@@ -38,7 +38,7 @@ class ServiceManager
     @read_only  = "Can't be overwritten"
     
     # Pretty stupid but; Subscribe to self
-    $provider.subscribe($provider.const_get(:SERVICE), :all)
+    $provider.subscribe($provider.const_get(:SERVICE), :all, {:full_name => "core::example"})
   end
 
   # Example function
@@ -54,8 +54,7 @@ class ServiceManager
   
   #.....
   def get_status
-    puts "status"    
-    self.status="started statussing"
+    @read_only  = "started statussing"
     return "#{$service[:full_name]} status: #{status}"
   end
   
@@ -95,6 +94,5 @@ class ServiceManager
     params.each do |k,v|
       ServiceLogger.debug  "[ #{k} |=> #{v} ]".console_purple
     end
-    @read_only = "#{group}, #{event}, #{params}"
   end
 end

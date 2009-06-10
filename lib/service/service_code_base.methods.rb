@@ -10,8 +10,8 @@ def rewire_standard_streams
   Object.send(:remove_const, :STDOUT)
   $stderr = File.open("#{CONTAINER_PATH}/log/#{$service[:domain]}_#{$service[:name]}.log", 'w+')
   $stdout = File.open("#{CONTAINER_PATH}/log/#{$service[:domain]}_#{$service[:name]}.log", 'w+')
-  Object.send(:const_set, :STDERR, $stderr)
-  Object.send(:const_set, :STDOUT, $stdout)  
+  Object.send(:const_set, :STDERR, File.open("#{CONTAINER_PATH}/log/#{$service[:domain]}_#{$service[:name]}.log", 'w+'))
+  Object.send(:const_set, :STDOUT, File.open("#{CONTAINER_PATH}/log/#{$service[:domain]}_#{$service[:name]}.log", 'w+'))  
 end
 
 # includes the container logger and setsup the ServiceLogger obj after

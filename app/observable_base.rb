@@ -17,9 +17,6 @@ class ObservableBase
       begin        
         if fil.nil? || fil == :none || filter(fil, sender, params)
           obs.service_manager.update(group, event, params)  unless obs.service_manager.nil?
-          
-        else
-          ContainerLogger.debug "FILTERED: Address:#{obs.full_name} Sender:#{sender.to_s} -=>> [#{group}, #{event}]"  
         end
       rescue
         ContainerLogger.error $!, 2
