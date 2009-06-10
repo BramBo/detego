@@ -39,4 +39,5 @@ $: << "#{CONTAINER_PATH}/app" << "#{CONTAINER_PATH}/lib" << "#{CONTAINER_PATH}/l
 
 # Require the need helpers
  require "container_logger"
+ require "observable_base" 
  require "application_helper"

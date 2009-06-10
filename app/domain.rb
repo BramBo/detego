@@ -26,8 +26,8 @@ require "service"
 require "service_provider"
 
 class Domain
-  include Observable  
   attr_accessor :name
+  attr_reader   :container
   
   # Initialize a new domain
   #  make directories if needed
@@ -83,8 +83,7 @@ class Domain
       service.uninstall
       @services.delete(s)
       
-      changed
-      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::SERVICE_REMOVED, {:domain => @name, :service => service.name})
+      notify_observable_base(ObservableBase::SERVICE_REMOVED, {:domain => @name, :service => service.name})
     end
     
     true
@@ -96,14 +95,12 @@ class Domain
     #  Start a new DRB server so this service can access it's ServiceProvider
     def new_service(service)
       @services[service.name]         = service
-      DRb.install_acl(ACL.new( %w[
-        deny all
-         allow localhost 
-         allow 127.0.0.1
-        ]))
-      DRb.start_service "druby://127.0.0.1:#{service.port_in}", ServiceProvider.new(@container, service)
-      changed
-      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::SERVICE_ADDED, {:domain => @name, :service => service.name})      
+
+      notify_observable_base(ObservableBase::SERVICE_ADDED, {:domain => @name, :service => service.name})
       return @services[service.name]
+    end
+    
+    def notify_observable_base(event, details={})
+      ObservableBase.instance().update(self, ObservableBase::DOMAIN, event, details)
     end
 end

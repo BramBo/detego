@@ -27,22 +27,12 @@
 # $provider contains the DRB connection
 # @todo: Change error reporting !
 require "drb"
-require "service_provider_notifier"
 
 class ServiceProvider
-  include ServiceProviderNotifier
   
   def initialize(container, service) #:nodoc:
     @container  = container
     @providee   = service
-    
-    @container.add_observer(self)
-    @container.find(:all).each do |k, d|
-      d.add_observer(self)
-      d.find(:all).each do |k2, s|
-        s.add_observer(self)
-      end
-    end
   end
   
   # Used for method_missing so that the provider may invoke the "missing method"
@@ -284,7 +274,25 @@ class ServiceProvider
 
     true
   end    
-      
+  
+  # Just a forwording message to ObservableBase
+  # will add the service's ServiceManager to the specified group and event Observable(s)
+  def subscribe(group, event = :all, filter = :none)      
+    ObservableBase.instance().subscribe(@providee, group, event, filter)
+  end
+
+  # Just a forwording message to ObservableBase
+  # will remove the service's ServiceManager from the specified group and event Observable(s)
+  def unsubscribe(group, event = :all)
+    ObservableBase.instance().unsubscribe(@providee, group, event)
+  end
+  
+  # Just a forward method to ObservableBase, to enable e.g. $provider.const_get(:SERVICE)
+  def const_get(const)
+    ObservableBase.const_get(const)
+  end
+
+
   def server_version()
     return DETEGO_VERSION
   end

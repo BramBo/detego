@@ -23,33 +23,36 @@
 require "service_meta_data"
 require 'drb'    
 require 'drb/acl'
-require "observer"
 
 class Service
-  include Observable
   attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
   def initialize(name, domain)
     raise Exception.new("#{name} is not a valid service name") unless valid_directory_name(name.to_s)
-        
-    @name       = name
-    @booted     = false
-    @domain     = domain
-    @full_name  = "#{domain.name}::#{@name}"
-    @path       = "#{SERVICES_PATH}/#{domain.name}/#{@name}"
-    @port_in    = $port_start+=1
-    @port_out   = $port_start+=1
-    @status     = "stopped"
+
+    @name             = name
+    @booted           = false
+    @domain           = domain
+    @full_name        = "#{domain.name}::#{@name}"
+    @path             = "#{SERVICES_PATH}/#{domain.name}/#{@name}"
+    @port_in          = $port_start+=1
+    @port_out         = $port_start+=1
+    @status           = "stopped"
     # @todo: Expand with org.jruby.RubyInstanceConfig        
-    @runtime    = JJRuby.newInstance()
-        
+    @runtime          = JJRuby.newInstance()
+    @service_manager  = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
+    
     # 
     init_code_base()
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
+    
+    DRb.install_acl(ACL.new(%w[deny all allow localhost allow 127.0.0.1]))
+    DRb.start_service "druby://127.0.0.1:#{@port_in}", ServiceProvider.new(@domain.container, self)    
+    
     ContainerLogger.debug "Service added #{@full_name}"
   end
 
@@ -70,20 +73,17 @@ class Service
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
     
-    # Boot it            
-    @runtime.runScriptlet(%{            
+    # Boot it
+    @runtime.runScriptlet(%{
       setup_DRb_services
+      $service_manager
     })
-    
-    @service_manager = DRbObject.new(nil, "druby://127.0.0.1:#{@port_out}")
-    
     # Gather Service meta-data
-    @meta_data.gather()
+    @meta_data.gather()  
     @runtime.runScriptlet(%[ @starting_thread = Thread.new { $service_manager.start() } ])
-    
-    changed
-    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STARTED, {:domain => @domain.name, :service => @name})
-    ContainerLogger.debug "#{@full_name} booted succesfully!".console_green
+
+    notify_observable_base(ObservableBase::SERVICE_STARTED, {:domain => @domain.name, :service => @name})
+    ContainerLogger.notify "#{@full_name} booted succesfully!"
     return self
   end
 
@@ -102,8 +102,7 @@ class Service
       begin
         if !args.nil? && !args.first.nil?
           if block
-            changed
-            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
+            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
                         
             return @runtime.runScriptlet(%{
               arg = Marshal.load('#{arg}')
@@ -111,16 +110,14 @@ class Service
             })          
           else 
             query = args.map{|e| e = %{"#{e}"} }.join(", ")
-            changed
-            notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query})
+            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query})
             
             return @runtime.runScriptlet(%{
               eval(%[$service_manager.#{method_name}(#{query})])
             })
           end
         else
-          changed
-          notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})          
+          notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
           
           return @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
         end
@@ -163,22 +160,22 @@ class Service
         begin
           require 'shutdown'
         rescue LoadError => e
-          ContainerLogger.warn "Skipping shutdown script for #{@full_name}..."
+          ContainerLogger.debug "Skipping shutdown script for #{@full_name}..."
+          ServiceLogger.warn    "No Shutdown script present."
         end
         @starting_thread.exit
       })
     rescue => e
-      ContainerLogger.warn "#{@full_name} error shutting down: #{e}"
+      ContainerLogger.error "#{@full_name} error shutting down: #{e}"
     end
-    changed
-    notify_observers(self, ServiceProvider::SERVICE, ServiceProvider::SERVICE_STOPPED, {:domain => @domain.name, :service => @name})
+    notify_observable_base(ObservableBase::SERVICE_STOPPED, {:domain => @domain.name, :service => @name})
     
     @runtime    = nil    
     @runtime    = JJRuby.newInstance()        
     init_code_base()
     @status     = "stopped"
     @meta_data.reset
-    ContainerLogger.debug "#{@full_name} shutdown"
+    ContainerLogger.notify "#{@full_name} shutdown"
     true
   end
 
@@ -200,21 +197,22 @@ class Service
       })
 
       init_code_base()
+      notify_observable_base(ObservableBase::SERVICE_INSTALLED, {:domain => @domain.name, :service => @name})
       true
     rescue Exception => e
-      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
+      ContainerLogger.error "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
       @domain.remove(@name) unless @name.nil?
-      ContainerLogger.debug "Installation rolled back"
+      ContainerLogger.warn "Installation rolled back"
       e      
     rescue LoadError => e
-      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"            
+      ContainerLogger.error "#{@domain.name}::#{@name} rescued, before installing: #{e}"            
       @domain.remove(@name) unless @name.nil?
       ContainerLogger.debug "Installation rolled back"      
       e      
     rescue => e
-      ContainerLogger.warn "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
+      ContainerLogger.error "#{@domain.name}::#{@name} rescued, before installing: #{e}"      
       @domain.remove(@name) unless @name.nil?
-      ContainerLogger.debug "Installation rolled back"      
+      ContainerLogger.warn "Installation rolled back"      
       e
     end
   end
@@ -235,11 +233,13 @@ class Service
      begin 
        FileUtils.rm_rf("#{SERVICES_PATH}/#{@domain.name}/#{@name}")
      rescue Exception => e
-       Containerlogger.warn e,2 
+       Containerlogger.warn e,2
      rescue  e
-       Containerlogger.warn e,2       
+       Containerlogger.warn e,2
      end
     ContainerLogger.debug "#{@domain.name}::#{@name} uninstalled succesfully"
+    
+    notify_observable_base(ObservableBase::SERVICE_UNINSTALLED, {:domain => @domain.name, :service => @name})    
     true
   end
 
@@ -293,4 +293,8 @@ class Service
        load_codebase_initialize()
     })
   end
+  
+  def notify_observable_base(event, details={})
+    ObservableBase.instance().update(self, ObservableBase::SERVICE, event, details)
+  end  
 end

@@ -21,10 +21,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "domain"
-require "observer"
 
 class Container
-  include Observable
   
   # invoke initiate_installed_services() unless we're testing !
   def initialize
@@ -46,7 +44,6 @@ class Container
   end
   
   # Add a domain to the container and resort the collection
-  # Notify all the observer that something has changed !
   def add_domain(name)
     @domains[name] = @domains[name] || Domain.new(name, self)
     
@@ -56,8 +53,7 @@ class Container
       @domains[k] = v
     end
     
-    changed
-    notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_ADDED, {:domain => name})
+    notify_observable_base(ObservableBase::DOMAIN_ADDED, {:domain => name})
     @domains[name]
   end
 
@@ -68,13 +64,13 @@ class Container
       @domains.each do |n, domain|
         domain.remove
         @domains.delete(n)
+        notify_observable_base(ObservableBase::DOMAIN_REMOVED, {:domain => n})
       end
     else
       @domains[name].remove(:all)
       @domains.delete(name)
       
-      changed
-      notify_observers(self, ServiceProvider::DOMAIN, ServiceProvider::DOMAIN_REMOVED, {:domain => name})
+      notify_observable_base(ObservableBase::DOMAIN_REMOVED, {:domain => name})
     end
     
     ContainerLogger.warn "Deleted domain #{name} (#{name.class})"
@@ -188,4 +184,9 @@ class Container
     end
     {:sorted => sorted, :circular_reference => dep_hash}
   end
+  
+    
+  def notify_observable_base(event, details={})
+    ObservableBase.instance().update(self, ObservableBase::DOMAIN, event, details)
+  end  
 end

@@ -43,6 +43,7 @@ def setup_DRb_services
    
   $provider = DRbObject.new(nil, "druby://127.0.0.1:#{$service[:port_in]}")
   $provider.for("#{$service[:domain]}".to_sym, "#{$service[:name]}".to_sym).status = "Booting.."  
-  
+      
   @serv = DRb.start_service "druby://127.0.0.1:#{$service[:port_out]}", ($service_manager=ServiceManager.new)
 end
+
