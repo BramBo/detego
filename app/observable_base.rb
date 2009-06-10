@@ -47,7 +47,7 @@ class ObservableBase
   #     f.e. a service sent an invoked event, the filter may contain :full_name
   #     because #<Service: xxx>.full_name is a defined method !
   def filter(set_filter, sender, params)
-    return if set_filter.class == Symbol
+    return true if set_filter.class == Symbol
     
     results = []
     (set_filter.class==Hash ? set_filter : {}).each do |key, val|
