@@ -62,13 +62,12 @@ ul {
 		  display 			: block;
 		}
 
-		ul.var_list_helper li span.variable_value {
-			cursor 			: pointer;
-		}
 
 		ul.var_list_helper li span.variable_value span {
 			float 			: left;
 			width 			: 150px;
+			padding 		: 2px;			
+			cursor 			: pointer;			
 		}
 		
 		ul.var_list_helper li span.variable_value .var_control {

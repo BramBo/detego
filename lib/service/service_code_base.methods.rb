@@ -46,4 +46,3 @@ def setup_DRb_services
       
   @serv = DRb.start_service "druby://127.0.0.1:#{$service[:port_out]}", ($service_manager=ServiceManager.new)
 end
-

@@ -91,7 +91,6 @@ class Container
         puts " v | #{s} shutdown."
       end
     end
-    exit
   end
   
   private

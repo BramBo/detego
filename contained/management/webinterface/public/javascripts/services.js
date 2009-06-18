@@ -18,7 +18,16 @@ function kickoff_services() {
 		} else { $(this).click(invoke_handler); }
 	});
 	
-	$("img.var_control").click(invoke_method_w_parameters);		
+	$("img.var_control").click(invoke_method_w_parameters);
+	$(group).mouseover(function(){
+		$(this)
+			.css("border-color", "#121212 #A9A9A9 #A9A9A9 #121212")
+			.css("border-style", "solid")			
+			.css("border-width", "1px");
+	}).mouseout(function() {
+		$(this)
+			.css("border", "none");		
+	});
 }
 
 

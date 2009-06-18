@@ -9,8 +9,8 @@ class ObservableBase
   DOMAIN, SERVICE                                    = "domain group", "service group"
   attr_reader :observers  
   
-  def update(sender, group, event, params)
-    (@observers ||= []).each do |obs, gr, ev, fil|
+  def update(sender, group, event, params)  
+    (@observers ||= []).each do|obs, gr, ev, fil|
       next unless gr == group && (ev==event || ev.to_s == "all")
       next unless obs.status() =~ /started/i
 
@@ -21,7 +21,7 @@ class ObservableBase
       rescue
         ContainerLogger.error $!, 2
       end
-    end    
+    end
     true
   end
   
