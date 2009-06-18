@@ -25,7 +25,7 @@ require 'drb'
 require 'drb/acl'
 
 class Service
-  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager, :no_start
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
@@ -46,6 +46,7 @@ class Service
     
     # 
     init_code_base()
+    @no_start = true if Marshal.load(@runtime.runScriptlet(%{Marshal.dump(Object.const_defined?(:NO_START))}))    
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
@@ -72,7 +73,7 @@ class Service
   #
   def start
     raise Exception.new("Already started #{@full_name}")          unless @status =~ /stopped/i
-    
+        
     # Boot it
     @runtime.runScriptlet(%{
       setup_DRb_services
@@ -92,8 +93,9 @@ class Service
   # FIXME make it possible to use blocks with invocations
   def invoke(method_name, *args, &block)
     raise Exception.new("Service #{@name} not started!") if @status =~ /stopped/i 
-    arg   = Marshal.dump(args)  
-    blck  = Marshal.dump(block)
+    result  = nil
+    arg     = Marshal.dump(args)  
+    blck    = Marshal.dump(block)
 
     if @meta_data.service_methods[:exposed].to_a.flatten.include?(method_name.to_s) ||  @meta_data.exposed_variables.to_a.flatten.collect{|s| s = s.to_s }.include?(method_name.to_s)
       ContainerLogger.debug "Invoking #{method_name} #{@full_name} ServiceManager".console_green  
@@ -104,26 +106,28 @@ class Service
           if block
             notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
                         
-            return @runtime.runScriptlet(%{
+            result =  Marshal.load(@runtime.runScriptlet(%{
               arg = Marshal.load('#{arg}')
-              $service_manager.#{method_name}(arg) { Marshal.load('#{blck}') }
-            })          
+              Marshal.dump($service_manager.#{method_name}(arg) { Marshal.load('#{blck}') })
+            }))
           else 
             query = args.map{|e| e = %{"#{e}"} }.join(", ")
             notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query})
             
-            return @runtime.runScriptlet(%{
-              eval(%[$service_manager.#{method_name}(#{query})])
-            })
+            result = Marshal.load(@runtime.runScriptlet(%{
+              Marshal.dump(eval(%[$service_manager.#{method_name}(#{query})]))
+            }))
           end
         else
           notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
           
-          return @runtime.runScriptlet(%{$service_manager.#{method_name}()})      
+          result = Marshal.load(@runtime.runScriptlet(%{Marshal.dump($service_manager.#{method_name}())}))
         end
       rescue Exception => e
         return nil
       end
+      @meta_data.get_readable_var_values()
+      return result      
     else
       ContainerLogger.warn "Invoking #{method_name} #{@full_name} but is not a(n) (exposed) method"
       raise Exception.new("#{method_name} not available on #{@domain.name}::#{@name}")
@@ -170,7 +174,8 @@ class Service
     end
     notify_observable_base(ObservableBase::SERVICE_STOPPED, {:domain => @domain.name, :service => @name})
     
-    @runtime    = nil    
+    @runtime.runScriptlet(%{ Thread.kill(@starting_thread) })
+    @runtime    = nil
     @runtime    = JJRuby.newInstance()        
     init_code_base()
     @status     = "stopped"

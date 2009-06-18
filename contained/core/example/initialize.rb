@@ -32,3 +32,6 @@ $: << "#{LOAD_PATH}/app"
 require "service_manager"
 
 @depends_on = ["core::deployer", "management::webinterface"]
+
+# Do not start this service by default !
+stop()

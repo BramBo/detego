@@ -27,8 +27,12 @@ class ServiceMetaData
   
   
   def initialize(service)
-    @service    = service  
-    @depends_on = @service.runtime.runScriptlet(%{ @depends_on ||= [] })
+    @service              = service  
+    @depends_on           = @service.runtime.runScriptlet(%{ @depends_on ||= [] })
+    @expose               = []
+    @readable_var_values  = {}
+    @service_methods      = {:all  => [], :exposed => []}
+    @exposed_variables    = {:both => [], :read    => [], :write => []}    
   end
   
   def reset

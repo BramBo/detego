@@ -8,6 +8,11 @@ class ServiceManager
     self.status = "Started !"
   end
   
+  def shutdown()
+    $provider.unsubscribe($provider.const_get(:DOMAIN) , :all)    
+    $provider.unsubscribe($provider.const_get(:SERVICE), :all)    
+  end
+  
   def update(group, event, params)  
     History.write(params[:domain], params[:service]) do |writer|
       writer.puts Time.now.to_s.console_bold 

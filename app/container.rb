@@ -84,7 +84,7 @@ class Container
     @domains.each do |n, domain|
       domain.find(:all).each do |s, service|
         begin
-          service.shutdown()  
+          service.shutdown()
          rescue Exception => e;  next;
          rescue => e;            next;
         end
@@ -130,9 +130,13 @@ class Container
    services[:sorted].each do |k, v|
        s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
  
-       begin 
-         s.start()
-         puts " v | #{s.full_name} started"
+       begin
+         if s.no_start
+           puts " - | #{s.full_name} no started by configuration"           
+         else
+           s.start()
+           puts " v | #{s.full_name} started"
+         end
        rescue Exception => e
          puts " x | #{s.full_name} failed".console_red
          puts "   |e> #{e}".console_dark_red
