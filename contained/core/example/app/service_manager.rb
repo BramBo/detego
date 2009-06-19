@@ -43,7 +43,7 @@ class ServiceManager
 
   # Example function
   def say_hello
-    return "hello from #{$service[:full_name]}. Current status: #{$state}"
+    return "hello from #{$service[:full_name]}."
   end
 
   # Another example function. See the management interface on port 5050

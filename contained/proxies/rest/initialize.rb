@@ -31,3 +31,4 @@ AVAILABLE_FORMATS = %w{base xml xhtml json}.each do |format|
   require "#{format}_format"
 end
 
+no_save

@@ -50,3 +50,7 @@ end
 def stop()
   Object.send(:const_set, :NO_START, true)
 end
+
+def no_save()
+  Object.send(:const_set, :NO_SAVE, true)
+end

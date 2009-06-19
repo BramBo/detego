@@ -25,7 +25,7 @@ require 'drb'
 require 'drb/acl'
 
 class Service
-  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager, :no_start
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager, :no_start, :no_save
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
@@ -47,6 +47,7 @@ class Service
     # 
     init_code_base()
     @no_start = true if Marshal.load(@runtime.runScriptlet(%{Marshal.dump(Object.const_defined?(:NO_START))}))    
+    @no_save  = true if Marshal.load(@runtime.runScriptlet(%{Marshal.dump(Object.const_defined?(:NO_SAVE))}))        
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
@@ -104,24 +105,21 @@ class Service
       begin
         if !args.nil? && !args.first.nil?
           if block
-            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
-                        
             result =  Marshal.load(@runtime.runScriptlet(%{
               arg = Marshal.load('#{arg}')
               Marshal.dump($service_manager.#{method_name}(arg) { Marshal.load('#{blck}') })
             }))
+            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :returned => result})
           else 
             query = args.map{|e| e = %{"#{e}"} }.join(", ")
-            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query})
-            
             result = Marshal.load(@runtime.runScriptlet(%{
               Marshal.dump(eval(%[$service_manager.#{method_name}(#{query})]))
             }))
+            notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :args => query, :returned => result})
           end
-        else
-          notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name})
-          
+        else      
           result = Marshal.load(@runtime.runScriptlet(%{Marshal.dump($service_manager.#{method_name}())}))
+          notify_observable_base(ObservableBase::SERVICE_INVOKED, {:domain => @domain.name, :service => @name, :method => method_name, :returned => result})
         end
       rescue Exception => e
         return nil
@@ -147,14 +145,18 @@ class Service
   def shutdown()
     return if @status=~/stopped/i
 
-    data = {}
-    @meta_data.get_readable_var_values
-    @meta_data.readable_var_values.each do |key, val|
-        data[key] = val
+    # save the instance values unless NO_SAVE is defined in the Service CB
+    unless @no_save
+      data = {}
+      @meta_data.get_readable_var_values
+      @meta_data.readable_var_values.each do |key, val|
+          data[key] = val
+      end
+            
+      f = File.new("#{@path}/service_data.yml", "w+")
+      f.puts data.to_yaml
+      f.close
     end
-    f = File.new("#{@path}/service_data.yml", "w+")
-    f.puts data.to_yaml
-    f.close
 
     begin
       @runtime.runScriptlet(%{
