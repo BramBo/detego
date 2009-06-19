@@ -132,7 +132,7 @@ class Container
  
        begin
          if s.no_start
-           puts " - | #{s.full_name} no started by configuration"           
+           puts " - | #{s.full_name} not started by configuration".console_underline           
          else
            s.start()
            puts " v | #{s.full_name} started"

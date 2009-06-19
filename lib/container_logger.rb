@@ -33,6 +33,7 @@ class String
 
     def console_def;          colorize(self, "\e[0m");  end    
     def console_bold;         colorize(self, "\e[1m");  end
+    def console_underline;    colorize(self, "\e[4m");  end    
     def console_blink;        colorize(self, "\e[5m");  end
     
     def colorize(text, color_code); "#{color_code}#{text}\e[0m"; end
