@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>shutdown (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 145</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shutdown</span>()
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@status</span><span class="ruby-operator">=~</span><span class="ruby-regexp re">/stopped/i</span>
+
+    <span class="ruby-comment cmt"># save the instance values unless NO_SAVE is defined in the Service CB</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@no_save</span>
+      <span class="ruby-identifier">data</span> = {}
+      <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">get_readable_var_values</span>
+      <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">readable_var_values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">data</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">end</span>
+            
+      <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{@path}/service_data.yml&quot;</span>, <span class="ruby-value str">&quot;w+&quot;</span>)
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_yaml</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-node">%{
+        begin; $service_manager.shutdown(); rescue =&gt; e; end
+
+        @serv.stop_service
+        begin
+          require 'shutdown'
+        rescue LoadError =&gt; e
+          ContainerLogger.debug &quot;Skipping shutdown script for #{@full_name}...&quot;
+          ServiceLogger.warn    &quot;No Shutdown script present.&quot;
+        end
+        @starting_thread.exit
+      }</span>)
+    <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;#{@full_name} error shutting down: #{e}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">notify_observable_base</span>(<span class="ruby-constant">ObservableBase</span><span class="ruby-operator">::</span><span class="ruby-constant">SERVICE_STOPPED</span>, {<span class="ruby-identifier">:domain</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:service</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>})
+    
+    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{ Thread.kill(@starting_thread) }</span>)
+    <span class="ruby-ivar">@runtime</span>    = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@runtime</span>    = <span class="ruby-constant">JJRuby</span>.<span class="ruby-identifier">newInstance</span>()        
+    <span class="ruby-identifier">init_code_base</span>()
+    <span class="ruby-ivar">@status</span>     = <span class="ruby-value str">&quot;stopped&quot;</span>
+    <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">reset</span>
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">notify</span> <span class="ruby-node">&quot;#{@full_name} shutdown&quot;</span>
+    <span class="ruby-keyword kw">true</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

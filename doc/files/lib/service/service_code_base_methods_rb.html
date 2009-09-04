@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: service_code_base.methods.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>service_code_base.methods.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/service/service_code_base.methods.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Jun 19 12:56:20 +0200 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+General purpose first class methods
+</p>
+<pre>
+ To prevent the Service init-codebase method to become unreadable.
+  If you doubt this solution please consider all these methods (and service_manager.class.rb) living in one giant String...
+  Also; All suggestions are welcomed !
+</pre>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      container_logger&nbsp;&nbsp;
+      initialize&nbsp;&nbsp;
+      service_manager&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000004">load_codebase_initialize</a>&nbsp;&nbsp;
+      <a href="#M000007">no_save</a>&nbsp;&nbsp;
+      <a href="#M000002">rewire_standard_streams</a>&nbsp;&nbsp;
+      <a href="#M000005">setup_DRb_services</a>&nbsp;&nbsp;
+      <a href="#M000003">setup_logging</a>&nbsp;&nbsp;
+      <a href="#M000006">stop</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000004.html');return false;">
+          <span class="method-name">load_codebase_initialize</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Try to load initialize or (if it fails) service_manager |&gt; If both fail,
+the service doesn&#8216;t meet the requirements and will raise an Exception
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000007.html');return false;">
+          <span class="method-name">no_save</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000002.html');return false;">
+          <span class="method-name">rewire_standard_streams</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the Standard Streams(STDOUT &amp;&amp; STDERR) to the service log path
+The service log files are saved under the convention:
+CONTAINER_PATH/log/#{service.domain.name}_#{service.name}.log
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000005.html');return false;">
+          <span class="method-name">setup_DRb_services</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initialize the communication to and from the <a
+href="../../../classes/Container.html">Container</a> This comm. is setup
+with two DRb-objects:
+</p>
+<pre>
+ $provider        -&gt; connection-point of the server  (127.0.0.1:port_in)
+ $service_manager -&gt; connection-point to the service (127.0.0.1:port_out)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000003.html');return false;">
+          <span class="method-name">setup_logging</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+includes the container logger and setsup the <a
+href="../../../classes/ServiceLogger.html">ServiceLogger</a> obj after
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="service_code_base_methods_rb.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('service_code_base_methods_rb.src/M000006.html');return false;">
+          <span class="method-name">stop</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

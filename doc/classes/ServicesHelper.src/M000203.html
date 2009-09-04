@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_list (ServicesHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File contained/management/webinterface/app/helpers/services_helper.rb, line 26</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_list</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-identifier">type</span>=<span class="ruby-value str">&quot;elements&quot;</span>, <span class="ruby-identifier">use</span>=<span class="ruby-value str">&quot;for show&quot;</span>, <span class="ruby-identifier">handler</span>=<span class="ruby-value str">&quot;def&quot;</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>
+      <span class="ruby-identifier">r</span> =<span class="ruby-value str">&quot;&lt;ul class='meth_list_helper'&gt;\n&quot;</span>
+      <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">click_handler</span> = (<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">==</span><span class="ruby-constant">Array</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">handler</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;def&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-node">&quot;click=\&quot;#{e[1]}\&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-identifier">n</span>             = (<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">==</span><span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">0</span>]       <span class="ruby-operator">:</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">parameters</span>    = (<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">==</span><span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_a</span>  <span class="ruby-operator">:</span> []
+        
+        <span class="ruby-identifier">r</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;\t &lt;li&gt;\n\t  &lt;span class='ui-triangle'&gt;&lt;/span&gt;&lt;span&gt;#{n.to_s}&lt;/span&gt;\n&quot;</span>
+        
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">use</span><span class="ruby-operator">==</span><span class="ruby-value str">&quot;runnable&quot;</span>
+          <span class="ruby-comment cmt"># Rb_Arr: [&quot;a&quot;, &quot;b&quot;] ::to js func call =&gt; w_parameters(['a', 'b'])</span>
+          <span class="ruby-identifier">str</span>           = <span class="ruby-identifier">parameters</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span><span class="ruby-identifier">e</span> = <span class="ruby-node">%{'#{e}'}</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>)
+          <span class="ruby-identifier">click_handler</span> = <span class="ruby-node">%{click=&quot;w_parameters(this, [#{str}])&quot;}</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parameters</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">handler</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;def&quot;</span>
+          <span class="ruby-identifier">name</span>          = (<span class="ruby-identifier">parameters</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-operator">?</span> <span class="ruby-value str">&quot; name='modal' href='#dialog'&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+          
+          <span class="ruby-identifier">r</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;\t  &lt;span class='value'&gt;&lt;img src='/images/invoke.png' #{click_handler} class='runnable_method' alt=\&quot;Invoke #{n} on #{$service[:full_name]}' title='Invoke #{n} on #{$service[:full_name]}\&quot; /&gt;&lt;/span&gt;\n&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-identifier">r</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;\t &lt;/li&gt;\n&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">r</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;\t&lt;/ul&gt;&quot;</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-node">&quot;\t&lt;p class='no_list_elements'&gt;No #{type}&lt;/p&gt;&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

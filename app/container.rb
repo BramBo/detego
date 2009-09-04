@@ -110,15 +110,15 @@ class Container
        next if service =~ /^\.{1,2}/ || !File.directory?("#{@path}/#{domain}/#{service}") 
  
         begin
-          s  = find(domain.to_sym).add_service(service.to_sym)
+          s   = find(domain.to_sym).add_service(service.to_sym)
           services["#{domain}::#{service}"] = s.meta_data.depends_on
 
           puts " v | #{domain}::#{service} done"
         rescue Exception => e
           puts " x | #{domain}::#{service} failed on init".console_red
-          puts "   |e> #{e}".console_dark_red
-          ContainerLogger.error $!, 2
-         end
+          puts "   |e> #{e.message}".console_dark_red
+          ContainerLogger.error e, 2
+        end
      end
    end
 
@@ -131,7 +131,7 @@ class Container
        s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
  
        begin
-         if s.no_start
+         if s.config.dont_start
            puts " - | #{s.full_name} not started by configuration".console_underline           
          else
            s.start()

@@ -33,12 +33,11 @@ class ServicesController < ApplicationController
 
     begin
       if @parameters
-        puts "Invoking ! $provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}(#{@parameters})"
         @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}(#{@parameters})")
       else
         @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}")        
       end
-      ContainerLogger.debug @value
+      ContainerLogge  r.debug @value
       @value = @value.join("<br />") if @value.class == Array
     rescue Exception => e
       @value = "error;#{e.message.capitalize}"

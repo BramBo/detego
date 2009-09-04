@@ -1,6 +1,6 @@
 [home]http://wiki.github.com/BramBo/detego
 [ideas]http://wiki.github.com/BramBo/detego/ideas
-[ggroup]http://http://groups.google.com/group/detego
+[ggroup]http://groups.google.com/group/detego
 [lighthouse]http://app_container.lighthouseapp.com/projects/28317-detego/tickets
 
 h2. About

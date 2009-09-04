@@ -22,13 +22,16 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 # Set application path and load paths
-CONTAINER_PATH    = "#{Dir.getwd}"
-SERVICES_PATH     = "#{CONTAINER_PATH}/contained"
-DETEGO_VERSION    = "0.4.4"
-LOGGING_LEVEL     = 0
-ENV["DETEGO_ENV"] = "development"
+CONTAINER_PATH          = "#{Dir.getwd}"
+SERVICES_PATH           = "#{CONTAINER_PATH}/contained"
+LIBRARY_PATH            = "#{CONTAINER_PATH}/lib"
+CONTAINER_LIBRARY_PATH  = "#{LIBRARY_PATH}/container"
+SERVICE_LIBRARY_PATH    = "#{LIBRARY_PATH}/service"
+DETEGO_VERSION          = "0.4.4"
+LOGGING_LEVEL           = 0
+ENV["DETEGO_ENV"]       = "development"
 
-$: << "#{CONTAINER_PATH}/app" << "#{CONTAINER_PATH}/lib" << "#{CONTAINER_PATH}/lib/container"
+$: << "#{CONTAINER_PATH}/app" << LIBRARY_PATH << CONTAINER_LIBRARY_PATH << SERVICE_LIBRARY_PATH
 
 # First startup
  require 'fileutils'

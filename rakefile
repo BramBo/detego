@@ -21,10 +21,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+require "config/config"
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'lib/container_logger'
+require 'rake/rdoctask' 
 
 
 task :todo do
@@ -92,10 +92,40 @@ task :rdoc do
   puts %x[rdoc app lib config]
 end
 
+task :new do
+ options = ARGV.reject{|a| a == "new"}
+ 
+ if options.size < 2
+   puts "ERROR: Missing parameters".console_dark_red
+   puts " Please define a domain name aswell as an service name"
+   puts "  rake new domain_name service_name"
+   puts " "
+   exit
+ end
+ 
+ service_directory = "#{options[0]}/#{options[1]}"
+ 
+ FileUtils.mkdir_p("#{SERVICES_PATH}/#{options[0]}")
+ FileUtils.mkdir_p("#{SERVICES_PATH}/#{service_directory}") 
+ FileUtils.mkdir_p("#{SERVICES_PATH}/#{service_directory}/app")
+ 
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/initialize.rb" , "#{SERVICES_PATH}/#{service_directory}/initialize.rb")
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/start.rb"      , "#{SERVICES_PATH}/#{service_directory}/start.rb")     
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/shutdown.rb"   , "#{SERVICES_PATH}/#{service_directory}/shutdown.rb") 
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/install.rb"    , "#{SERVICES_PATH}/#{service_directory}/install.rb") 
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/uninstall.rb"  , "#{SERVICES_PATH}/#{service_directory}/uninstall.rb")   
+
+ FileUtils.copy_file("#{LIBRARY_PATH}/rake/service_manager.rb"  , "#{SERVICES_PATH}/#{service_directory}/app/service_manager.rb")   
+ 
+ 
+ puts "Service created succesfully: #{SERVICES_PATH}/#{service_directory}"
+ exit
+end
+
 task :default => :todo
 
 
 class String
-  def todo;   self.console_green;   end
+  def todo;   self.console_green; end
   def fixme;  self.console_blue;  end
 end

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>start (Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/service.rb, line 75</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Already started #{@full_name}&quot;</span>)          <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/stopped/i</span>
+        
+    <span class="ruby-comment cmt"># Boot it</span>
+    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%{
+      setup_DRb_services
+      $service_manager
+    }</span>)
+    <span class="ruby-comment cmt"># Gather Service meta-data</span>
+    <span class="ruby-ivar">@meta_data</span>.<span class="ruby-identifier">gather</span>()  
+    <span class="ruby-ivar">@runtime</span>.<span class="ruby-identifier">runScriptlet</span>(<span class="ruby-value str">%[ @starting_thread = Thread.new { $service_manager.start() } ]</span>)
+
+    <span class="ruby-identifier">notify_observable_base</span>(<span class="ruby-constant">ObservableBase</span><span class="ruby-operator">::</span><span class="ruby-constant">SERVICE_STARTED</span>, {<span class="ruby-identifier">:domain</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@domain</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:service</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>})
+    <span class="ruby-constant">ContainerLogger</span>.<span class="ruby-identifier">notify</span> <span class="ruby-node">&quot;#{@full_name} booted succesfully!&quot;</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

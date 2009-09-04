@@ -31,4 +31,6 @@ AVAILABLE_FORMATS = %w{base xml xhtml json}.each do |format|
   require "#{format}_format"
 end
 
-no_save
+ServiceCodeBase::Initializer.configure do |config|
+  config.no_save = true
+end

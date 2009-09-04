@@ -4,8 +4,7 @@
 <title><%= h(yield(:title) || "Detego Management interface") %></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%= stylesheet_link_tag 'reset', 'application', 'jquery-ui' %>
-<script src="http://jquery.com/src/jquery-latest.js"></script>
-<%= javascript_include_tag 'jquery-ui', 'jquery-plugin', 'application', 'search' %>
+<%= javascript_include_tag 'jquery', 'jquery-ui', 'jquery-plugin', 'application', 'search' %>
 <%= yield(:head) %>
 <script type="text/javascript" charset="utf-8">
 <!--

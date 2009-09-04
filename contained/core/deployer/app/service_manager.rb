@@ -24,6 +24,7 @@ class ServiceManager
   attr_accessor :interval
   attr_reader :message_stack
   exposed_methods :poll, :supported_types
+  limit_expose_to :none
   
   def initialize 
      @message_stack = []  

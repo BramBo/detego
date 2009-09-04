@@ -1,0 +1,1 @@
+# Optional uninstall script

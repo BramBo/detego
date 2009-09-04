@@ -31,7 +31,9 @@ $: << "#{LOAD_PATH}/app"
 # Requires the service manager which is the facade for this service, the communication layer between service and server
 require "service_manager"
 
-@depends_on = ["core::deployer", "management::webinterface"]
-
-# Do not start this service by default !
-stop()
+ServiceCodeBase::Initializer.configure do |config|
+  config.depends_on = ["core::deployer", "management::webinterface"]
+  
+  # Do not start this service by default !
+  config.dont_start = true
+end

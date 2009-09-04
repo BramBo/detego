@@ -26,4 +26,6 @@ require "service_manager"
 require "file_system_poller"
 require "service_unpacker"
 
-@depends_on = ["proxies::rest", "proxies::drb"]
+ServiceCodeBase::Initializer.configure do |config|
+  config.depends_on = ["proxies::rest", "proxies::drb"]
+end

@@ -21,7 +21,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 $interface_version  = "0.5.5"
-@depends_on         = ["proxies::drb", "proxies::rest"]
+
+ServiceCodeBase::Initializer.configure do |config|
+  config.depends_on = ["proxies::drb", "proxies::rest"]
+end
 
 class ServiceManager
   attr_accessor :port
@@ -32,12 +35,12 @@ class ServiceManager
 
   def start()
     # this doesnt take an int as a port nr ?!
-    ARGV << "-p"; ARGV << @port
+    ARGV << "-p"; ARGV << @port.to_s
 
     # Mongrel needs to be started in the project root dir
     Dir.chdir(LOAD_PATH) if CONTAINER_PATH == Dir.getwd
 
-    self.status= "Running.."
+    self.status = "Running.."
     require 'config/boot'
     require 'commands/server'
   end

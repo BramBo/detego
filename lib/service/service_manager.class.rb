@@ -50,7 +50,6 @@ class ServiceManager
   #+----------------------
   #| Overrideable methods
   #+----------------------
-    
   # Method gets invoked after a service is initialized and gets started
   #  default impl. only set a status string
   def start()

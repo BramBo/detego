@@ -21,11 +21,12 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 require "service_meta_data"
+require "service_code_base_initializer"
 require 'drb'    
 require 'drb/acl'
 
 class Service
-  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager, :no_start, :no_save
+  attr_reader :name, :path, :full_name, :meta_data, :port_in, :port_out, :domain, :service_manager, :config
   attr_accessor :runtime, :status
     
   # Runtimes have been transfered to service no a runtime foreach domain. 
@@ -46,8 +47,7 @@ class Service
     
     # 
     init_code_base()
-    @no_start = true if Marshal.load(@runtime.runScriptlet(%{Marshal.dump(Object.const_defined?(:NO_START))}))    
-    @no_save  = true if Marshal.load(@runtime.runScriptlet(%{Marshal.dump(Object.const_defined?(:NO_SAVE))}))        
+    @config = Marshal.load(@runtime.runScriptlet(%{Marshal.dump(ServiceCodeBase::Initializer.config)}))    
     
     # And finally set the meta-data for the service
     @meta_data  = ServiceMetaData.new(self)
@@ -77,7 +77,7 @@ class Service
         
     # Boot it
     @runtime.runScriptlet(%{
-      setup_DRb_services
+      __setup_DRb_services
       $service_manager
     })
     # Gather Service meta-data
@@ -146,7 +146,7 @@ class Service
     return if @status=~/stopped/i
 
     # save the instance values unless NO_SAVE is defined in the Service CB
-    unless @no_save
+    unless @config.no_save
       data = {}
       @meta_data.get_readable_var_values
       @meta_data.readable_var_values.each do |key, val|
@@ -255,9 +255,9 @@ class Service
     @status =~ /!stopped/
   end
   
+  
   # Inject code into the service: Remove ?!
-  #
-  def inject(str)
+  def _inject(str)
    raise Exception.new("No Runtime defined for: #{@full_name}") if @runtime.nil?
    
    @runtime.runScriptlet(str)
@@ -275,30 +275,24 @@ class Service
 
   private 
   def init_code_base
+    # Setup the context depent variables. Nasty..
     @runtime.runScriptlet(%{
-      require 'drb'    
-      require 'drb/acl'
-            
-      # Set up the load paths
-       CONTAINER_PATH, LOAD_PATH = "#{CONTAINER_PATH}", "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
-       $: << "#{CONTAINER_PATH}/lib/" << "#{CONTAINER_PATH}/lib/service" << LOAD_PATH
+     # Set up the load paths
+     CONTAINER_PATH, LOAD_PATH = "#{CONTAINER_PATH}", "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
+     $: << "#{CONTAINER_PATH}/lib/" << "#{CONTAINER_PATH}/lib/service" << LOAD_PATH
 
-      # Default service information, available troughout the service
-       $service = { :name => "#{@name.to_s}", :full_name => "#{@full_name.to_s}", :domain => "#{@domain.name.to_s}", :path => "#{@path}", :port_in => #{@port_in}, :port_out => #{@port_out} } 
-      
-      # Bit of procedural/imperative programming.. Nasty, but beats having a giant string here!
-       require "service_code_base.methods"
-             
-       rewire_standard_streams()
-       setup_logging()
-      
-      # initialize a default implementation of the ServiceManager
-       require "service_manager.class.rb"
-
-      # Try to load initialize or (if it fails) service_manager
-      # |> If both fail, the service doesn't meet the requirements
-       load_codebase_initialize()
+     # Default service information, available troughout the service
+     $service = { :name       => "#{@name.to_s}", 
+                  :full_name  => "#{@full_name.to_s}", 
+                  :domain     => "#{@domain.name.to_s}",  
+                  :path       => "#{@path}", 
+                  :port_in    => #{@port_in.to_i}, 
+                  :port_out   => #{@port_out.to_i} } 
     })
+    
+    # Inject the files content as if it is a String
+    nasty_file_string = File.open("#{SERVICE_LIBRARY_PATH}/service_code_base_initialize.rb").map.join.to_s
+    @runtime.runScriptlet(nasty_file_string)
   end
   
   def notify_observable_base(event, details={})
