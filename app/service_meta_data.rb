@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -23,12 +23,10 @@
 require "yaml"
 
 class ServiceMetaData
-  attr_reader :service_methods, :exposed_variables, :readable_var_values, :limit_expose_to, :depends_on
-  
+  attr_reader :service_methods, :exposed_variables, :readable_var_values, :limit_expose_to
   
   def initialize(service)
     @service              = service  
-    @depends_on           = @service.runtime.runScriptlet(%{ @depends_on ||= [] })
     @expose               = []
     @readable_var_values  = {}
     @service_methods      = {:all  => [], :exposed => []}
@@ -66,9 +64,10 @@ class ServiceMetaData
       Marshal.dump(vs)
     }))
 
-
     @expose = Marshal.load(@service.runtime.runScriptlet(%{Marshal.dump($service_manager.limits.map{|e| e = e.to_s.downcase.to_sym})}))
     
+    # Read the saved instance variables out of service_data.yml
+    # This can be turned on/off by setting config.dont_save in ServiceCodeBase::Initializer.configure
     get_readable_var_values()
     if(File.exists?("#{@service.path}/service_data.yml"))
       data = YAML::load( File.open( "#{@service.path}/service_data.yml" ) )

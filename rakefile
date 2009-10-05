@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -41,13 +41,11 @@ task :todo do
     @legend += eval(%{"#{task.to_s.upcase} ".#{task}})
   end
   @task_captures.gsub!(/(.)$/, "")
-  puts ("Legend:".console_bold)+" #{@legend}"
-  puts ""
   
   tasks = files = 0
   %w{. app config test lib lib/service lib/container contained/core/deployer/app contained/core/history/app contained/management/webinterface/app/models contained/management/webinterface/app/controllers contained/proxies/rest/app contained/proxies/drb/app}.each do |dir|
     Dir.entries(dir).each do |entry|
-      next unless entry =~ /\.rb$/i
+      next unless entry =~ /\.rb$|^(?!\.)$/i
       files   += 1
       f_tasks  = 0
       

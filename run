@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -26,7 +26,45 @@
  require "service_provider"
  require 'drb'
  Thread.abort_on_exception  = false
- @container                 = Container.new
-
- loop do;  trap("INT") { @container.shutdown!; exit; }; end
  
+begin 
+  @container  = Container.new
+rescue => e
+  puts ""
+  puts "Startup failed, retrying..".console_bold
+  begin 
+    @container  = Container.new  
+  rescue => e
+    puts ""
+    puts "Detego failed to startup !".console_bold
+    puts "-"*50
+    puts "#{e.message}"
+    puts "-"*50    
+    puts "See the logs for more info."
+    puts ""
+    ContainerLogger.error "#{e.message}\n#{e.backtrace.join("\n")}", false
+    exit
+  end
+end
+
+begin 
+  loop do;  trap("INT") { @container.shutdown!; exit; }; end
+rescue => e
+  puts ""
+  puts "Runtime Error: #{e.message}".console_bold
+  puts "Reattempting to keep services up."
+  begin 
+    loop do;  trap("INT") { @container.shutdown!; exit; }; end
+  rescue => e
+    puts ""
+    puts "Runtime Error".console_bold
+    puts "-"*50
+    puts "#{e.message}"
+    puts "-"*50    
+    puts "Detego is shutting down"
+    ContainerLogger.error "#{e.message}\n#{e.backtrace.join("\n")}", false
+    
+    @container.shutdown!
+    exit
+  end
+end

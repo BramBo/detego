@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -145,8 +145,7 @@ class Service
   def shutdown()
     return if @status=~/stopped/i
 
-    # save the instance values unless NO_SAVE is defined in the Service CB
-    unless @config.no_save
+    unless @config.dont_save
       data = {}
       @meta_data.get_readable_var_values
       @meta_data.readable_var_values.each do |key, val|
@@ -275,11 +274,16 @@ class Service
 
   private 
   def init_code_base
-    # Setup the context depent variables. Nasty..
+    # Setup the context dependend variables. Nasty..
     @runtime.runScriptlet(%{
+      
+     DETEGO_VERSION = "#{DETEGO_VERSION}"      
+     
      # Set up the load paths
      CONTAINER_PATH, LOAD_PATH = "#{CONTAINER_PATH}", "#{CONTAINER_PATH}/contained/#{@domain.name}/#{@name}"
      $: << "#{CONTAINER_PATH}/lib/" << "#{CONTAINER_PATH}/lib/service" << LOAD_PATH
+
+     $org_port      = #{$org_port}
 
      # Default service information, available troughout the service
      $service = { :name       => "#{@name.to_s}", 

@@ -37,12 +37,14 @@ class ServicesController < ApplicationController
       else
         @value = eval("$provider.for('#{@domain}'.to_sym, '#{@service}'.to_sym).#{@method}")        
       end
-      ContainerLogge  r.debug @value
+      ContainerLogger.debug @value
       @value = @value.join("<br />") if @value.class == Array
     rescue Exception => e
       @value = "error;#{e.message.capitalize}"
+      ServiceLogger.debug e.message.capitalize      
     rescue => e
       @value = "error;#{e.message.capitalize}"
+      ServiceLogger.debug e.message.capitalize      
     end
     
     if @method =~ /remove_service\(.+?\)/i && @value == true
@@ -67,8 +69,10 @@ class ServicesController < ApplicationController
       @value    = $provider.for(@domain.to_sym, @service.to_sym).status()
     rescue Exception => e
       @value = "error;#{e.message.capitalize}"
+      ServiceLogger.debug e.message.capitalize
     rescue => e
       @value = "error;#{e.message.capitalize}"
+      ServiceLogger.debug e.message.capitalize      
     end
           
     render :action => "status.js.erb", :layout => false

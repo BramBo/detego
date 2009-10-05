@@ -6,3 +6,4 @@ jruby_filedescr.rb
 service_data.yml
 doc/
 doc/*
+*.history

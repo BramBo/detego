@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      

@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -27,7 +27,7 @@ SERVICES_PATH           = "#{CONTAINER_PATH}/contained"
 LIBRARY_PATH            = "#{CONTAINER_PATH}/lib"
 CONTAINER_LIBRARY_PATH  = "#{LIBRARY_PATH}/container"
 SERVICE_LIBRARY_PATH    = "#{LIBRARY_PATH}/service"
-DETEGO_VERSION          = "0.4.4"
+DETEGO_VERSION          = "0.4.9"
 LOGGING_LEVEL           = 0
 ENV["DETEGO_ENV"]       = "development"
 
@@ -38,7 +38,8 @@ $: << "#{CONTAINER_PATH}/app" << LIBRARY_PATH << CONTAINER_LIBRARY_PATH << SERVI
  FileUtils.mkdir_p("#{CONTAINER_PATH}/log", :mode => 0755)
 
 # DRB Port management
- $port_start   = 49800
+ $org_port    = 49800
+ $port_start  = $org_port
 
 # Require the need helpers
  require "container_logger"

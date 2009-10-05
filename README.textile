@@ -12,4 +12,4 @@ h2. Quick links
 * Found a bug? "Please report it":lighthouse
 * "Like to discuss something?":ggroup
 * Got a idea for Detego or curious about the current ideas? "The idea page":ideas
-* Anything else? Drop me a line bram@kabisa.nl
+* Anything else? Drop me a line brambomail@gmail.com

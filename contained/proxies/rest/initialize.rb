@@ -32,5 +32,5 @@ AVAILABLE_FORMATS = %w{base xml xhtml json}.each do |format|
 end
 
 ServiceCodeBase::Initializer.configure do |config|
-  config.no_save = true
+  config.dont_save = true
 end

@@ -27,6 +27,7 @@ $: << "#{LOAD_PATH}/app"
 require "service_manager"
 require "service_provider_proxy"
 
+
 ServiceCodeBase::Initializer.configure do |config|
-  config.no_save = true
+  config.dont_save = true
 end

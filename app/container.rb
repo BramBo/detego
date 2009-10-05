@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Bram Wijnands<bram@kabisa.nl>
+# Copyright (c) 2009 Bram Wijnands<brambomail@gmail.com>
 #                                                                     
 # Permission is hereby granted, free of charge, to any person         
 # obtaining a copy of this software and associated documentation      
@@ -111,7 +111,7 @@ class Container
  
         begin
           s   = find(domain.to_sym).add_service(service.to_sym)
-          services["#{domain}::#{service}"] = s.meta_data.depends_on
+          services["#{domain}::#{service}"] = (s.config.depends_on || []).flatten
 
           puts " v | #{domain}::#{service} done"
         rescue Exception => e
@@ -131,7 +131,7 @@ class Container
        s = @domains[k.gsub(/(^.+?)\:\:.+?$/, "\\1").to_sym].find(k.gsub(/^.+?\:\:(.+?)$/, "\\1").to_sym)
  
        begin
-         if s.config.dont_start
+         if s.config.dont_start === true
            puts " - | #{s.full_name} not started by configuration".console_underline           
          else
            s.start()
@@ -150,18 +150,23 @@ class Container
 
      services[:circular_reference].each do|k,v|
        puts "#{("|").console_red()} #{k} #{" "*(70-k.size())} #{("|").console_red()}"
-       value = v.join(" | ")
+       value = v.to_a.join(" | ")
        puts "#{("|").console_red()} - #{value} #{" "*(68-(value.size()))} #{("|").console_red()}"
      end
      puts ("="*75).console_red
    end
 
+   if services[:sorted].size == 0
+     shutdown! 
+     exit
+   end
+   
    puts ""
    puts "Server Ready".console_bold
    puts ""
   end 
 
-  # Takes a Hash with that has an Array defined as dependencies
+  # Takes a Hash that has an Array defined as dependencies
   #  e.g. {"core::example" => ["core::deployer"]}
   #  no core example is depend on the deployer service and will be started after the deployer
   def dependency_sort(inc)
@@ -171,13 +176,13 @@ class Container
     while sorted.size < inc.size && i < max_cycles
       dep_hash.each do |k,v|
         flag, j = true, (j+1)
-
+        
         if v.size() > 0
-          v.each do |e|      
+          v.each do |e|
             flag = false if !sorted.include?(e) || (dep_hash[e] && dep_hash[e].include?(k))
           end
         end
-
+          
         if flag == true
           sorted << k 
           dep_hash.delete(k)
